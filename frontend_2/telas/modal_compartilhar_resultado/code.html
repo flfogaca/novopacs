@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Compartilhar Resultado - Themis Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: { extend: {
+    colors: { "primary": "#0f66bd", "background-light": "#f6f7f8", "background-dark": "#101922" },
+    fontFamily: { "display": ["Manrope", "sans-serif"] },
+    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+  }}
+}
+</script>
+<style>
+body { font-family: 'Manrope', sans-serif; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+</style>
+</head>
+<body class="bg-slate-900/60 backdrop-blur-sm font-display text-slate-900 antialiased min-h-screen flex items-center justify-center p-4">
+
+<div class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
+  <div class="h-1 bg-primary"></div>
+
+  <div class="p-6">
+    <div class="flex items-center gap-3 mb-5">
+      <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+        <span class="material-symbols-outlined text-primary">share</span>
+      </div>
+      <h2 class="text-lg font-bold text-slate-900">Compartilhar Resultado</h2>
+    </div>
+
+    <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-600 mb-5 p-3 bg-slate-50 rounded-lg border border-slate-100">
+      <span><span class="font-semibold text-slate-700">Paciente:</span> Ana Silva</span>
+      <span><span class="font-semibold text-slate-700">Exame:</span> RM Crânio</span>
+      <span><span class="font-semibold text-slate-700">Data:</span> 04/03/2026</span>
+    </div>
+
+    <form class="space-y-4">
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Email do Médico</label>
+        <input type="email" placeholder="medico@clinica.com.br"
+               class="w-full rounded-lg border border-slate-200 px-3 py-2.5 text-sm placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20"/>
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Mensagem <span class="font-normal text-slate-400">(opcional)</span></label>
+        <textarea rows="2" placeholder="Mensagem para o médico..."
+                  class="w-full rounded-lg border border-slate-200 px-3 py-2.5 text-sm placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 resize-none"></textarea>
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Validade do Link</label>
+        <select class="w-full rounded-lg border border-slate-200 px-3 py-2.5 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20">
+          <option>24 horas</option>
+          <option selected>48 horas</option>
+          <option>7 dias</option>
+          <option>30 dias</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-2">Incluir</label>
+        <div class="flex flex-wrap gap-4">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" checked class="rounded border-slate-300 text-primary focus:ring-primary/30"/>
+            <span class="text-sm text-slate-700">Laudo PDF</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" class="rounded border-slate-300 text-primary focus:ring-primary/30"/>
+            <span class="text-sm text-slate-700">Imagens DICOM</span>
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Link de Acesso</label>
+        <div class="flex items-center gap-2">
+          <div class="flex-1 rounded-lg bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm text-slate-400 truncate select-all">
+            https://portal.themis.health/r/abc123...
+          </div>
+          <button type="button" class="shrink-0 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors" title="Copiar link">
+            <span class="material-symbols-outlined text-slate-500 text-lg">content_copy</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="flex items-center justify-end gap-3 px-6 py-4 border-t border-slate-100 bg-slate-50/50">
+    <button class="px-4 py-2.5 rounded-lg border border-slate-200 text-sm font-semibold text-slate-600 hover:bg-slate-50 transition-colors">
+      Cancelar
+    </button>
+    <button class="px-5 py-2.5 rounded-lg bg-primary text-sm font-semibold text-white hover:bg-blue-700 transition-colors shadow-sm">
+      Compartilhar
+    </button>
+  </div>
+</div>
+
+<script src="../../nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Acesso a Unidades - Themis Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: { extend: {
+    colors: { "primary": "#0f66bd", "background-light": "#f6f7f8", "background-dark": "#101922" },
+    fontFamily: { "display": ["Manrope", "sans-serif"] },
+    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+  }}
+}
+</script>
+<style>
+body { font-family: 'Manrope', sans-serif; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+</style>
+</head>
+<body class="bg-background-light font-display text-slate-900 antialiased">
+<main class="flex-1 px-6 lg:px-10 py-8">
+<div class="max-w-[1280px] mx-auto flex flex-col gap-6">
+
+<!-- Breadcrumb -->
+<div class="flex items-center gap-2 text-sm">
+  <a class="text-slate-500 hover:text-primary transition-colors" href="#">Plataforma</a>
+  <span class="material-symbols-outlined text-sm text-slate-400">chevron_right</span>
+  <a data-nav="listagem_de_usu_rios" class="text-slate-500 hover:text-primary transition-colors cursor-pointer">Usuários</a>
+  <span class="material-symbols-outlined text-sm text-slate-400">chevron_right</span>
+  <span class="text-slate-500">Maria Ferreira</span>
+  <span class="material-symbols-outlined text-sm text-slate-400">chevron_right</span>
+  <span class="text-slate-900 font-medium">Acesso a Unidades</span>
+</div>
+
+<!-- Identity Card -->
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
+  <div class="flex flex-wrap items-center gap-5">
+    <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary font-extrabold text-lg shrink-0">MF</div>
+    <div class="flex-1 min-w-0">
+      <div class="flex flex-wrap items-center gap-3 mb-0.5">
+        <h1 class="text-2xl font-extrabold tracking-tight">Maria Ferreira</h1>
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800">Organization Admin</span>
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">Ativo</span>
+      </div>
+      <p class="text-slate-500 text-sm">maria.ferreira@onelaudos.com</p>
+    </div>
+  </div>
+</div>
+
+<!-- Header + Button -->
+<div class="flex flex-wrap justify-between items-center gap-4">
+  <div>
+    <h2 class="text-lg font-bold">Acesso a Unidades</h2>
+    <p class="text-sm text-slate-500 mt-0.5">Gerencie as unidades às quais este usuário tem acesso.</p>
+  </div>
+  <button class="inline-flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary/90 text-white rounded-lg font-bold text-sm transition-all shadow-sm shadow-primary/20">
+    <span class="material-symbols-outlined text-lg">add</span>
+    Conceder Acesso
+  </button>
+</div>
+
+<!-- Table -->
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+  <div class="overflow-x-auto">
+    <table class="w-full text-left border-collapse">
+      <thead>
+        <tr class="border-b border-slate-200 bg-slate-50/50">
+          <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Unidade</th>
+          <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Organização</th>
+          <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Concedido por</th>
+          <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Data</th>
+          <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Status</th>
+          <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Ações</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-100">
+
+        <!-- Row 1 -->
+        <tr class="hover:bg-slate-50 transition-colors">
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-blue-100 flex items-center justify-center">
+                <span class="material-symbols-outlined text-blue-700 text-lg">location_city</span>
+              </div>
+              <div>
+                <p class="text-sm font-semibold">Centro de Imagem São Paulo</p>
+                <p class="text-xs text-slate-500">CNES 2345678</p>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4 text-sm text-slate-600">Onelaudos</td>
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-600">PA</div>
+              <span class="text-sm text-slate-600">Platform Admin</span>
+            </div>
+          </td>
+          <td class="px-6 py-4 text-sm text-slate-600">12 Jan 2025</td>
+          <td class="px-6 py-4">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">Ativo</span>
+          </td>
+          <td class="px-6 py-4 text-right">
+            <button class="inline-flex items-center gap-1.5 px-3 py-1.5 border border-red-300 text-red-600 rounded-lg text-xs font-bold hover:bg-red-50 transition-colors">
+              <span class="material-symbols-outlined text-sm">block</span> Revogar
+            </button>
+          </td>
+        </tr>
+
+        <!-- Row 2 -->
+        <tr class="hover:bg-slate-50 transition-colors">
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-blue-100 flex items-center justify-center">
+                <span class="material-symbols-outlined text-blue-700 text-lg">location_city</span>
+              </div>
+              <div>
+                <p class="text-sm font-semibold">Clínica Norte</p>
+                <p class="text-xs text-slate-500">CNES 3456789</p>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4 text-sm text-slate-600">Onelaudos</td>
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-600">PA</div>
+              <span class="text-sm text-slate-600">Platform Admin</span>
+            </div>
+          </td>
+          <td class="px-6 py-4 text-sm text-slate-600">15 Fev 2025</td>
+          <td class="px-6 py-4">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">Ativo</span>
+          </td>
+          <td class="px-6 py-4 text-right">
+            <button class="inline-flex items-center gap-1.5 px-3 py-1.5 border border-red-300 text-red-600 rounded-lg text-xs font-bold hover:bg-red-50 transition-colors">
+              <span class="material-symbols-outlined text-sm">block</span> Revogar
+            </button>
+          </td>
+        </tr>
+
+        <!-- Row 3 -->
+        <tr class="hover:bg-slate-50 transition-colors">
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-blue-100 flex items-center justify-center">
+                <span class="material-symbols-outlined text-blue-700 text-lg">location_city</span>
+              </div>
+              <div>
+                <p class="text-sm font-semibold">Diagnóstico Sul</p>
+                <p class="text-xs text-slate-500">CNES 4567890</p>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4 text-sm text-slate-600">Onelaudos</td>
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-[10px] font-bold text-primary">MF</div>
+              <span class="text-sm text-slate-600">Maria Ferreira</span>
+            </div>
+          </td>
+          <td class="px-6 py-4 text-sm text-slate-600">03 Mar 2025</td>
+          <td class="px-6 py-4">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">Ativo</span>
+          </td>
+          <td class="px-6 py-4 text-right">
+            <button class="inline-flex items-center gap-1.5 px-3 py-1.5 border border-red-300 text-red-600 rounded-lg text-xs font-bold hover:bg-red-50 transition-colors">
+              <span class="material-symbols-outlined text-sm">block</span> Revogar
+            </button>
+          </td>
+        </tr>
+
+        <!-- Row 4 - Revoked -->
+        <tr class="hover:bg-slate-50 transition-colors bg-slate-50/30">
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center">
+                <span class="material-symbols-outlined text-slate-400 text-lg">location_city</span>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-400">Unidade Campinas</p>
+                <p class="text-xs text-slate-400">CNES 5678901</p>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4 text-sm text-slate-400">Onelaudos</td>
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-500">PA</div>
+              <span class="text-sm text-slate-400">Platform Admin</span>
+            </div>
+          </td>
+          <td class="px-6 py-4 text-sm text-slate-400">20 Jan 2025</td>
+          <td class="px-6 py-4">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-100 text-red-700">Revogado</span>
+          </td>
+          <td class="px-6 py-4 text-right">
+            <button class="inline-flex items-center gap-1.5 px-3 py-1.5 border border-blue-300 text-blue-600 rounded-lg text-xs font-bold hover:bg-blue-50 transition-colors">
+              <span class="material-symbols-outlined text-sm">refresh</span> Reativar
+            </button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Footer -->
+  <div class="px-6 py-4 bg-slate-50/50 border-t border-slate-200 flex items-center justify-between">
+    <span class="text-sm text-slate-500">Total: <span class="font-bold text-slate-900">4</span> registros de acesso</span>
+    <div class="flex items-center gap-3">
+      <div class="flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span class="text-xs text-slate-500">3 ativos</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-red-500"></span>
+        <span class="text-xs text-slate-500">1 revogado</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</main>
+<script src="../../nav.js"></script>
+</body></html>

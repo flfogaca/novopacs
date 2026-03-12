@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Templates de Laudo - Themis Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: { extend: {
+    colors: { "primary": "#0f66bd", "background-light": "#f6f7f8", "background-dark": "#101922" },
+    fontFamily: { "display": ["Manrope", "sans-serif"] },
+    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+  }}
+}
+</script>
+<style>
+body { font-family: 'Manrope', sans-serif; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+</style>
+</head>
+<body class="bg-background-light font-display text-slate-900 antialiased">
+
+<main class="min-h-screen p-8">
+  <div class="max-w-7xl mx-auto">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-slate-500 mb-6">
+      <span class="hover:text-primary cursor-pointer transition-colors">RIS</span>
+      <span class="material-symbols-outlined text-xs">chevron_right</span>
+      <span class="text-slate-900 font-medium">Templates de Laudo</span>
+    </nav>
+
+    <!-- Title + CTA -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+      <div>
+        <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">Templates de Laudo</h2>
+        <p class="text-slate-500 mt-1">Gerencie os modelos padrão para laudos radiológicos.</p>
+      </div>
+      <button class="inline-flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary/90 text-white rounded-lg font-semibold text-sm transition-all shadow-lg shadow-primary/20">
+        <span class="material-symbols-outlined text-lg">add</span>
+        Novo Template
+      </button>
+    </div>
+
+    <!-- Filters -->
+    <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm mb-6">
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+        <div class="relative flex-1">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+          <input type="text" placeholder="Buscar template por nome ou região..." class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary"/>
+        </div>
+        <select class="px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary min-w-[160px]">
+          <option>Modalidade: Todos</option>
+          <option>RM</option>
+          <option>CT</option>
+          <option>CR</option>
+          <option>US</option>
+          <option>MG</option>
+        </select>
+        <select class="px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary min-w-[160px]">
+          <option>Criado por: Todos</option>
+          <option>Dr. Ricardo Silva</option>
+          <option>Dr. Ana Costa</option>
+          <option>Dr. Patricia Santos</option>
+          <option>Dr. Lucia Ferreira</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-slate-200 bg-slate-50/50">
+              <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Nome</th>
+              <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Modalidade</th>
+              <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Região</th>
+              <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Criado por</th>
+              <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Última Edição</th>
+              <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Status</th>
+              <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Ações</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            <!-- Row 1 -->
+            <tr class="hover:bg-slate-50 transition-colors">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 bg-indigo-50 rounded-lg flex items-center justify-center"><span class="material-symbols-outlined text-indigo-500 text-sm">description</span></div>
+                  <span class="text-sm font-semibold text-slate-900">RM Crânio - Normal</span>
+                </div>
+              </td>
+              <td class="px-6 py-4"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-indigo-100 text-indigo-700">RM</span></td>
+              <td class="px-6 py-4 text-sm text-slate-600">Crânio</td>
+              <td class="px-6 py-4 text-sm text-slate-600">Dr. Ricardo Silva</td>
+              <td class="px-6 py-4 text-sm text-slate-500">01/03/2026</td>
+              <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 text-emerald-700">Ativo</span></td>
+              <td class="px-6 py-4 text-right">
+                <div class="flex items-center justify-end gap-1">
+                  <button class="p-1.5 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors" title="Editar"><span class="material-symbols-outlined text-lg">edit</span></button>
+                  <button class="p-1.5 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors" title="Duplicar"><span class="material-symbols-outlined text-lg">content_copy</span></button>
+                  <button class="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Excluir"><span class="material-symbols-outlined text-lg">delete</span></button>
+                </div>
+              </td>
+            </tr>
+            <!-- Row 2 -->
+            <tr class="hover:bg-slate-50 transition-colors">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 bg-indigo-50 rounded-lg flex items-center justify-center"><span class="material-symbols-outlined text-indigo-500 text-sm">description</span></div>
+                  <span class="text-sm font-semibold text-slate-900">RM Crânio - Achados</span>
+                </div>
+              </td>
+              <td class="px-6 py-4"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-indigo-100 text-indigo-700">RM</span></td>
+              <td class="px-6 py-4 text-sm text-slate-600">Crânio</td>
+              <td class="px-6 py-4 text-sm text-slate-600">Dr. Ricardo Silva</td>
+              <td class="px-6 py-4 text-sm text-slate-500">28/02/2026</td>
+              <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 text-emerald-700">Ativo</span></td>
+              <td class="px-6 py-4 text-right">
+                <div class="flex items-center justify-end gap-1">
+                  <button class="p-1.5 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors" title="Editar"><span class="material-symbols-outlined text-lg">edit</span></button>
+                  <button class="p-1.5 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors" title="Duplicar"><span class="material-symbols-outlined text-lg">content_copy</span></button>
+                  <button class="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Excluir"><span class="material-symbols-outlined text-lg">delete</span></button>
+                </div>
+              </td>
+            </tr>
+            <!-- Row 3 -->
+            <tr class="hover:bg-slate-50 transition-colors">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 bg-amber-50 rounded-lg flex items-center justify-center"><span class="material-symbols-outlined text-amber-600 text-sm">description</span></div>
+                  <span class="text-sm font-semibold text-slate-900">TC Tórax - Padrão</span>
+                </div>
+              </td>
+              <td class="px-6 py-4"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-100 text-amber-700">CT</span></td>
+              <td class="px-6 py-4 text-sm text-slate-600">Tórax</td>
+              <td class="px-6 py-4 text-sm text-slate-600">Dr. Ana Costa</td>
+              <td class="px-6 py-4 text-sm text-slate-500">25/02/2026</td>
+              <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 text-emerald-700">Ativo</span></td>
+              <td class="px-6 py-4 text-right">
+                <div class="flex items-center justify-end gap-1">
+                  <button class="p-1.5 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors" title="Editar"><span class="material-symbols-outlined text-lg">edit</span></button>
+                  <button class="p-1.5 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors" title="Duplicar"><span class="material-symbols-outlined text-lg">content_copy</span></button>
+                  <button class="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Excluir"><span class="material-symbols-outlined text-lg">delete</span></button>
+                </div>
+              </td>
+            </tr>
+            <!-- Row 4 -->
+            <tr class="hover:bg-slate-50 transition-colors">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 bg-amber-50 rounded-lg flex items-center justify-center"><span class="material-symbols-outlined text-amber-600 text-sm">description</span></div>
+                  <span class="text-sm font-semibold text-slate-900">TC Abdome - Padrão</span>
+                </div>
+              </td>
+              <td class="px-6 py-4"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-100 text-amber-700">CT</span></td>
+              <td class="px-6 py-4 text-sm text-slate-600">Abdome</td>
+              <td class="px-6 py-4 text-sm text-slate-600">Dr. Ana Costa</td>
+              <td class="px-6 py-4 text-sm text-slate-500">20/02/2026</td>
+              <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 text-emerald-700">Ativo</span></td>
+              <td class="px-6 py-4 text-right">
+                <div class="flex items-center justify-end gap-1">
+                  <button class="p-1.5 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors" title="Editar"><span class="material-symbols-outlined text-lg">edit</span></button>
+                  <button class="p-1.5 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors" title="Duplicar"><span class="material-symbols-outlined text-lg">content_copy</span></button>
+                  <button class="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Excluir"><span class="material-symbols-outlined text-lg">delete</span></button>
+                </div>
+              </td>
+            </tr>
+            <!-- Row 5 -->
+            <tr class="hover:bg-slate-50 transition-colors">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 bg-sky-50 rounded-lg flex items-center justify-center"><span class="material-symbols-outlined text-sky-500 text-sm">description</span></div>
+                  <span class="text-sm font-semibold text-slate-900">US Abdome - Normal</span>
+                </div>
+              </td>
+              <td class="px-6 py-4"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-sky-100 text-sky-700">US</span></td>
+              <td class="px-6 py-4 text-sm text-slate-600">Abdome</td>
+              <td class="px-6 py-4 text-sm text-slate-600">Dr. Patricia Santos</td>
+              <td class="px-6 py-4 text-sm text-slate-500">15/02/2026</td>
+              <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 text-emerald-700">Ativo</span></td>
+              <td class="px-6 py-4 text-right">
+                <div class="flex items-center justify-end gap-1">
+                  <button class="p-1.5 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors" title="Editar"><span class="material-symbols-outlined text-lg">edit</span></button>
+                  <button class="p-1.5 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors" title="Duplicar"><span class="material-symbols-outlined text-lg">content_copy</span></button>
+                  <button class="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Excluir"><span class="material-symbols-outlined text-lg">delete</span></button>
+                </div>
+              </td>
+            </tr>
+            <!-- Row 6 -->
+            <tr class="hover:bg-slate-50 transition-colors">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 bg-sky-50 rounded-lg flex items-center justify-center"><span class="material-symbols-outlined text-sky-500 text-sm">description</span></div>
+                  <span class="text-sm font-semibold text-slate-900">US Obstétrico 1T</span>
+                </div>
+              </td>
+              <td class="px-6 py-4"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-sky-100 text-sky-700">US</span></td>
+              <td class="px-6 py-4 text-sm text-slate-600">Obstétrico</td>
+              <td class="px-6 py-4 text-sm text-slate-600">Dr. Patricia Santos</td>
+              <td class="px-6 py-4 text-sm text-slate-500">10/02/2026</td>
+              <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 text-emerald-700">Ativo</span></td>
+              <td class="px-6 py-4 text-right">
+                <div class="flex items-center justify-end gap-1">
+                  <button class="p-1.5 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors" title="Editar"><span class="material-symbols-outlined text-lg">edit</span></button>
+                  <button class="p-1.5 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors" title="Duplicar"><span class="material-symbols-outlined text-lg">content_copy</span></button>
+                  <button class="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Excluir"><span class="material-symbols-outlined text-lg">delete</span></button>
+                </div>
+              </td>
+            </tr>
+            <!-- Row 7 - Draft -->
+            <tr class="hover:bg-slate-50 transition-colors">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 bg-pink-50 rounded-lg flex items-center justify-center"><span class="material-symbols-outlined text-pink-500 text-sm">description</span></div>
+                  <span class="text-sm font-semibold text-slate-900">MG Bilateral - Normal</span>
+                </div>
+              </td>
+              <td class="px-6 py-4"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-pink-100 text-pink-700">MG</span></td>
+              <td class="px-6 py-4 text-sm text-slate-600">Mama</td>
+              <td class="px-6 py-4 text-sm text-slate-600">Dr. Lucia Ferreira</td>
+              <td class="px-6 py-4 text-sm text-slate-500">05/02/2026</td>
+              <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-600">Rascunho</span></td>
+              <td class="px-6 py-4 text-right">
+                <div class="flex items-center justify-end gap-1">
+                  <button class="p-1.5 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors" title="Editar"><span class="material-symbols-outlined text-lg">edit</span></button>
+                  <button class="p-1.5 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors" title="Duplicar"><span class="material-symbols-outlined text-lg">content_copy</span></button>
+                  <button class="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Excluir"><span class="material-symbols-outlined text-lg">delete</span></button>
+                </div>
+              </td>
+            </tr>
+            <!-- Row 8 -->
+            <tr class="hover:bg-slate-50 transition-colors">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 bg-teal-50 rounded-lg flex items-center justify-center"><span class="material-symbols-outlined text-teal-500 text-sm">description</span></div>
+                  <span class="text-sm font-semibold text-slate-900">RX Tórax - Padrão</span>
+                </div>
+              </td>
+              <td class="px-6 py-4"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-teal-100 text-teal-700">CR</span></td>
+              <td class="px-6 py-4 text-sm text-slate-600">Tórax</td>
+              <td class="px-6 py-4 text-sm text-slate-600">Dr. Ricardo Silva</td>
+              <td class="px-6 py-4 text-sm text-slate-500">01/02/2026</td>
+              <td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 text-emerald-700">Ativo</span></td>
+              <td class="px-6 py-4 text-right">
+                <div class="flex items-center justify-end gap-1">
+                  <button class="p-1.5 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors" title="Editar"><span class="material-symbols-outlined text-lg">edit</span></button>
+                  <button class="p-1.5 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors" title="Duplicar"><span class="material-symbols-outlined text-lg">content_copy</span></button>
+                  <button class="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Excluir"><span class="material-symbols-outlined text-lg">delete</span></button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Pagination -->
+      <div class="px-6 py-4 bg-slate-50/50 border-t border-slate-200 flex items-center justify-between">
+        <span class="text-sm text-slate-500">Mostrando <span class="font-bold text-slate-900">1–8</span> de <span class="font-bold text-slate-900">8</span> templates</span>
+        <div class="flex items-center gap-2">
+          <button class="p-2 bg-white border border-slate-200 rounded-lg text-slate-400 hover:text-slate-900 transition-colors disabled:opacity-50" disabled>
+            <span class="material-symbols-outlined text-sm">chevron_left</span>
+          </button>
+          <button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-white text-sm font-bold">1</button>
+          <button class="p-2 bg-white border border-slate-200 rounded-lg text-slate-400 hover:text-slate-900 transition-colors disabled:opacity-50" disabled>
+            <span class="material-symbols-outlined text-sm">chevron_right</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="../../nav.js"></script>
+</body>
+</html>

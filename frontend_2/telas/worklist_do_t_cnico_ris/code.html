@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Themis Health - Worklist do Técnico</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#0f66bd",
+                "background-light": "#f6f7f8",
+                "background-dark": "#101922",
+              },
+              fontFamily: {
+                "display": ["Manrope"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 flex-shrink-0 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col">
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">health_and_safety</span>
+</div>
+<div>
+<h1 class="text-primary font-bold text-lg leading-none">Themis Health</h1>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium mt-1">RIS / Workflow</p>
+</div>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">dashboard</span>
+<span class="text-sm font-semibold">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">calendar_today</span>
+<span class="text-sm font-semibold">Agendamentos</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">person</span>
+<span class="text-sm font-semibold">Pacientes</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-primary/10 text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">medical_services</span>
+<span class="text-sm font-bold">Exames</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">settings</span>
+<span class="text-sm font-semibold">Configurações</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3 p-2 bg-slate-50 dark:bg-slate-800 rounded-lg">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">account_circle</span>
+</div>
+<div class="overflow-hidden">
+<p class="text-xs font-bold truncate">Téc. Ricardo Silva</p>
+<p class="text-[10px] text-slate-500 truncate">Unidade Central</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col overflow-hidden">
+<!-- Header -->
+<header class="h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-8 z-10">
+<div class="flex items-center gap-4">
+<h2 class="text-xl font-bold text-slate-800 dark:text-white">Worklist do Técnico</h2>
+<div class="h-6 w-px bg-slate-200 dark:bg-slate-700"></div>
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+<select class="bg-transparent border-none focus:ring-0 text-sm font-medium cursor-pointer p-0">
+<option>Unidade Central</option>
+<option>Unidade Norte</option>
+<option>Unidade Sul</option>
+</select>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Data Atual</p>
+<p class="text-sm font-bold">24 de Maio, 2024</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-2 px-3 py-1.5 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-xs font-bold uppercase tracking-wider">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+</span>
+                            Ao vivo
+                        </div>
+<button class="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-primary/90 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+                            Atualizar
+                        </button>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="flex-1 overflow-y-auto p-8">
+<!-- Filters & Stats -->
+<div class="flex flex-wrap items-end justify-between gap-4 mb-6">
+<div class="flex gap-4">
+<div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm min-w-[140px]">
+<p class="text-xs text-slate-500 font-bold uppercase mb-1">Total Hoje</p>
+<p class="text-2xl font-black text-primary">24</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm min-w-[140px]">
+<p class="text-xs text-slate-500 font-bold uppercase mb-1">Aguardando</p>
+<p class="text-2xl font-black text-amber-500">08</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm min-w-[140px]">
+<p class="text-xs text-slate-500 font-bold uppercase mb-1">Urgentes</p>
+<p class="text-2xl font-black text-rose-500">03</p>
+</div>
+</div>
+<div class="flex gap-2">
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400">search</span>
+<input class="pl-10 pr-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-primary w-64" placeholder="Buscar paciente ou exame..." type="text"/>
+</div>
+<button class="p-2 border border-slate-200 dark:border-slate-800 rounded-lg bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Table Container -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Horário</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Paciente</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Tipo de Exame</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Equipamento</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Prioridade</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Ação</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<!-- Row 1: Scheduled (Normal) -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors group">
+<td class="px-6 py-5">
+<span class="text-sm font-bold text-slate-700 dark:text-slate-300">08:00</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-bold">João Pedro Silva</span>
+<span class="text-xs text-slate-500">CPF: 123.456.789-00</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-sm">Raio-X Tórax (PA/Lateral)</span>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700">RX-01</span>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 text-[11px] font-bold rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800 uppercase">Agendado</span>
+</td>
+<td class="px-6 py-5">
+<span class="px-2 py-1 text-[10px] font-bold rounded bg-slate-100 dark:bg-slate-800 text-slate-500 uppercase">Normal</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-xs font-bold transition-shadow shadow-sm">
+                                        Chegou
+                                    </button>
+</td>
+</tr>
+<!-- Row 2: Waiting (URGENTE) -->
+<tr class="bg-rose-50/30 dark:bg-rose-900/10 hover:bg-rose-50/50 dark:hover:bg-rose-900/20 transition-colors group">
+<td class="px-6 py-5">
+<span class="text-sm font-bold text-rose-600 dark:text-rose-400">08:30</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-bold">Maria Oliveira Castro</span>
+<span class="text-xs text-slate-500">CPF: 987.654.321-11</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-sm">Tomografia Computadorizada</span>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700">TC-02</span>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 text-[11px] font-bold rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-800 uppercase">Aguardando</span>
+</td>
+<td class="px-6 py-5">
+<span class="px-2 py-1 text-[10px] font-bold rounded bg-rose-100 dark:bg-rose-900 text-rose-600 dark:text-rose-100 uppercase animate-pulse">Urgente</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg text-xs font-bold transition-shadow shadow-sm">
+                                        Iniciar
+                                    </button>
+</td>
+</tr>
+<!-- Row 3: In Progress -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors group">
+<td class="px-6 py-5">
+<span class="text-sm font-bold text-slate-700 dark:text-slate-300">08:45</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-bold">Carlos Eduardo Souza</span>
+<span class="text-xs text-slate-500">CPF: 456.789.123-22</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-sm">Ressonância Magnética</span>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700">RM-01</span>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 text-[11px] font-bold rounded-full bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-800 uppercase">Em Andamento</span>
+</td>
+<td class="px-6 py-5">
+<span class="px-2 py-1 text-[10px] font-bold rounded bg-slate-100 dark:bg-slate-800 text-slate-500 uppercase">Normal</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-xs font-bold transition-shadow shadow-sm">
+                                        Concluir
+                                    </button>
+</td>
+</tr>
+<!-- Row 4: Skeleton Loading State (Visual representation) -->
+<tr class="opacity-40 select-none pointer-events-none">
+<td class="px-6 py-5"><div class="h-4 bg-slate-200 dark:bg-slate-700 rounded w-12"></div></td>
+<td class="px-6 py-5">
+<div class="h-4 bg-slate-200 dark:bg-slate-700 rounded w-32 mb-2"></div>
+<div class="h-3 bg-slate-200 dark:bg-slate-700 rounded w-24"></div>
+</td>
+<td class="px-6 py-5"><div class="h-4 bg-slate-200 dark:bg-slate-700 rounded w-40"></div></td>
+<td class="px-6 py-5"><div class="h-5 bg-slate-200 dark:bg-slate-700 rounded w-16"></div></td>
+<td class="px-6 py-5"><div class="h-6 bg-slate-200 dark:bg-slate-700 rounded-full w-24"></div></td>
+<td class="px-6 py-5"><div class="h-5 bg-slate-200 dark:bg-slate-700 rounded w-16"></div></td>
+<td class="px-6 py-5 text-right"><div class="h-8 bg-slate-200 dark:bg-slate-700 rounded w-20 ml-auto"></div></td>
+</tr>
+</tbody>
+</table>
+<!-- Table Footer / Pagination -->
+<div class="px-6 py-4 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500">
+<p>Mostrando 3 de 24 exames</p>
+<div class="flex gap-2">
+<button class="px-2 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded disabled:opacity-50" disabled="">Anterior</button>
+<button class="px-2 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded">Próximo</button>
+</div>
+</div>
+</div>
+<!-- Toast/Feedback Notification (Simulation) -->
+<div class="fixed bottom-8 right-8 flex flex-col gap-2 z-50">
+<div class="bg-green-600 text-white px-4 py-3 rounded-lg shadow-xl flex items-center gap-3 animate-bounce">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<p class="text-sm font-bold">Status atualizado com sucesso!</p>
+<button class="ml-2 hover:opacity-75"><span class="material-symbols-outlined text-[18px]">close</span></button>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Empty State Modal (Hidden by default) -->
+<div class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50">
+<div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-2xl max-w-sm text-center">
+<div class="w-20 h-20 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6 text-slate-400">
+<span class="material-symbols-outlined text-4xl">event_busy</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Sem exames para hoje</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-6">Não há registros agendados para a sua unidade no momento.</p>
+<button class="w-full bg-primary text-white py-3 rounded-xl font-bold">Recarregar lista</button>
+</div>
+</div>
+<script src="../../nav.js"></script>
+</body></html>

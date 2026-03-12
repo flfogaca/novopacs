@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Recuperar Senha - Plataforma / IAM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f66bd",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display">
+<!-- Top Navigation -->
+<header class="w-full bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary">shield_person</span>
+</div>
+<h1 class="text-slate-900 dark:text-slate-100 text-lg font-bold tracking-tight">Plataforma / IAM</h1>
+</div>
+</div>
+</header>
+<main class="flex-grow flex items-center justify-center p-4">
+<div class="w-full max-w-md">
+<!-- Recovery Card -->
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-xl overflow-hidden border border-slate-200 dark:border-slate-800">
+<div class="h-48 w-full bg-primary/5 flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent"></div>
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-16 h-16 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center shadow-md mb-3">
+<span class="material-symbols-outlined text-primary text-3xl">lock_reset</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold">Recuperar senha</h2>
+</div>
+<div class="absolute inset-0 opacity-10 pointer-events-none" data-alt="Abstract geometric blue pattern background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA83Ce3vhKd-Ewgt2IPH_PgikYUxPak0a0Gvv9lAu1LSjxYApOf8VMNq_vCT6EW9T5JVMzOkWg1FpXKTdNxtjqxcU68h3m_g-5nEgpJtNAOWKF0jcC_iOScDO53L4eqhzTEL3632NjHMcB1JOztAmnvv3IRI73u5by99PGZDjseBK8BFe6qf7ZygERVoNVKULzOZBSn4CGQFM5zCwmLTjTLj38MNStS1KCkRGf3FavJHbuZ1Y_sQzyHikvhLu3i9QI8F-nrPVYY-GE');"></div>
+</div>
+<div class="p-8">
+<p class="text-slate-600 dark:text-slate-400 text-center mb-8 leading-relaxed">
+                        Informe seu e-mail para receber as instruções de redefinição de senha. Por segurança, enviaremos um link apenas se o e-mail estiver cadastrado.
+                    </p>
+<!-- Form Section -->
+<form action="#" class="space-y-6">
+<div class="flex flex-col gap-2">
+<label class="text-slate-900 dark:text-slate-100 text-sm font-semibold" for="email">
+                                E-mail corporativo
+                            </label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">mail</span>
+<input class="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder:text-slate-400" id="email" name="email" placeholder="exemplo@dominio.com" required="" type="email"/>
+</div>
+<!-- TODO/VERIFICAR: Adicionar mensagem de validação client-side via JS -->
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3.5 rounded-lg shadow-lg shadow-primary/20 transition-all flex items-center justify-center gap-2" type="submit">
+<span class="material-symbols-outlined">send</span>
+                            Enviar link
+                        </button>
+</form>
+<!-- Success Alert (Hidden by default, used for demonstration) -->
+<!-- TODO/VERIFICAR: Integrar com endpoint POST /api/v1/auth/password/forgot -->
+<div class="mt-6 hidden">
+<div class="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg flex gap-3">
+<span class="material-symbols-outlined text-green-600 dark:text-green-400">check_circle</span>
+<div class="text-sm">
+<p class="text-green-800 dark:text-green-300 font-semibold text-sm">E-mail enviado!</p>
+<p class="text-green-700 dark:text-green-400 mt-0.5">Se houver uma conta associada a este endereço, você receberá o link em instantes.</p>
+</div>
+</div>
+</div>
+<!-- Error Alert (Hidden by default) -->
+<div class="mt-6 hidden">
+<div class="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex gap-3">
+<span class="material-symbols-outlined text-red-600 dark:text-red-400">error</span>
+<p class="text-red-800 dark:text-red-300 text-sm">Não foi possível enviar agora. Tente novamente mais tarde.</p>
+</div>
+</div>
+<div class="mt-8 text-center">
+<a class="text-primary hover:text-primary/80 text-sm font-semibold flex items-center justify-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-lg group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                            Voltar ao login
+                        </a>
+</div>
+</div>
+</div>
+<!-- Policy & Meta -->
+<div class="mt-8 flex flex-col items-center gap-4 text-slate-500 dark:text-slate-400 text-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base">verified_user</span>
+<span>Conexão segura via HTTPS/TLS</span>
+</div>
+<p class="max-w-[320px] text-center opacity-60">
+                    A política anti-enumeração protege as contas de nossos usuários não revelando a existência de registros.
+                </p>
+</div>
+</div>
+</main>
+<footer class="p-6 text-center text-slate-400 text-xs border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+        © 2024 Plataforma / IAM. Todos os direitos reservados.
+    </footer>
+<script src="../../nav.js"></script>
+</body></html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Detalhes do Agendamento - Themis Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f66bd",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined { font-size: 20px; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="layout-container flex flex-col min-h-screen">
+<!-- Header / Nav -->
+<header class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-6 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<div class="text-primary">
+<svg class="w-8 h-8" fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.263 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold tracking-tight">Themis Health</h2>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-semibold hover:text-primary" href="#">Início</a>
+<a class="text-sm font-semibold text-primary border-b-2 border-primary pb-1" href="#">Agendas</a>
+<a class="text-sm font-semibold hover:text-primary" href="#">Pacientes</a>
+<a class="text-sm font-semibold hover:text-primary" href="#">Relatórios</a>
+</nav>
+<div class="flex items-center gap-3">
+<button class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white text-xs font-bold" data-alt="Avatar circular do usuário logado">
+                        JD
+                    </div>
+</div>
+</div>
+</header>
+<main class="flex-1 max-w-7xl mx-auto w-full p-4 md:p-8">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
+<a class="hover:underline" href="#">RIS</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<a class="hover:underline" href="#">Agendamento</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-slate-900 dark:text-slate-200 font-medium">Detalhes do Agendamento</span>
+</nav>
+<!-- Page Title & Primary Actions -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div>
+<div class="flex items-center gap-3">
+<h1 class="text-3xl font-extrabold tracking-tight">Agendamento #ACC123456</h1>
+<span class="px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-xs font-bold uppercase tracking-wider">Confirmado</span>
+</div>
+<p class="text-slate-500 mt-1 italic">Criado em 12/10/2023 por Recepção Central</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-2 px-4 h-10 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-bold hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined">edit</span>
+                        Editar
+                    </button>
+<button class="flex items-center gap-2 px-4 h-10 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-bold hover:bg-slate-50">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column: Details -->
+<div class="lg:col-span-2 space-y-6">
+<!-- Patient & Exam Summary -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+<h3 class="font-bold text-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">person</span>
+                                Dados do Paciente e Exame
+                            </h3>
+</div>
+<div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-12">
+<div>
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Paciente</p>
+<p class="text-base font-semibold">Ricardo Oliveira de Almeida</p>
+<p class="text-sm text-slate-500">CPF: 123.456.789-00 | Prontuário: #88291</p>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Procedimento / Exame</p>
+<p class="text-base font-semibold">Ressonância Magnética de Crânio com Contraste</p>
+<p class="text-sm text-slate-500">Tipo: Diagnóstico por Imagem</p>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Data e Hora</p>
+<p class="text-base font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">calendar_month</span>
+                                    24 de Outubro, 2023 - 14:30
+                                </p>
+<p class="text-sm text-slate-500">Duração estimada: 45 min</p>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Equipamento / Modalidade</p>
+<p class="text-base font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">precision_manufacturing</span>
+                                    RM-02 (Tesla 3.0)
+                                </p>
+<p class="text-sm text-slate-500">Sala 04 - Ala Norte</p>
+</div>
+</div>
+</div>
+<!-- Clinical Information -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800">
+<h3 class="font-bold text-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">clinical_notes</span>
+                                Informações Clínicas e Convênio
+                            </h3>
+</div>
+<div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-12">
+<div class="md:col-span-1">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Médico Solicitante</p>
+<p class="text-base font-semibold">Dr. Marcos Vinícius (CRM 45678-SP)</p>
+</div>
+<div class="md:col-span-1">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Convênio / Plano</p>
+<p class="text-base font-semibold">Unimed Nacional - Diamante</p>
+<p class="text-sm text-slate-500">Guia: 9922881-A (Autorizada)</p>
+</div>
+<div class="md:col-span-2">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Indicação Clínica</p>
+<p class="text-sm text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/50 p-3 rounded-lg border border-slate-100 dark:border-slate-800 mt-1">
+                                    Cefaleia crônica refratária a tratamento medicamentoso há 3 meses. Investigação de possível lesão expansiva.
+                                </p>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Prioridade</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="w-3 h-3 rounded-full bg-orange-500"></span>
+<span class="font-bold text-orange-600 dark:text-orange-400">URGENTE</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Change History / Audit -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800">
+<h3 class="font-bold text-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">history</span>
+                                Histórico de Mudanças
+                            </h3>
+</div>
+<div class="p-6">
+<div class="space-y-4">
+<div class="flex gap-4 items-start">
+<div class="flex flex-col items-center">
+<div class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 mt-2"></div>
+<div class="w-px h-full bg-slate-200 dark:bg-slate-800 min-h-[40px]"></div>
+</div>
+<div>
+<p class="text-sm font-bold">Status alterado para 'Confirmado'</p>
+<p class="text-xs text-slate-500">12/10/2023 15:20 • Operador: ana.silva</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="flex flex-col items-center">
+<div class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 mt-2"></div>
+<div class="w-px h-full bg-slate-200 dark:bg-slate-800 min-h-[40px]"></div>
+</div>
+<div>
+<p class="text-sm font-bold">Guia de convênio autorizada</p>
+<p class="text-xs text-slate-500">12/10/2023 14:10 • Operador: sistema.faturamento</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="flex flex-col items-center">
+<div class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 mt-2"></div>
+</div>
+<div>
+<p class="text-sm font-bold">Agendamento criado</p>
+<p class="text-xs text-slate-500">12/10/2023 14:05 • Operador: recepcao.central</p>
+</div>
+</div>
+</div>
+<button class="mt-6 text-sm font-bold text-primary hover:underline flex items-center gap-1">
+                                Ver trilha completa de auditoria
+                                <span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right Column: Contextual Actions -->
+<div class="space-y-6">
+<!-- Status Card -->
+<div class="bg-primary/5 dark:bg-primary/10 border border-primary/20 rounded-xl p-6">
+<p class="text-primary text-xs font-bold uppercase tracking-widest mb-1">Status Atual</p>
+<h4 class="text-2xl font-black text-primary">Confirmado</h4>
+<p class="text-sm text-primary/70 mt-2">O paciente confirmou via WhatsApp em 14/10/2023.</p>
+<div class="mt-6 flex flex-col gap-3">
+<button class="w-full h-11 bg-primary text-white rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-primary/90 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">how_to_reg</span>
+                                Registrar Check-in
+                            </button>
+<button class="w-full h-11 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-slate-50 transition-all group">
+<span class="material-symbols-outlined">event_repeat</span>
+                                Reagendar
+                                <span class="hidden group-hover:inline ml-1 text-[10px] font-normal text-slate-400 tracking-tight">(Abre Wizard)</span>
+</button>
+</div>
+</div>
+<!-- Secondary Actions -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6">
+<h5 class="font-bold mb-4 text-sm">Gerenciamento de Fluxo</h5>
+<div class="space-y-2">
+<button class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-100 dark:hover:border-slate-700 transition-colors">
+<span class="flex items-center gap-3 text-sm font-medium">
+<span class="material-symbols-outlined text-slate-400">cancel</span>
+                                    Cancelar Agendamento
+                                </span>
+<span class="material-symbols-outlined text-slate-300">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-100 dark:hover:border-slate-700 transition-colors">
+<span class="flex items-center gap-3 text-sm font-medium">
+<span class="material-symbols-outlined text-slate-400">person_off</span>
+                                    Marcar No-Show
+                                </span>
+<span class="material-symbols-outlined text-slate-300">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-100 dark:hover:border-slate-700 transition-colors">
+<span class="flex items-center gap-3 text-sm font-medium">
+<span class="material-symbols-outlined text-slate-400">print</span>
+                                    Imprimir Protocolo
+                                </span>
+<span class="material-symbols-outlined text-slate-300">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Alerts/Notes -->
+<div class="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800/40 rounded-xl p-6">
+<div class="flex items-center gap-2 mb-3 text-amber-700 dark:text-amber-400">
+<span class="material-symbols-outlined">warning</span>
+<span class="font-bold text-sm">Notas Importantes</span>
+</div>
+<ul class="text-xs space-y-2 text-amber-800 dark:text-amber-300 leading-relaxed">
+<li>• Paciente informou claustrofobia leve na triagem telefônica.</li>
+<li>• Necessário jejum de 4 horas para contraste.</li>
+<li>• Trazer exames anteriores para comparação.</li>
+</ul>
+</div>
+</div>
+</div>
+</main>
+<footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 p-6 mt-12">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-xs text-slate-400">© 2023 Themis Health System • Módulo RIS - Unidade Central • Versão 4.2.0</p>
+<div class="flex items-center gap-4 text-xs font-medium text-slate-400">
+<a class="hover:text-primary" href="#">Termos</a>
+<a class="hover:text-primary" href="#">Suporte</a>
+<a class="hover:text-primary" href="#">Documentação</a>
+</div>
+</div>
+</footer>
+</div>
+<script src="../../nav.js"></script>
+</body></html>

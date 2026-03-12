@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard Unidade - Themis Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: { extend: {
+    colors: { "primary": "#0f66bd", "background-light": "#f6f7f8", "background-dark": "#101922" },
+    fontFamily: { "display": ["Manrope", "sans-serif"] },
+    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+  }}
+}
+</script>
+<style>
+body { font-family: 'Manrope', sans-serif; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+</style>
+</head>
+<body class="bg-background-light font-display text-slate-900 antialiased">
+
+<main class="max-w-7xl mx-auto px-6 py-8">
+
+  <!-- Header -->
+  <div class="flex items-center justify-between mb-8">
+    <div>
+      <h1 class="text-2xl font-extrabold text-slate-900">Dashboard — Centro de Imagem SP</h1>
+      <p class="text-sm text-slate-500 mt-1">Painel da unidade</p>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs text-slate-600">
+        <span class="material-symbols-outlined" style="font-size:16px">calendar_today</span>
+        05 de Março de 2026
+      </span>
+    </div>
+  </div>
+
+  <!-- KPI Cards -->
+  <div class="grid grid-cols-5 gap-4 mb-8">
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+          <span class="material-symbols-outlined text-blue-600" style="font-size:20px">meeting_room</span>
+        </div>
+      </div>
+      <div class="text-2xl font-extrabold text-slate-900">5 <span class="text-sm font-semibold text-emerald-600">(4 ativas)</span></div>
+      <div class="text-sm text-slate-500 mt-0.5">Salas</div>
+    </div>
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
+          <span class="material-symbols-outlined text-indigo-600" style="font-size:20px">scanner</span>
+        </div>
+      </div>
+      <div class="text-2xl font-extrabold text-slate-900">5 <span class="text-sm font-semibold text-emerald-600">(4 online)</span></div>
+      <div class="text-sm text-slate-500 mt-0.5">Equipamentos</div>
+    </div>
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-10 h-10 rounded-full bg-cyan-100 flex items-center justify-center">
+          <span class="material-symbols-outlined text-cyan-600" style="font-size:20px">radiology</span>
+        </div>
+      </div>
+      <div class="text-2xl font-extrabold text-slate-900">47</div>
+      <div class="text-sm text-slate-500 mt-0.5">Exames Hoje</div>
+      <div class="flex items-center gap-1 mt-2">
+        <span class="material-symbols-outlined text-emerald-500" style="font-size:16px">trending_up</span>
+        <span class="text-xs font-semibold text-emerald-600">+5.4%</span>
+      </div>
+    </div>
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center">
+          <span class="material-symbols-outlined text-amber-600" style="font-size:20px">pending_actions</span>
+        </div>
+      </div>
+      <div class="text-2xl font-extrabold text-slate-900">8</div>
+      <div class="text-sm text-slate-500 mt-0.5">Laudos Pendentes</div>
+      <div class="flex items-center gap-1 mt-2">
+        <span class="material-symbols-outlined text-red-500" style="font-size:16px">trending_down</span>
+        <span class="text-xs font-semibold text-red-600">3 urgentes</span>
+      </div>
+    </div>
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center">
+          <span class="material-symbols-outlined text-emerald-600" style="font-size:20px">timer</span>
+        </div>
+      </div>
+      <div class="text-2xl font-extrabold text-slate-900">22min</div>
+      <div class="text-sm text-slate-500 mt-0.5">Tempo Médio</div>
+      <div class="flex items-center gap-1 mt-2">
+        <span class="material-symbols-outlined text-emerald-500" style="font-size:16px">trending_up</span>
+        <span class="text-xs font-semibold text-emerald-600">-3min vs ontem</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="grid grid-cols-2 gap-6 mb-8">
+
+    <!-- Status dos Equipamentos -->
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
+      <h2 class="text-sm font-bold text-slate-700 mb-4">Status dos Equipamentos</h2>
+      <div class="space-y-3">
+        <div class="flex items-center gap-3 p-3 rounded-lg bg-slate-50 border border-slate-100">
+          <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-200"></div>
+          <div class="flex-1">
+            <p class="text-sm font-semibold text-slate-800">RM Siemens Magnetom 3T</p>
+            <p class="text-xs text-slate-400">Sala RM 01 — AET: MAGNETOM_3T</p>
+          </div>
+          <span class="px-2 py-0.5 text-[10px] font-bold rounded-full bg-emerald-100 text-emerald-700">ONLINE</span>
+        </div>
+        <div class="flex items-center gap-3 p-3 rounded-lg bg-slate-50 border border-slate-100">
+          <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-200"></div>
+          <div class="flex-1">
+            <p class="text-sm font-semibold text-slate-800">CT GE Revolution</p>
+            <p class="text-xs text-slate-400">Sala CT 01 — AET: GE_REV_CT</p>
+          </div>
+          <span class="px-2 py-0.5 text-[10px] font-bold rounded-full bg-emerald-100 text-emerald-700">ONLINE</span>
+        </div>
+        <div class="flex items-center gap-3 p-3 rounded-lg bg-slate-50 border border-slate-100">
+          <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-200"></div>
+          <div class="flex-1">
+            <p class="text-sm font-semibold text-slate-800">RX Philips DigitalDiagnost</p>
+            <p class="text-xs text-slate-400">Sala RX 01 — AET: PHILIPS_RX01</p>
+          </div>
+          <span class="px-2 py-0.5 text-[10px] font-bold rounded-full bg-emerald-100 text-emerald-700">ONLINE</span>
+        </div>
+        <div class="flex items-center gap-3 p-3 rounded-lg bg-slate-50 border border-slate-100">
+          <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-200"></div>
+          <div class="flex-1">
+            <p class="text-sm font-semibold text-slate-800">US Samsung HS60</p>
+            <p class="text-xs text-slate-400">Sala US 01 — AET: SAMSUNG_US01</p>
+          </div>
+          <span class="px-2 py-0.5 text-[10px] font-bold rounded-full bg-emerald-100 text-emerald-700">ONLINE</span>
+        </div>
+        <div class="flex items-center gap-3 p-3 rounded-lg bg-red-50 border border-red-100">
+          <div class="w-2.5 h-2.5 rounded-full bg-red-500 shadow-sm shadow-red-200 animate-pulse"></div>
+          <div class="flex-1">
+            <p class="text-sm font-semibold text-slate-800">MG Hologic Selenia</p>
+            <p class="text-xs text-red-500">Sala MG 01 — Offline desde 09:14</p>
+          </div>
+          <span class="px-2 py-0.5 text-[10px] font-bold rounded-full bg-red-100 text-red-700">OFFLINE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exames do Dia por Modalidade -->
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
+      <h2 class="text-sm font-bold text-slate-700 mb-4">Exames do Dia por Modalidade</h2>
+      <div class="space-y-4">
+        <div>
+          <div class="flex justify-between text-xs mb-1"><span class="font-semibold text-slate-700">CT — Tomografia</span><span class="text-slate-500 font-bold">15</span></div>
+          <div class="w-full bg-slate-100 rounded-full h-4"><div class="bg-cyan-500 h-4 rounded-full flex items-center justify-end pr-2" style="width:100%"><span class="text-[9px] text-white font-bold">15</span></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs mb-1"><span class="font-semibold text-slate-700">RM — Ressonância</span><span class="text-slate-500 font-bold">12</span></div>
+          <div class="w-full bg-slate-100 rounded-full h-4"><div class="bg-blue-500 h-4 rounded-full flex items-center justify-end pr-2" style="width:80%"><span class="text-[9px] text-white font-bold">12</span></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs mb-1"><span class="font-semibold text-slate-700">US — Ultrassom</span><span class="text-slate-500 font-bold">9</span></div>
+          <div class="w-full bg-slate-100 rounded-full h-4"><div class="bg-violet-500 h-4 rounded-full flex items-center justify-end pr-2" style="width:60%"><span class="text-[9px] text-white font-bold">9</span></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs mb-1"><span class="font-semibold text-slate-700">RX — Raio-X</span><span class="text-slate-500 font-bold">8</span></div>
+          <div class="w-full bg-slate-100 rounded-full h-4"><div class="bg-indigo-400 h-4 rounded-full flex items-center justify-end pr-2" style="width:53%"><span class="text-[9px] text-white font-bold">8</span></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs mb-1"><span class="font-semibold text-slate-700">MG — Mamografia</span><span class="text-slate-500 font-bold">3</span></div>
+          <div class="w-full bg-slate-100 rounded-full h-4"><div class="bg-pink-400 h-4 rounded-full flex items-center justify-end pr-2" style="width:20%"><span class="text-[9px] text-white font-bold">3</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ocupação das Salas -->
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
+      <h2 class="text-sm font-bold text-slate-700 mb-4">Ocupação das Salas</h2>
+      <div class="space-y-4">
+        <div>
+          <div class="flex justify-between text-xs mb-1"><span class="font-semibold text-slate-700">Sala RM 01</span><span class="text-slate-500">92%</span></div>
+          <div class="w-full bg-slate-100 rounded-full h-3"><div class="bg-red-400 h-3 rounded-full" style="width:92%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs mb-1"><span class="font-semibold text-slate-700">Sala CT 01</span><span class="text-slate-500">78%</span></div>
+          <div class="w-full bg-slate-100 rounded-full h-3"><div class="bg-amber-400 h-3 rounded-full" style="width:78%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs mb-1"><span class="font-semibold text-slate-700">Sala US 01</span><span class="text-slate-500">65%</span></div>
+          <div class="w-full bg-slate-100 rounded-full h-3"><div class="bg-emerald-400 h-3 rounded-full" style="width:65%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs mb-1"><span class="font-semibold text-slate-700">Sala RX 01</span><span class="text-slate-500">54%</span></div>
+          <div class="w-full bg-slate-100 rounded-full h-3"><div class="bg-emerald-400 h-3 rounded-full" style="width:54%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs mb-1"><span class="font-semibold text-slate-700">Sala MG 01</span><span class="text-red-500 font-semibold">Offline</span></div>
+          <div class="w-full bg-slate-100 rounded-full h-3"><div class="bg-slate-300 h-3 rounded-full" style="width:0%"></div></div>
+        </div>
+      </div>
+      <div class="mt-4 flex gap-3">
+        <span class="flex items-center gap-1.5 text-[10px] text-slate-500"><span class="w-2.5 h-2.5 rounded bg-emerald-400"></span>&lt; 70%</span>
+        <span class="flex items-center gap-1.5 text-[10px] text-slate-500"><span class="w-2.5 h-2.5 rounded bg-amber-400"></span>70–85%</span>
+        <span class="flex items-center gap-1.5 text-[10px] text-slate-500"><span class="w-2.5 h-2.5 rounded bg-red-400"></span>&gt; 85%</span>
+      </div>
+    </div>
+
+    <!-- Alertas -->
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
+      <h2 class="text-sm font-bold text-slate-700 mb-4">Alertas</h2>
+      <div class="space-y-3">
+        <div class="flex items-start gap-3 p-3 bg-red-50 rounded-lg border border-red-100">
+          <span class="material-symbols-outlined text-red-500" style="font-size:20px">error</span>
+          <div class="flex-1">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-red-700">Crítico</span>
+              <span class="text-[10px] text-slate-400">09:14</span>
+            </div>
+            <p class="text-xs text-slate-600 mt-0.5">Mamógrafo Hologic Selenia — Sem comunicação DICOM</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-amber-50 rounded-lg border border-amber-100">
+          <span class="material-symbols-outlined text-amber-500" style="font-size:20px">warning</span>
+          <div class="flex-1">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-amber-700">Aviso</span>
+              <span class="text-[10px] text-slate-400">08:30</span>
+            </div>
+            <p class="text-xs text-slate-600 mt-0.5">Sala RM 01 — Ocupação acima de 90%, considere redistribuir agenda</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-amber-50 rounded-lg border border-amber-100">
+          <span class="material-symbols-outlined text-amber-500" style="font-size:20px">warning</span>
+          <div class="flex-1">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-amber-700">Aviso</span>
+              <span class="text-[10px] text-slate-400">07:50</span>
+            </div>
+            <p class="text-xs text-slate-600 mt-0.5">3 laudos urgentes pendentes há mais de 30 min</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-blue-50 rounded-lg border border-blue-100">
+          <span class="material-symbols-outlined text-blue-500" style="font-size:20px">info</span>
+          <div class="flex-1">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-blue-700">Info</span>
+              <span class="text-[10px] text-slate-400">07:00</span>
+            </div>
+            <p class="text-xs text-slate-600 mt-0.5">Manutenção preventiva do CT GE agendada para 10/03</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Links -->
+  <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
+    <h2 class="text-sm font-bold text-slate-700 mb-3">Acesso Rápido</h2>
+    <div class="flex gap-3">
+      <button data-nav="listagem_de_salas" class="flex items-center gap-2 px-4 py-2.5 bg-primary/5 hover:bg-primary/10 border border-primary/20 text-primary text-xs font-semibold rounded-lg transition">
+        <span class="material-symbols-outlined" style="font-size:18px">meeting_room</span>Salas
+      </button>
+      <button data-nav="listagem_de_equipamentos_dicom" class="flex items-center gap-2 px-4 py-2.5 bg-primary/5 hover:bg-primary/10 border border-primary/20 text-primary text-xs font-semibold rounded-lg transition">
+        <span class="material-symbols-outlined" style="font-size:18px">scanner</span>Equipamentos DICOM
+      </button>
+    </div>
+  </div>
+
+</main>
+
+<script src="../../nav.js"></script>
+</body>
+</html>

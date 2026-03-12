@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Configuração de Autenticação - Themis Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: { extend: {
+    colors: { "primary": "#0f66bd", "background-light": "#f6f7f8", "background-dark": "#101922" },
+    fontFamily: { "display": ["Manrope", "sans-serif"] },
+    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+  }}
+}
+</script>
+<style>
+body { font-family: 'Manrope', sans-serif; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+</style>
+</head>
+<body class="bg-background-light font-display text-slate-900 antialiased">
+
+<main class="min-h-screen p-8">
+  <div class="max-w-5xl mx-auto">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-slate-500 mb-6">
+      <span class="hover:text-primary cursor-pointer transition-colors">Administração</span>
+      <span class="material-symbols-outlined text-xs">chevron_right</span>
+      <span class="text-slate-900 font-medium">Configuração de Autenticação</span>
+    </nav>
+
+    <!-- Title -->
+    <div class="mb-8">
+      <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">Configuração de Autenticação</h2>
+      <p class="text-slate-500 mt-1">Configure o método de login para a organização <strong class="text-slate-700">Onelaudos</strong>.</p>
+    </div>
+
+    <!-- Auth Method Cards -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      <!-- Email + Senha - Selected -->
+      <div class="bg-white border-2 border-primary rounded-xl p-6 shadow-sm ring-2 ring-primary/10 relative">
+        <div class="absolute top-4 right-4">
+          <input type="radio" name="auth_method" checked class="w-5 h-5 text-primary focus:ring-primary"/>
+        </div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+            <span class="material-symbols-outlined text-primary">lock</span>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-slate-900">Email + Senha</h3>
+            <p class="text-xs text-slate-500">Autenticação padrão com credenciais locais</p>
+          </div>
+        </div>
+
+        <div class="space-y-4 mt-4 pt-4 border-t border-slate-100">
+          <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider">Política de Senha</h4>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label class="text-xs font-medium text-slate-600">Tamanho mínimo</label>
+              <select class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary">
+                <option>8 caracteres</option>
+                <option>10 caracteres</option>
+                <option selected>12 caracteres</option>
+                <option>16 caracteres</option>
+              </select>
+            </div>
+            <div class="space-y-1.5">
+              <label class="text-xs font-medium text-slate-600">Expiração</label>
+              <select class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary">
+                <option>30 dias</option>
+                <option>60 dias</option>
+                <option selected>90 dias</option>
+                <option>Nunca</option>
+              </select>
+            </div>
+          </div>
+          <div class="space-y-2.5">
+            <label class="flex items-center gap-2.5 cursor-pointer">
+              <input type="checkbox" checked class="rounded text-primary focus:ring-primary"/>
+              <span class="text-sm text-slate-700">Exigir letra maiúscula</span>
+            </label>
+            <label class="flex items-center gap-2.5 cursor-pointer">
+              <input type="checkbox" checked class="rounded text-primary focus:ring-primary"/>
+              <span class="text-sm text-slate-700">Exigir caractere especial</span>
+            </label>
+            <label class="flex items-center gap-2.5 cursor-pointer">
+              <input type="checkbox" checked class="rounded text-primary focus:ring-primary"/>
+              <span class="text-sm text-slate-700">Exigir número</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- SSO / SAML - Unselected -->
+      <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm relative opacity-75">
+        <div class="absolute top-4 right-4">
+          <input type="radio" name="auth_method" class="w-5 h-5 text-primary focus:ring-primary"/>
+        </div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center">
+            <span class="material-symbols-outlined text-slate-500">key</span>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-slate-900">SSO / SAML</h3>
+            <p class="text-xs text-slate-500">Login federado via provedor de identidade externo</p>
+          </div>
+        </div>
+
+        <div class="space-y-4 mt-4 pt-4 border-t border-slate-100">
+          <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider">Configuração SSO</h4>
+          <div class="space-y-3">
+            <div class="space-y-1.5">
+              <label class="text-xs font-medium text-slate-400">Provedor</label>
+              <select disabled class="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-lg text-sm text-slate-400 cursor-not-allowed">
+                <option>Selecione...</option>
+                <option>Okta</option>
+                <option>Azure AD</option>
+                <option>Google Workspace</option>
+              </select>
+            </div>
+            <div class="space-y-1.5">
+              <label class="text-xs font-medium text-slate-400">Entity ID</label>
+              <input type="text" disabled placeholder="https://idp.example.com/entity" class="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-lg text-sm text-slate-400 cursor-not-allowed"/>
+            </div>
+            <div class="space-y-1.5">
+              <label class="text-xs font-medium text-slate-400">SSO URL</label>
+              <input type="text" disabled placeholder="https://idp.example.com/sso/saml" class="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-lg text-sm text-slate-400 cursor-not-allowed"/>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="space-y-1.5">
+                <label class="text-xs font-medium text-slate-400">Client ID</label>
+                <input type="text" disabled placeholder="client_id" class="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-lg text-sm text-slate-400 cursor-not-allowed"/>
+              </div>
+              <div class="space-y-1.5">
+                <label class="text-xs font-medium text-slate-400">Client Secret</label>
+                <input type="password" disabled value="supersecret12345" class="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-lg text-sm text-slate-400 cursor-not-allowed"/>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <label class="text-xs font-medium text-slate-400">Certificado (X.509)</label>
+              <textarea disabled rows="2" placeholder="Cole o certificado aqui..." class="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-lg text-sm text-slate-400 cursor-not-allowed resize-none"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Domínios Permitidos -->
+    <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm mb-6">
+      <h3 class="text-sm font-bold text-slate-900 mb-1 flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-lg">domain</span>
+        Domínios Permitidos
+      </h3>
+      <p class="text-xs text-slate-500 mb-4">Apenas e-mails com estes domínios poderão se cadastrar na organização.</p>
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium">
+          @onelaudos.com
+          <button class="hover:bg-primary/20 rounded-full p-0.5 transition-colors"><span class="material-symbols-outlined text-sm">close</span></button>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium">
+          @onelaudos.com.br
+          <button class="hover:bg-primary/20 rounded-full p-0.5 transition-colors"><span class="material-symbols-outlined text-sm">close</span></button>
+        </span>
+        <button class="inline-flex items-center gap-1 px-3 py-1.5 border border-dashed border-slate-300 text-slate-500 rounded-full text-sm font-medium hover:bg-slate-50 transition-colors">
+          <span class="material-symbols-outlined text-sm">add</span>
+          Adicionar domínio
+        </button>
+      </div>
+    </div>
+
+    <!-- Configurações Adicionais -->
+    <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm mb-6">
+      <h3 class="text-sm font-bold text-slate-900 mb-4 flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-lg">tune</span>
+        Configurações Adicionais
+      </h3>
+      <div class="space-y-5">
+        <!-- 2FA Toggle -->
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm font-semibold text-slate-900">Autenticação de dois fatores (2FA)</p>
+            <p class="text-xs text-slate-500">Obrigar todos os usuários a configurar 2FA no próximo login.</p>
+          </div>
+          <button class="relative w-11 h-6 bg-primary rounded-full transition-colors" aria-checked="true">
+            <span class="absolute left-[22px] top-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform"></span>
+          </button>
+        </div>
+        <div class="h-px bg-slate-100"></div>
+        <!-- Sessão máxima -->
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm font-semibold text-slate-900">Sessão máxima</p>
+            <p class="text-xs text-slate-500">Tempo máximo de uma sessão ativa antes de exigir novo login.</p>
+          </div>
+          <select class="px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary w-32">
+            <option>8 horas</option>
+            <option selected>12 horas</option>
+            <option>24 horas</option>
+          </select>
+        </div>
+        <div class="h-px bg-slate-100"></div>
+        <!-- Lockout -->
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm font-semibold text-slate-900">Bloqueio de conta (lockout)</p>
+            <p class="text-xs text-slate-500">Número de tentativas de login falhas antes de bloquear a conta.</p>
+          </div>
+          <select class="px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary w-32">
+            <option>3 tentativas</option>
+            <option selected>5 tentativas</option>
+            <option>10 tentativas</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="flex items-center justify-end gap-3 mb-8">
+      <button disabled class="inline-flex items-center gap-2 px-5 py-2.5 border border-slate-300 text-slate-400 rounded-lg font-semibold text-sm cursor-not-allowed">
+        <span class="material-symbols-outlined text-lg">cable</span>
+        Testar Conexão SSO
+      </button>
+      <button class="inline-flex items-center gap-2 px-6 py-2.5 bg-primary hover:bg-primary/90 text-white rounded-lg font-semibold text-sm transition-all shadow-lg shadow-primary/20">
+        <span class="material-symbols-outlined text-lg">save</span>
+        Salvar Configurações
+      </button>
+    </div>
+
+    <!-- Histórico de Logins Recentes -->
+    <div class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+      <div class="px-6 py-4 border-b border-slate-200">
+        <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-lg">history</span>
+          Histórico de Logins Recentes
+        </h3>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-50/50 border-b border-slate-200">
+              <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider">Usuário</th>
+              <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider">Método</th>
+              <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider">IP</th>
+              <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider">Data/Hora</th>
+              <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider">Status</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            <tr class="hover:bg-slate-50 transition-colors">
+              <td class="px-6 py-3 text-sm font-medium text-slate-900">admin@onelaudos.com</td>
+              <td class="px-6 py-3 text-sm text-slate-600">Email + Senha</td>
+              <td class="px-6 py-3 text-sm text-slate-500 font-mono">189.45.12.201</td>
+              <td class="px-6 py-3 text-sm text-slate-500">05/03/2026 08:32</td>
+              <td class="px-6 py-3"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 text-emerald-700">Sucesso</span></td>
+            </tr>
+            <tr class="hover:bg-slate-50 transition-colors">
+              <td class="px-6 py-3 text-sm font-medium text-slate-900">ricardo.silva@onelaudos.com</td>
+              <td class="px-6 py-3 text-sm text-slate-600">Email + Senha</td>
+              <td class="px-6 py-3 text-sm text-slate-500 font-mono">177.22.89.44</td>
+              <td class="px-6 py-3 text-sm text-slate-500">05/03/2026 07:15</td>
+              <td class="px-6 py-3"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 text-emerald-700">Sucesso</span></td>
+            </tr>
+            <tr class="hover:bg-slate-50 transition-colors">
+              <td class="px-6 py-3 text-sm font-medium text-slate-900">ana.costa@onelaudos.com</td>
+              <td class="px-6 py-3 text-sm text-slate-600">Email + Senha</td>
+              <td class="px-6 py-3 text-sm text-slate-500 font-mono">200.18.33.100</td>
+              <td class="px-6 py-3 text-sm text-slate-500">04/03/2026 22:41</td>
+              <td class="px-6 py-3"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-red-100 text-red-700">Falhou</span></td>
+            </tr>
+            <tr class="hover:bg-slate-50 transition-colors">
+              <td class="px-6 py-3 text-sm font-medium text-slate-900">ana.costa@onelaudos.com</td>
+              <td class="px-6 py-3 text-sm text-slate-600">Email + Senha</td>
+              <td class="px-6 py-3 text-sm text-slate-500 font-mono">200.18.33.100</td>
+              <td class="px-6 py-3 text-sm text-slate-500">04/03/2026 22:42</td>
+              <td class="px-6 py-3"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 text-emerald-700">Sucesso</span></td>
+            </tr>
+            <tr class="hover:bg-slate-50 transition-colors">
+              <td class="px-6 py-3 text-sm font-medium text-slate-900">patricia.santos@onelaudos.com.br</td>
+              <td class="px-6 py-3 text-sm text-slate-600">Email + Senha</td>
+              <td class="px-6 py-3 text-sm text-slate-500 font-mono">131.72.56.8</td>
+              <td class="px-6 py-3 text-sm text-slate-500">04/03/2026 18:09</td>
+              <td class="px-6 py-3"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 text-emerald-700">Sucesso</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="../../nav.js"></script>
+</body>
+</html>

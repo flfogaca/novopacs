@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hierarquia de Organizações - Themis Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: { extend: {
+    colors: { "primary": "#0f66bd", "background-light": "#f6f7f8", "background-dark": "#101922" },
+    fontFamily: { "display": ["Manrope", "sans-serif"] },
+    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+  }}
+}
+</script>
+<style>
+body { font-family: 'Manrope', sans-serif; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+details[open] > summary .expand-icon { transform: rotate(90deg); }
+</style>
+</head>
+<body class="bg-background-light font-display text-slate-900 antialiased">
+
+<main class="max-w-7xl mx-auto px-6 py-8">
+
+  <!-- Breadcrumb -->
+  <nav class="flex items-center gap-1.5 text-xs text-slate-500 mb-4">
+    <span>Plataforma</span>
+    <span class="material-symbols-outlined" style="font-size:14px">chevron_right</span>
+    <span class="text-slate-900 font-semibold">Hierarquia de Organizações</span>
+  </nav>
+
+  <!-- Header -->
+  <div class="mb-8">
+    <h1 class="text-2xl font-extrabold text-slate-900">Hierarquia de Organizações</h1>
+    <p class="text-sm text-slate-500 mt-1">Visualização da estrutura organizacional da plataforma</p>
+  </div>
+
+  <!-- Tree -->
+  <div class="space-y-0">
+
+    <!-- Root: Platform -->
+    <details open>
+      <summary class="cursor-pointer">
+        <div class="bg-white rounded-xl shadow-sm border-2 border-slate-300 p-5 flex items-center gap-4 hover:shadow-md transition mb-4">
+          <span class="material-symbols-outlined expand-icon text-slate-400 transition-transform" style="font-size:20px">chevron_right</span>
+          <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center">
+            <span class="material-symbols-outlined text-slate-600" style="font-size:22px">hub</span>
+          </div>
+          <div class="flex-1">
+            <div class="text-sm font-extrabold text-slate-900">Themis Health</div>
+            <div class="text-xs text-slate-500">Plataforma</div>
+          </div>
+          <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 text-[11px] font-semibold">3 organizações</span>
+        </div>
+      </summary>
+
+      <!-- Org Level -->
+      <div class="ml-10 space-y-0">
+
+        <!-- Org: Onelaudos -->
+        <details open>
+          <summary class="cursor-pointer">
+            <div class="bg-white rounded-xl shadow-sm border-l-4 border-primary border-t border-r border-b border-t-slate-200 border-r-slate-200 border-b-slate-200 p-4 flex items-center gap-4 hover:shadow-md transition mb-3">
+              <span class="material-symbols-outlined expand-icon text-slate-400 transition-transform" style="font-size:20px">chevron_right</span>
+              <div class="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center">
+                <span class="material-symbols-outlined text-primary" style="font-size:20px">business</span>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-slate-900 hover:text-primary cursor-pointer" data-nav="detalhe_da_organiza_o">Onelaudos LTDA</span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-blue-50 text-primary text-[10px] font-semibold">4 unidades</span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-semibold">Ativo</span>
+                </div>
+                <div class="text-xs text-slate-500 mt-0.5">Organização de diagnóstico por imagem</div>
+              </div>
+              <span class="material-symbols-outlined text-slate-300" style="font-size:18px" data-nav="detalhe_da_organiza_o">open_in_new</span>
+            </div>
+          </summary>
+
+          <!-- Units -->
+          <div class="ml-10 space-y-2 mb-4">
+            <div class="bg-white rounded-lg shadow-sm border-l-4 border-emerald-400 border-t border-r border-b border-t-slate-200 border-r-slate-200 border-b-slate-200 p-3.5 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center">
+                <span class="material-symbols-outlined text-emerald-600" style="font-size:18px">location_on</span>
+              </div>
+              <div class="flex-1">
+                <div class="text-xs font-bold text-slate-900">Centro de Imagem São Paulo</div>
+                <div class="flex items-center gap-3 mt-0.5 text-[11px] text-slate-500">
+                  <span>5 salas</span>
+                  <span class="w-0.5 h-0.5 rounded-full bg-slate-300"></span>
+                  <span>5 equipamentos</span>
+                </div>
+              </div>
+              <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-semibold">Ativo</span>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm border-l-4 border-emerald-400 border-t border-r border-b border-t-slate-200 border-r-slate-200 border-b-slate-200 p-3.5 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center">
+                <span class="material-symbols-outlined text-emerald-600" style="font-size:18px">location_on</span>
+              </div>
+              <div class="flex-1">
+                <div class="text-xs font-bold text-slate-900">Clínica Norte</div>
+                <div class="flex items-center gap-3 mt-0.5 text-[11px] text-slate-500">
+                  <span>3 salas</span>
+                  <span class="w-0.5 h-0.5 rounded-full bg-slate-300"></span>
+                  <span>3 equipamentos</span>
+                </div>
+              </div>
+              <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-semibold">Ativo</span>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm border-l-4 border-emerald-400 border-t border-r border-b border-t-slate-200 border-r-slate-200 border-b-slate-200 p-3.5 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center">
+                <span class="material-symbols-outlined text-emerald-600" style="font-size:18px">location_on</span>
+              </div>
+              <div class="flex-1">
+                <div class="text-xs font-bold text-slate-900">Centro Diagnóstico Sul</div>
+                <div class="flex items-center gap-3 mt-0.5 text-[11px] text-slate-500">
+                  <span>2 salas</span>
+                  <span class="w-0.5 h-0.5 rounded-full bg-slate-300"></span>
+                  <span>2 equipamentos</span>
+                </div>
+              </div>
+              <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-semibold">Ativo</span>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm border-l-4 border-slate-300 border-t border-r border-b border-t-slate-200 border-r-slate-200 border-b-slate-200 p-3.5 flex items-center gap-3 opacity-60">
+              <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center">
+                <span class="material-symbols-outlined text-slate-400" style="font-size:18px">location_on</span>
+              </div>
+              <div class="flex-1">
+                <div class="text-xs font-bold text-slate-600">Unidade Teste</div>
+                <div class="flex items-center gap-3 mt-0.5 text-[11px] text-slate-400">
+                  <span>0 salas</span>
+                  <span class="w-0.5 h-0.5 rounded-full bg-slate-300"></span>
+                  <span>0 equipamentos</span>
+                </div>
+              </div>
+              <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 text-[10px] font-semibold">Inativo</span>
+            </div>
+          </div>
+        </details>
+
+        <!-- Org: DiagnósticosBR -->
+        <details open>
+          <summary class="cursor-pointer">
+            <div class="bg-white rounded-xl shadow-sm border-l-4 border-primary border-t border-r border-b border-t-slate-200 border-r-slate-200 border-b-slate-200 p-4 flex items-center gap-4 hover:shadow-md transition mb-3">
+              <span class="material-symbols-outlined expand-icon text-slate-400 transition-transform" style="font-size:20px">chevron_right</span>
+              <div class="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center">
+                <span class="material-symbols-outlined text-primary" style="font-size:20px">business</span>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-slate-900">DiagnósticosBR</span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-blue-50 text-primary text-[10px] font-semibold">2 unidades</span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-semibold">Ativo</span>
+                </div>
+                <div class="text-xs text-slate-500 mt-0.5">Rede de hospitais e ambulatórios</div>
+              </div>
+            </div>
+          </summary>
+
+          <div class="ml-10 space-y-2 mb-4">
+            <div class="bg-white rounded-lg shadow-sm border-l-4 border-emerald-400 border-t border-r border-b border-t-slate-200 border-r-slate-200 border-b-slate-200 p-3.5 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center">
+                <span class="material-symbols-outlined text-emerald-600" style="font-size:18px">location_on</span>
+              </div>
+              <div class="flex-1">
+                <div class="text-xs font-bold text-slate-900">Hospital Central</div>
+                <div class="flex items-center gap-3 mt-0.5 text-[11px] text-slate-500">
+                  <span>8 salas</span>
+                  <span class="w-0.5 h-0.5 rounded-full bg-slate-300"></span>
+                  <span>12 equipamentos</span>
+                </div>
+              </div>
+              <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-semibold">Ativo</span>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm border-l-4 border-emerald-400 border-t border-r border-b border-t-slate-200 border-r-slate-200 border-b-slate-200 p-3.5 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center">
+                <span class="material-symbols-outlined text-emerald-600" style="font-size:18px">location_on</span>
+              </div>
+              <div class="flex-1">
+                <div class="text-xs font-bold text-slate-900">Ambulatório Zona Leste</div>
+                <div class="flex items-center gap-3 mt-0.5 text-[11px] text-slate-500">
+                  <span>2 salas</span>
+                  <span class="w-0.5 h-0.5 rounded-full bg-slate-300"></span>
+                  <span>3 equipamentos</span>
+                </div>
+              </div>
+              <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-semibold">Ativo</span>
+            </div>
+          </div>
+        </details>
+
+        <!-- Org: Rede Saúde Total -->
+        <details>
+          <summary class="cursor-pointer">
+            <div class="bg-white rounded-xl shadow-sm border-l-4 border-amber-400 border-t border-r border-b border-t-slate-200 border-r-slate-200 border-b-slate-200 p-4 flex items-center gap-4 hover:shadow-md transition mb-3">
+              <span class="material-symbols-outlined expand-icon text-slate-400 transition-transform" style="font-size:20px">chevron_right</span>
+              <div class="w-9 h-9 rounded-full bg-amber-100 flex items-center justify-center">
+                <span class="material-symbols-outlined text-amber-600" style="font-size:20px">business</span>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-slate-900">Rede Saúde Total</span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-blue-50 text-primary text-[10px] font-semibold">3 unidades</span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 text-[10px] font-semibold">Pendente</span>
+                </div>
+                <div class="text-xs text-slate-500 mt-0.5">Rede de clínicas populares</div>
+              </div>
+            </div>
+          </summary>
+
+          <div class="ml-10 mb-4">
+            <div class="bg-amber-50 rounded-lg border border-amber-200 p-4 flex items-center gap-3">
+              <span class="material-symbols-outlined text-amber-500" style="font-size:20px">pending</span>
+              <div class="text-xs text-amber-700 font-medium">Configuração pendente — unidades ainda não cadastradas</div>
+            </div>
+          </div>
+        </details>
+
+      </div>
+    </details>
+  </div>
+
+</main>
+
+<script src="../../nav.js"></script>
+</body>
+</html>

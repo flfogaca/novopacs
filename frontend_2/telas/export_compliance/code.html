@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Exportação Compliance - Themis Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: { extend: {
+    colors: { "primary": "#0f66bd", "background-light": "#f6f7f8", "background-dark": "#101922" },
+    fontFamily: { "display": ["Manrope", "sans-serif"] },
+    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+  }}
+}
+</script>
+<style>
+body { font-family: 'Manrope', sans-serif; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+</style>
+</head>
+<body class="bg-background-light font-display text-slate-900 antialiased">
+
+<main class="max-w-7xl mx-auto px-6 py-8">
+
+  <!-- Breadcrumb -->
+  <nav class="flex items-center gap-1.5 text-sm text-slate-500 mb-6">
+    <a href="#" class="hover:text-primary transition" data-nav="auditoria">Auditoria</a>
+    <span class="material-symbols-outlined" style="font-size:16px">chevron_right</span>
+    <span class="text-slate-900 font-semibold">Exportação Compliance</span>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="mb-6">
+    <h1 class="text-2xl font-extrabold text-slate-900">Exportação de Relatórios de Compliance</h1>
+    <p class="text-sm text-slate-500 mt-1">Gere relatórios para auditorias internas e externas</p>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+    <!-- Form Card -->
+    <div class="lg:col-span-2 space-y-6">
+      <div class="bg-white border border-slate-200 rounded-xl p-6">
+        <h2 class="text-base font-bold text-slate-900 mb-5">Configurar Relatório</h2>
+
+        <!-- Tipo de Relatório -->
+        <div class="mb-5">
+          <label class="block text-sm font-semibold text-slate-700 mb-1.5">Tipo de Relatório</label>
+          <select class="w-full rounded-lg border-slate-300 text-sm py-2.5 px-3 focus:ring-primary focus:border-primary">
+            <option>Audit Trail Completo</option>
+            <option>Acessos a Dados Sensíveis (LGPD)</option>
+            <option>Alterações de Permissões</option>
+            <option>Logs de Autenticação</option>
+            <option>Relatório de Conformidade</option>
+          </select>
+        </div>
+
+        <!-- Período -->
+        <div class="mb-5">
+          <label class="block text-sm font-semibold text-slate-700 mb-1.5">Período</label>
+          <div class="flex items-center gap-3">
+            <input type="date" value="2026-02-01" class="flex-1 rounded-lg border-slate-300 text-sm py-2.5 px-3 focus:ring-primary focus:border-primary"/>
+            <span class="text-sm text-slate-400">até</span>
+            <input type="date" value="2026-03-05" class="flex-1 rounded-lg border-slate-300 text-sm py-2.5 px-3 focus:ring-primary focus:border-primary"/>
+          </div>
+        </div>
+
+        <!-- Escopo -->
+        <div class="mb-5">
+          <label class="block text-sm font-semibold text-slate-700 mb-2">Escopo</label>
+          <div class="space-y-3">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="escopo" value="org" checked class="text-primary focus:ring-primary"/>
+              <span class="text-sm">Toda a Organização</span>
+            </label>
+            <label class="flex items-start gap-2 cursor-pointer">
+              <input type="radio" name="escopo" value="unit" class="text-primary focus:ring-primary mt-0.5"/>
+              <div class="flex-1">
+                <span class="text-sm">Unidade Específica</span>
+                <select class="mt-1.5 w-full rounded-lg border-slate-300 text-sm py-2 px-3 focus:ring-primary focus:border-primary" disabled>
+                  <option>Selecione uma unidade…</option>
+                  <option>Centro de Imagem SP</option>
+                  <option>Clínica Norte</option>
+                  <option>Hospital Central</option>
+                </select>
+              </div>
+            </label>
+            <label class="flex items-start gap-2 cursor-pointer">
+              <input type="radio" name="escopo" value="user" class="text-primary focus:ring-primary mt-0.5"/>
+              <div class="flex-1">
+                <span class="text-sm">Usuário Específico</span>
+                <div class="relative mt-1.5">
+                  <span class="absolute inset-y-0 left-3 flex items-center text-slate-400"><span class="material-symbols-outlined" style="font-size:18px">search</span></span>
+                  <input type="text" placeholder="Buscar usuário…" class="w-full pl-9 pr-3 py-2 rounded-lg border-slate-300 text-sm focus:ring-primary focus:border-primary" disabled/>
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Formato -->
+        <div class="mb-5">
+          <label class="block text-sm font-semibold text-slate-700 mb-2">Formato</label>
+          <div class="flex items-center gap-6">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="formato" value="csv" checked class="text-primary focus:ring-primary"/>
+              <span class="text-sm">CSV</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="formato" value="pdf" class="text-primary focus:ring-primary"/>
+              <span class="text-sm">PDF</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="formato" value="json" class="text-primary focus:ring-primary"/>
+              <span class="text-sm">JSON</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Opções Adicionais -->
+        <div class="mb-6">
+          <label class="block text-sm font-semibold text-slate-700 mb-2">Opções Adicionais</label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" checked class="rounded text-primary focus:ring-primary"/>
+              <span class="text-sm">Incluir metadados técnicos</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" checked class="rounded text-primary focus:ring-primary"/>
+              <span class="text-sm">Incluir IPs de origem</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" class="rounded text-primary focus:ring-primary"/>
+              <span class="text-sm">Anonimizar dados pessoais</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" class="rounded text-primary focus:ring-primary"/>
+              <span class="text-sm">Criptografar arquivo</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <p class="text-sm text-slate-500">Estimativa: <span class="font-semibold text-slate-700">~2.847 registros</span> &middot; <span class="font-semibold text-slate-700">~4.2 MB</span></p>
+          <div class="flex items-center gap-3">
+            <button class="px-5 py-2.5 text-sm font-semibold text-slate-600 border border-slate-300 rounded-lg bg-white hover:bg-slate-50 transition">Cancelar</button>
+            <button class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-primary rounded-lg hover:bg-primary/90 transition">
+              <span class="material-symbols-outlined" style="font-size:18px">file_download</span>Gerar Relatório
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preview Section -->
+      <div class="bg-white border border-slate-200 rounded-xl overflow-hidden">
+        <div class="px-5 py-3.5 border-b border-slate-100 flex items-center justify-between">
+          <h3 class="text-sm font-bold text-slate-700">Prévia dos Dados</h3>
+          <span class="text-xs text-slate-400">Primeiros 5 registros</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-slate-100 bg-slate-50/60">
+                <th class="text-left px-5 py-2.5 text-xs font-semibold text-slate-500 uppercase tracking-wide">Data/Hora</th>
+                <th class="text-left px-5 py-2.5 text-xs font-semibold text-slate-500 uppercase tracking-wide">Usuário</th>
+                <th class="text-left px-5 py-2.5 text-xs font-semibold text-slate-500 uppercase tracking-wide">Ação</th>
+                <th class="text-left px-5 py-2.5 text-xs font-semibold text-slate-500 uppercase tracking-wide">Recurso</th>
+                <th class="text-left px-5 py-2.5 text-xs font-semibold text-slate-500 uppercase tracking-wide">IP</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50/50">
+                <td class="px-5 py-2.5 font-mono text-xs text-slate-600">05/03/2026 14:30</td>
+                <td class="px-5 py-2.5">Dr. Ricardo Silva</td>
+                <td class="px-5 py-2.5"><span class="inline-flex px-2 py-0.5 rounded text-xs font-bold bg-blue-50 text-blue-700">READ</span></td>
+                <td class="px-5 py-2.5 text-slate-600">Laudo RM Crânio</td>
+                <td class="px-5 py-2.5 font-mono text-xs text-slate-500">189.40.78.12</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50">
+                <td class="px-5 py-2.5 font-mono text-xs text-slate-600">05/03/2026 10:00</td>
+                <td class="px-5 py-2.5">Maria Ferreira</td>
+                <td class="px-5 py-2.5"><span class="inline-flex px-2 py-0.5 rounded text-xs font-bold bg-amber-50 text-amber-700">UPDATE</span></td>
+                <td class="px-5 py-2.5 text-slate-600">Cadastro paciente</td>
+                <td class="px-5 py-2.5 font-mono text-xs text-slate-500">189.40.78.15</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50">
+                <td class="px-5 py-2.5 font-mono text-xs text-slate-600">04/03/2026 16:00</td>
+                <td class="px-5 py-2.5">Dr. Carlos Mendes</td>
+                <td class="px-5 py-2.5"><span class="inline-flex px-2 py-0.5 rounded text-xs font-bold bg-blue-50 text-blue-700">READ</span></td>
+                <td class="px-5 py-2.5 text-slate-600">Laudo RM Crânio</td>
+                <td class="px-5 py-2.5 font-mono text-xs text-slate-500">200.158.45.30</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50">
+                <td class="px-5 py-2.5 font-mono text-xs text-slate-600">04/03/2026 09:00</td>
+                <td class="px-5 py-2.5">Técnico João</td>
+                <td class="px-5 py-2.5"><span class="inline-flex px-2 py-0.5 rounded text-xs font-bold bg-blue-50 text-blue-700">READ</span></td>
+                <td class="px-5 py-2.5 text-slate-600">Imagens DICOM</td>
+                <td class="px-5 py-2.5 font-mono text-xs text-slate-500">192.168.1.50</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50">
+                <td class="px-5 py-2.5 font-mono text-xs text-slate-600">03/03/2026 11:30</td>
+                <td class="px-5 py-2.5">Recepção Ana</td>
+                <td class="px-5 py-2.5"><span class="inline-flex px-2 py-0.5 rounded text-xs font-bold bg-blue-50 text-blue-700">READ</span></td>
+                <td class="px-5 py-2.5 text-slate-600">Agendamento</td>
+                <td class="px-5 py-2.5 font-mono text-xs text-slate-500">192.168.1.20</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Exports Sidebar -->
+    <div class="lg:col-span-1">
+      <div class="bg-white border border-slate-200 rounded-xl overflow-hidden">
+        <div class="px-5 py-4 border-b border-slate-100">
+          <h3 class="text-sm font-bold text-slate-700">Exportações Recentes</h3>
+        </div>
+        <div class="divide-y divide-slate-100">
+          <!-- Export 1 -->
+          <div class="px-5 py-4">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="text-sm font-semibold text-slate-900">Audit Trail Completo</span>
+              <span class="text-xs text-slate-400">01/03/2026</span>
+            </div>
+            <div class="flex items-center gap-3 text-xs text-slate-500 mb-2">
+              <span>1.523 registros</span>
+              <span>&middot;</span>
+              <span>2.1 MB</span>
+              <span>&middot;</span>
+              <span class="inline-flex px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-semibold">CSV</span>
+            </div>
+            <a href="#" class="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline">
+              <span class="material-symbols-outlined" style="font-size:14px">download</span>Baixar
+            </a>
+          </div>
+          <!-- Export 2 -->
+          <div class="px-5 py-4">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="text-sm font-semibold text-slate-900">Relatório LGPD</span>
+              <span class="text-xs text-slate-400">15/02/2026</span>
+            </div>
+            <div class="flex items-center gap-3 text-xs text-slate-500 mb-2">
+              <span>847 registros</span>
+              <span>&middot;</span>
+              <span>1.8 MB</span>
+              <span>&middot;</span>
+              <span class="inline-flex px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-semibold">PDF</span>
+            </div>
+            <a href="#" class="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline">
+              <span class="material-symbols-outlined" style="font-size:14px">download</span>Baixar
+            </a>
+          </div>
+          <!-- Export 3 -->
+          <div class="px-5 py-4">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="text-sm font-semibold text-slate-900">Logs de Autenticação</span>
+              <span class="text-xs text-slate-400">01/02/2026</span>
+            </div>
+            <div class="flex items-center gap-3 text-xs text-slate-500 mb-2">
+              <span>3.201 registros</span>
+              <span>&middot;</span>
+              <span>5.4 MB</span>
+              <span>&middot;</span>
+              <span class="inline-flex px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-semibold">JSON</span>
+            </div>
+            <a href="#" class="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline">
+              <span class="material-symbols-outlined" style="font-size:14px">download</span>Baixar
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<script>
+document.querySelectorAll('input[name="escopo"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    const unitSelect = document.querySelector('input[value="unit"]').closest('label').querySelector('select');
+    const userInput = document.querySelector('input[value="user"]').closest('label').querySelector('input[type="text"]');
+    unitSelect.disabled = radio.value !== 'unit';
+    userInput.disabled = radio.value !== 'user';
+  });
+});
+</script>
+<script src="../../nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contrato - Serviços - Themis Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: { extend: {
+    colors: { "primary": "#0f66bd", "background-light": "#f6f7f8", "background-dark": "#101922" },
+    fontFamily: { "display": ["Manrope", "sans-serif"] },
+    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+  }}
+}
+</script>
+<style>
+body { font-family: 'Manrope', sans-serif; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+</style>
+</head>
+<body class="bg-background-light font-display text-slate-900 antialiased">
+
+<main class="max-w-[1200px] mx-auto w-full px-4 md:px-8 py-6">
+
+  <!-- Breadcrumb -->
+  <nav class="flex items-center gap-1.5 text-sm mb-6">
+    <a href="#" class="text-slate-500 hover:text-primary font-medium">Plataforma</a>
+    <span class="material-symbols-outlined text-slate-400 text-[16px]">chevron_right</span>
+    <a href="#" class="text-slate-500 hover:text-primary font-medium" data-nav="listagem_de_contratos">Contratos</a>
+    <span class="material-symbols-outlined text-slate-400 text-[16px]">chevron_right</span>
+    <a href="#" class="text-slate-500 hover:text-primary font-medium" data-nav="detalhe_do_contrato">Contrato Onelaudos #2026-001</a>
+    <span class="material-symbols-outlined text-slate-400 text-[16px]">chevron_right</span>
+    <span class="text-primary font-semibold">Serviços</span>
+  </nav>
+
+  <!-- Contract Identity Card -->
+  <div class="bg-white rounded-xl border border-slate-200 p-6 mb-6">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+      <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
+        <span class="material-symbols-outlined text-primary text-[28px]">description</span>
+      </div>
+      <div class="flex-1 min-w-0">
+        <h1 class="text-xl font-bold text-slate-900">Contrato Onelaudos #2026-001</h1>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1">
+          <span class="text-sm text-slate-500 flex items-center gap-1">
+            <span class="material-symbols-outlined text-[16px]">business</span>
+            Onelaudos LTDA
+          </span>
+          <span class="text-sm text-slate-500 flex items-center gap-1">
+            <span class="material-symbols-outlined text-[16px]">date_range</span>
+            01/01/2026 - 31/12/2026
+          </span>
+        </div>
+      </div>
+      <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+        Ativo
+      </span>
+    </div>
+  </div>
+
+  <!-- Tab Bar -->
+  <div class="border-b border-slate-200 mb-6">
+    <nav class="flex gap-6 -mb-px">
+      <a href="#" data-nav="detalhe_do_contrato" class="px-1 py-3 text-sm font-medium text-slate-500 hover:text-primary border-b-2 border-transparent hover:border-primary/30 transition-colors">
+        Informações
+      </a>
+      <a href="#" class="px-1 py-3 text-sm font-semibold text-primary border-b-2 border-primary">
+        Serviços
+      </a>
+      <a href="#" data-nav="contrato_comissoes" class="px-1 py-3 text-sm font-medium text-slate-500 hover:text-primary border-b-2 border-transparent hover:border-primary/30 transition-colors">
+        Comissões
+      </a>
+    </nav>
+  </div>
+
+  <!-- Action Button -->
+  <div class="flex justify-end mb-4">
+    <button data-nav="modal_adicionar_servicos_lote" class="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary/90 transition-colors shadow-sm">
+      <span class="material-symbols-outlined text-[18px]">add</span>
+      Adicionar Serviços em Lote
+    </button>
+  </div>
+
+  <!-- Grouped Table -->
+  <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-slate-50 border-b border-slate-200">
+            <th class="text-left px-4 py-3 font-semibold text-slate-600">Módulo / Serviço</th>
+            <th class="text-left px-4 py-3 font-semibold text-slate-600">Status</th>
+            <th class="text-left px-4 py-3 font-semibold text-slate-600">Valor</th>
+            <th class="text-left px-4 py-3 font-semibold text-slate-600">Situação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Group 1: Centro de Imagem São Paulo -->
+          <tr class="bg-slate-50/70 border-b border-slate-200">
+            <td colspan="4" class="px-4 py-2.5">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-[18px]">domain</span>
+                <span class="font-bold text-slate-800">Centro de Imagem São Paulo</span>
+                <span class="text-xs text-slate-400 font-medium ml-1">4 serviços</span>
+              </div>
+            </td>
+          </tr>
+          <tr class="border-b border-slate-100 hover:bg-slate-50/60 transition-colors">
+            <td class="px-4 py-3 pl-10">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-[18px]">event_note</span>
+                <span class="font-medium text-slate-900">RIS</span>
+              </div>
+            </td>
+            <td class="px-4 py-3">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                Ativo
+              </span>
+            </td>
+            <td class="px-4 py-3 text-slate-700 font-medium">R$ 2.500/mês</td>
+            <td class="px-4 py-3 text-slate-600">Incluído</td>
+          </tr>
+          <tr class="border-b border-slate-100 hover:bg-slate-50/60 transition-colors">
+            <td class="px-4 py-3 pl-10">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-[18px]">perm_media</span>
+                <span class="font-medium text-slate-900">PACS</span>
+              </div>
+            </td>
+            <td class="px-4 py-3">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                Ativo
+              </span>
+            </td>
+            <td class="px-4 py-3 text-slate-700 font-medium">R$ 3.000/mês</td>
+            <td class="px-4 py-3 text-slate-600">Incluído</td>
+          </tr>
+          <tr class="border-b border-slate-100 hover:bg-slate-50/60 transition-colors">
+            <td class="px-4 py-3 pl-10">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-[18px]">receipt_long</span>
+                <span class="font-medium text-slate-900">Billing</span>
+              </div>
+            </td>
+            <td class="px-4 py-3">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                Ativo
+              </span>
+            </td>
+            <td class="px-4 py-3 text-slate-700 font-medium">R$ 1.500/mês</td>
+            <td class="px-4 py-3 text-slate-600">Incluído</td>
+          </tr>
+          <tr class="border-b border-slate-200 hover:bg-slate-50/60 transition-colors">
+            <td class="px-4 py-3 pl-10">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-[18px]">visibility</span>
+                <span class="font-medium text-slate-900">Viewer Web</span>
+              </div>
+            </td>
+            <td class="px-4 py-3">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                Ativo
+              </span>
+            </td>
+            <td class="px-4 py-3 text-slate-700 font-medium">R$ 800/mês</td>
+            <td class="px-4 py-3 text-slate-600">Incluído</td>
+          </tr>
+
+          <!-- Group 2: Clínica Norte -->
+          <tr class="bg-slate-50/70 border-b border-slate-200">
+            <td colspan="4" class="px-4 py-2.5">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-[18px]">domain</span>
+                <span class="font-bold text-slate-800">Clínica Norte</span>
+                <span class="text-xs text-slate-400 font-medium ml-1">2 serviços</span>
+              </div>
+            </td>
+          </tr>
+          <tr class="border-b border-slate-100 hover:bg-slate-50/60 transition-colors">
+            <td class="px-4 py-3 pl-10">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-[18px]">event_note</span>
+                <span class="font-medium text-slate-900">RIS</span>
+              </div>
+            </td>
+            <td class="px-4 py-3">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                Ativo
+              </span>
+            </td>
+            <td class="px-4 py-3 text-slate-700 font-medium">R$ 2.500/mês</td>
+            <td class="px-4 py-3 text-slate-600">Incluído</td>
+          </tr>
+          <tr class="border-b border-slate-200 hover:bg-slate-50/60 transition-colors">
+            <td class="px-4 py-3 pl-10">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-[18px]">perm_media</span>
+                <span class="font-medium text-slate-900">PACS</span>
+              </div>
+            </td>
+            <td class="px-4 py-3">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                Ativo
+              </span>
+            </td>
+            <td class="px-4 py-3 text-slate-700 font-medium">R$ 3.000/mês</td>
+            <td class="px-4 py-3 text-slate-600">Incluído</td>
+          </tr>
+
+          <!-- Group 3: Centro Diagnóstico Sul -->
+          <tr class="bg-slate-50/70 border-b border-slate-200">
+            <td colspan="4" class="px-4 py-2.5">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-[18px]">domain</span>
+                <span class="font-bold text-slate-800">Centro Diagnóstico Sul</span>
+                <span class="text-xs text-slate-400 font-medium ml-1">1 serviço</span>
+              </div>
+            </td>
+          </tr>
+          <tr class="hover:bg-slate-50/60 transition-colors">
+            <td class="px-4 py-3 pl-10">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-[18px]">event_note</span>
+                <span class="font-medium text-slate-900">RIS</span>
+              </div>
+            </td>
+            <td class="px-4 py-3">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 text-xs font-semibold">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                Pendente
+              </span>
+            </td>
+            <td class="px-4 py-3 text-slate-700 font-medium">R$ 2.500/mês</td>
+            <td class="px-4 py-3">
+              <span class="text-amber-600 text-xs font-semibold">A ativar</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Summary Card -->
+  <div class="mt-6 bg-white rounded-xl border border-slate-200 p-5">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+          <span class="material-symbols-outlined text-primary text-[20px]">payments</span>
+        </div>
+        <div>
+          <p class="text-xs text-slate-500 font-medium">Total Mensal</p>
+          <p class="text-lg font-bold text-slate-900">R$ 15.800</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+          <span class="material-symbols-outlined text-primary text-[20px]">domain</span>
+        </div>
+        <div>
+          <p class="text-xs text-slate-500 font-medium">Unidades</p>
+          <p class="text-lg font-bold text-slate-900">3</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+          <span class="material-symbols-outlined text-primary text-[20px]">apps</span>
+        </div>
+        <div>
+          <p class="text-xs text-slate-500 font-medium">Módulos</p>
+          <p class="text-lg font-bold text-slate-900">7 <span class="text-sm font-medium text-slate-500">ativos</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script src="../../nav.js"></script>
+</body>
+</html>

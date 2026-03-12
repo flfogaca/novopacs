@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | Themis Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f66bd",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined { font-size: 20px; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display transition-colors duration-300">
+<div class="flex-1 flex flex-col items-center justify-center p-6 sm:p-12">
+<!-- Login Container Card -->
+<div class="w-full max-w-[440px] bg-white dark:bg-slate-900 rounded-xl shadow-xl overflow-hidden border border-slate-200 dark:border-slate-800">
+<!-- Header Section -->
+<div class="px-8 pt-10 pb-6 text-center">
+<div class="flex items-center justify-center gap-2 mb-6">
+<div class="size-10 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined !text-2xl">health_and_safety</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-2xl font-extrabold tracking-tight">Themis Health</h2>
+</div>
+<h1 class="text-slate-900 dark:text-slate-100 text-xl font-bold">Acesse sua conta</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Módulo Plataforma / IAM</p>
+</div>
+<div class="px-8 pb-10">
+<!-- Step 1: Identify Domain (Email) -->
+<form class="space-y-5" id="step-identify">
+<div>
+<label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5" for="email">E-mail corporativo</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+<span class="material-symbols-outlined">mail</span>
+</span>
+<input class="block w-full pl-10 pr-3 py-3 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-400" id="email" placeholder="exemplo@empresa.com.br" required="" type="email"/>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3.5 rounded-lg transition-colors flex items-center justify-center gap-2 group" type="submit">
+<span>Continuar</span>
+<span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+<div class="relative py-2">
+<div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200 dark:border-slate-800"></div></div>
+<div class="relative flex justify-center text-xs uppercase"><span class="bg-white dark:bg-slate-900 px-2 text-slate-500">Ou entrar com</span></div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 py-2.5 px-4 border border-slate-300 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors text-sm font-semibold text-slate-700 dark:text-slate-300" type="button">
+<span class="material-symbols-outlined text-red-500">google</span> Google
+                        </button>
+<button class="flex items-center justify-center gap-2 py-2.5 px-4 border border-slate-300 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors text-sm font-semibold text-slate-700 dark:text-slate-300" type="button">
+<span class="material-symbols-outlined text-blue-600">cloud</span> Microsoft
+                        </button>
+</div>
+</form>
+<!-- Hidden Step: Password Auth (Local) - Example display logic would swap classes -->
+<form class="hidden space-y-5" id="step-password">
+<button class="flex items-center gap-1 text-primary text-sm font-medium hover:underline mb-2" type="button">
+<span class="material-symbols-outlined !text-sm">arrow_back</span>
+                        voltar
+                    </button>
+<div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-4">Acessando como <span class="text-slate-900 dark:text-slate-100 font-bold">usuario@local.com</span></p>
+<label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5" for="password">Sua senha</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+<span class="material-symbols-outlined">lock</span>
+</span>
+<input class="block w-full pl-10 pr-10 py-3 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" id="password" placeholder="••••••••" required="" type="password"/>
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-300" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3.5 rounded-lg transition-colors flex items-center justify-center gap-2" type="submit">
+<span>Entrar</span>
+</button>
+<div class="text-center">
+<a class="text-primary text-sm font-semibold hover:underline" href="#">Esqueceu sua senha?</a>
+</div>
+</form>
+<!-- Hidden Step: SSO Redirection -->
+<div class="hidden space-y-6 text-center" id="step-sso">
+<div class="flex flex-col items-center py-4">
+<div class="size-16 bg-blue-50 dark:bg-blue-900/20 text-primary rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined !text-4xl">vpn_key</span>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Single Sign-On Detectado</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-2 px-4">Seu domínio exige autenticação via <span class="font-bold">Microsoft Azure AD</span>.</p>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3.5 rounded-lg transition-colors flex items-center justify-center gap-2">
+<span>Autenticar via SSO</span>
+<span class="material-symbols-outlined">open_in_new</span>
+</button>
+<button class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:underline" type="button">Entrar com outra conta</button>
+</div>
+<!-- Hidden Step: 2FA Verification -->
+<form class="hidden space-y-6" id="step-2fa">
+<div class="text-center mb-4">
+<div class="size-16 bg-green-50 dark:bg-green-900/20 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="material-symbols-outlined !text-4xl">verified_user</span>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Verificação em duas etapas</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Insira o código de 6 dígitos do seu app autenticador.</p>
+</div>
+<div class="flex justify-between gap-2 max-w-[280px] mx-auto">
+<input class="w-10 h-12 text-center text-xl font-bold border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 text-primary focus:ring-2 focus:ring-primary outline-none" maxlength="1" type="text" value="1"/>
+<input class="w-10 h-12 text-center text-xl font-bold border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 text-primary focus:ring-2 focus:ring-primary outline-none" maxlength="1" type="text" value="2"/>
+<input class="w-10 h-12 text-center text-xl font-bold border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 text-primary focus:ring-2 focus:ring-primary outline-none" maxlength="1" type="text" value="3"/>
+<input class="w-10 h-12 text-center text-xl font-bold border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 text-primary focus:ring-2 focus:ring-primary outline-none" maxlength="1" placeholder="·" type="text"/>
+<input class="w-10 h-12 text-center text-xl font-bold border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 text-primary focus:ring-2 focus:ring-primary outline-none" maxlength="1" placeholder="·" type="text"/>
+<input class="w-10 h-12 text-center text-xl font-bold border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 text-primary focus:ring-2 focus:ring-primary outline-none" maxlength="1" placeholder="·" type="text"/>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3.5 rounded-lg transition-colors" type="submit">
+                        Verificar
+                    </button>
+<p class="text-center text-xs text-slate-500 dark:text-slate-400">Não recebeu o código? <a class="text-primary font-semibold hover:underline" href="#">Tentar outro método</a></p>
+</form>
+<!-- Feedback Messages (Hidden by default) -->
+<div class="hidden mt-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-900/50 rounded-lg flex gap-3 items-start" id="error-message">
+<span class="material-symbols-outlined text-red-600">error</span>
+<p class="text-sm text-red-700 dark:text-red-400 font-medium">Credenciais inválidas. Verifique seu usuário e senha.</p>
+</div>
+<!-- Blocked Account State -->
+<div class="hidden mt-4 p-3 bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-900/50 rounded-lg flex gap-3 items-start" id="blocked-message">
+<span class="material-symbols-outlined text-orange-600">block</span>
+<p class="text-sm text-orange-700 dark:text-orange-400 font-medium">Conta bloqueada por 30 min devido a múltiplas tentativas malsucedidas.</p>
+</div>
+<!-- Loading State Overlay (Simulated) -->
+<div class="hidden absolute inset-0 bg-white/80 dark:bg-slate-900/80 z-10 flex flex-col items-center justify-center" id="loading-state">
+<div class="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin mb-4"></div>
+<p class="text-slate-900 dark:text-slate-100 font-bold">Entrando...</p>
+</div>
+</div>
+<!-- Footer Section -->
+<div class="px-8 py-4 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-100 dark:border-slate-800 text-center">
+<p class="text-slate-500 dark:text-slate-400 text-xs">Protegido por políticas de segurança avançadas da Themis Health.</p>
+</div>
+</div>
+<!-- Support/Help Links -->
+<div class="mt-8 flex gap-6">
+<a class="text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">Termos de Uso</a>
+<a class="text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">Privacidade</a>
+<a class="text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">Suporte TI</a>
+</div>
+</div>
+<!-- Image Decor (Abstract) -->
+<div class="fixed bottom-0 right-0 w-64 h-64 -mb-20 -mr-20 opacity-20 pointer-events-none">
+<div class="w-full h-full bg-primary rounded-full blur-[100px]"></div>
+</div>
+<div class="fixed top-0 left-0 w-64 h-64 -mt-20 -ml-20 opacity-20 pointer-events-none">
+<div class="w-full h-full bg-primary rounded-full blur-[100px]"></div>
+</div>
+<script src="../../nav.js"></script>
+</body></html>

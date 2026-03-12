@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Themis Health - Plataforma PACS/RIS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode:"class",
+  theme:{extend:{
+    colors:{"primary":"#0f66bd","primary-dark":"#0a4f94","background-light":"#f6f7f8","background-dark":"#101922"},
+    fontFamily:{"display":["Manrope","sans-serif"]},
+    borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","2xl":"1rem","full":"9999px"}
+  }}
+}
+</script>
+<script>
+(function () {
+  try {
+    if (localStorage.getItem("themis-dark-mode") === "true") {
+      document.documentElement.classList.add("dark");
+    }
+  } catch (_) {}
+})();
+</script>
+<style>
+body{font-family:'Manrope',sans-serif}
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}
+.sidebar-item{transition:all .15s ease}
+.sidebar-item:hover{background:rgba(15,102,189,.08)}
+.dark .sidebar-item:hover{background:rgba(15,102,189,.18)}
+.sidebar-item.active{background:rgba(15,102,189,.12);color:#0f66bd;font-weight:700}
+.dark .sidebar-item.active{background:rgba(15,102,189,.28);color:#93c5fd}
+.sidebar-group-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#94a3b8;padding:16px 16px 4px}
+#iframe-loader{transition:opacity .25s}
+.role-chip{transition:all .2s}
+.role-chip:hover{transform:translateY(-1px);box-shadow:0 4px 12px -2px rgba(15,102,189,.2)}
+</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark h-screen flex flex-col overflow-hidden font-display text-slate-900 dark:text-slate-100 antialiased">
+
+<!-- Top Header -->
+<header class="h-14 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between px-4 shrink-0 z-50">
+  <div class="flex items-center gap-3">
+    <div class="size-9 bg-primary rounded-xl flex items-center justify-center text-white shadow-sm">
+      <span class="material-symbols-outlined !text-xl">health_and_safety</span>
+    </div>
+    <div class="hidden sm:block">
+      <h1 class="text-base font-extrabold tracking-tight leading-none">Themis Health</h1>
+      <p class="text-[10px] font-medium text-slate-400 uppercase tracking-wider">Plataforma PACS / RIS</p>
+    </div>
+    <div class="h-6 w-px bg-slate-200 dark:bg-slate-700 mx-2 hidden sm:block"></div>
+    <div id="breadcrumbs" class="hidden sm:flex items-center gap-1.5 text-xs text-slate-400 font-medium">
+      <span class="text-slate-800 dark:text-slate-200 font-bold" id="bc-current">Dashboard</span>
+    </div>
+  </div>
+  <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-1.5">
+      <span class="material-symbols-outlined text-primary text-base">person</span>
+      <select id="role-select" class="bg-transparent border-0 text-xs font-bold text-slate-700 dark:text-slate-200 focus:ring-0 pr-6 py-0 cursor-pointer">
+        <option value="PLATFORM_ADMIN">Platform Admin</option>
+        <option value="ORGANIZATION_ADMIN" selected>Org Admin (Onelaudos)</option>
+        <option value="ORGANIZATION_MANAGER">Org Manager</option>
+        <option value="UNIT_ADMIN">Unit Admin</option>
+        <option value="RADIOLOGIST">Radiologista</option>
+        <option value="TECHNICIAN">Técnico</option>
+        <option value="RECEPTIONIST">Recepcionista</option>
+        <option value="REFERRING_PHYSICIAN">Médico Solicitante</option>
+        <option value="BILLING_ANALYST">Analista Billing</option>
+        <option value="PATIENT">Portal do Paciente</option>
+      </select>
+    </div>
+    <button id="dark-toggle" class="size-9 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors" title="Alternar tema">
+      <span class="material-symbols-outlined text-lg" id="dark-icon">dark_mode</span>
+    </button>
+    <button class="relative size-9 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">
+      <span class="material-symbols-outlined text-lg">notifications</span>
+      <span class="absolute top-1.5 right-1.5 size-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-900"></span>
+    </button>
+    <div class="size-9 bg-primary/20 rounded-full flex items-center justify-center text-primary text-xs font-bold">AD</div>
+  </div>
+</header>
+
+<div class="flex flex-1 overflow-hidden">
+  <!-- Sidebar -->
+  <aside id="sidebar" class="w-60 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-700 flex flex-col shrink-0 overflow-y-auto">
+    <div class="px-4 pt-4 pb-2">
+      <div id="role-badge" class="role-chip inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">
+        <span class="material-symbols-outlined !text-xs">shield_person</span>
+        <span id="role-label">Org Admin</span>
+      </div>
+    </div>
+    <nav id="sidebar-nav" class="flex-1 px-2 pb-4 space-y-0.5"></nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 relative overflow-hidden bg-background-light dark:bg-background-dark">
+    <div id="iframe-loader" class="absolute inset-0 flex items-center justify-center bg-background-light dark:bg-background-dark/80 z-20 pointer-events-none opacity-0">
+      <div class="flex flex-col items-center gap-3">
+        <div class="w-8 h-8 border-3 border-slate-200 border-t-primary rounded-full animate-spin"></div>
+        <p class="text-xs font-medium text-slate-400 dark:text-slate-500">Carregando...</p>
+      </div>
+    </div>
+    <iframe id="content-frame" class="w-full h-full border-0" sandbox="allow-scripts allow-same-origin"></iframe>
+  </main>
+</div>
+
+<script>
+const ROLES = {
+  PLATFORM_ADMIN: {
+    label:"Platform Admin", icon:"admin_panel_settings",
+    home:"dashboard_platform_admin",
+    menu:[
+      {group:"Principal",items:[
+        {icon:"dashboard",label:"Dashboard Global",screen:"dashboard_platform_admin"},
+      ]},
+      {group:"Gestão",items:[
+        {icon:"corporate_fare",label:"Organizações",screen:"listagem_de_organiza_es"},
+        {icon:"account_tree",label:"Hierarquia",screen:"hierarquia_organizacoes"},
+        {icon:"description",label:"Contratos",screen:"listagem_de_contratos"},
+        {icon:"group",label:"Usuários",screen:"listagem_de_usu_rios"},
+      ]},
+      {group:"Segurança",items:[
+        {icon:"shield_person",label:"Papéis e Permissões",screen:"rbac_papeis"},
+        {icon:"policy",label:"Auditoria",screen:"auditoria_e_logs"},
+        {icon:"file_export",label:"Export Compliance",screen:"export_compliance"},
+      ]},
+    ]
+  },
+  ORGANIZATION_ADMIN: {
+    label:"Org Admin", icon:"business",
+    home:"dashboard_org_admin",
+    menu:[
+      {group:"Principal",items:[
+        {icon:"dashboard",label:"Dashboard",screen:"dashboard_org_admin"},
+      ]},
+      {group:"Administração",items:[
+        {icon:"domain",label:"Unidades",screen:"listagem_de_unidades"},
+        {icon:"description",label:"Contratos",screen:"listagem_de_contratos"},
+        {icon:"group",label:"Usuários",screen:"listagem_de_usu_rios"},
+        {icon:"lock",label:"Autenticação",screen:"config_autenticacao_org"},
+      ]},
+      {group:"Operação",items:[
+        {icon:"edit_note",label:"Templates de Laudo",screen:"gestao_templates_laudo"},
+        {icon:"receipt_long",label:"Faturamento",screen:"faturamento_procedimentos"},
+        {icon:"price_change",label:"Tabelas de Preço",screen:"faturamento_tabelas_preco"},
+      ]},
+      {group:"Segurança",items:[
+        {icon:"shield_person",label:"Papéis e Permissões",screen:"rbac_papeis"},
+        {icon:"policy",label:"Auditoria",screen:"auditoria_e_logs"},
+      ]},
+    ]
+  },
+  ORGANIZATION_MANAGER: {
+    label:"Org Manager", icon:"manage_accounts",
+    home:"dashboard_org_admin",
+    menu:[
+      {group:"Principal",items:[
+        {icon:"dashboard",label:"Dashboard",screen:"dashboard_org_admin"},
+      ]},
+      {group:"Visualização",items:[
+        {icon:"domain",label:"Unidades",screen:"listagem_de_unidades"},
+        {icon:"analytics",label:"Relatórios",screen:"faturamento_relatorios"},
+        {icon:"receipt_long",label:"Faturamento",screen:"faturamento_procedimentos"},
+      ]},
+      {group:"Segurança",items:[
+        {icon:"policy",label:"Auditoria",screen:"auditoria_e_logs"},
+      ]},
+    ]
+  },
+  UNIT_ADMIN: {
+    label:"Unit Admin", icon:"domain",
+    home:"dashboard_unit_admin",
+    menu:[
+      {group:"Principal",items:[
+        {icon:"dashboard",label:"Dashboard",screen:"dashboard_unit_admin"},
+      ]},
+      {group:"Infraestrutura",items:[
+        {icon:"meeting_room",label:"Salas",screen:"listagem_de_salas"},
+        {icon:"scanner",label:"Equipamentos DICOM",screen:"listagem_de_equipamentos_dicom"},
+        {icon:"settings_input_antenna",label:"Gateway DICOM",screen:"monitoramento_gateway_dicom"},
+      ]},
+      {group:"Gestão",items:[
+        {icon:"group",label:"Usuários",screen:"listagem_de_usu_rios"},
+        {icon:"toggle_on",label:"Módulos Ativos",screen:"modulos_ativos_unidade"},
+        {icon:"analytics",label:"Relatórios",screen:"faturamento_relatorios"},
+      ]},
+    ]
+  },
+  RADIOLOGIST: {
+    label:"Radiologista", icon:"radiology",
+    home:"worklist_de_laudos_ris",
+    menu:[
+      {group:"Laudos",items:[
+        {icon:"edit_note",label:"Worklist de Laudos",screen:"worklist_de_laudos_ris"},
+        {icon:"rate_review",label:"Cockpit de Laudo",screen:"cockpit_de_laudo"},
+      ]},
+      {group:"Ferramentas",items:[
+        {icon:"text_snippet",label:"Templates",screen:"gestao_templates_laudo"},
+        {icon:"dashboard_customize",label:"Dashboard SLA",screen:"dashboard_de_sla_ris"},
+      ]},
+      {group:"Pessoal",items:[
+        {icon:"person",label:"Meu Perfil",screen:"meu_perfil"},
+      ]},
+    ]
+  },
+  TECHNICIAN: {
+    label:"Técnico", icon:"biotech",
+    home:"worklist_do_t_cnico_ris",
+    menu:[
+      {group:"Workflow",items:[
+        {icon:"checklist",label:"Worklist Técnico",screen:"worklist_do_t_cnico_ris"},
+      ]},
+      {group:"Pessoal",items:[
+        {icon:"person",label:"Meu Perfil",screen:"meu_perfil"},
+      ]},
+    ]
+  },
+  RECEPTIONIST: {
+    label:"Recepcionista", icon:"calendar_month",
+    home:"dashboard_recepcionista",
+    menu:[
+      {group:"Principal",items:[
+        {icon:"today",label:"Agenda do Dia",screen:"dashboard_recepcionista"},
+      ]},
+      {group:"Operação",items:[
+        {icon:"calendar_month",label:"Agendamentos",screen:"agendamentos_ris"},
+        {icon:"add_circle",label:"Novo Agendamento",screen:"novo_agendamento_wizard"},
+        {icon:"patient_list",label:"Pacientes",screen:"pacientes_ris"},
+      ]},
+      {group:"Pessoal",items:[
+        {icon:"person",label:"Meu Perfil",screen:"meu_perfil"},
+      ]},
+    ]
+  },
+  REFERRING_PHYSICIAN: {
+    label:"Médico Solicitante", icon:"stethoscope",
+    home:"portal_do_m_dico_in_cio",
+    menu:[
+      {group:"Portal",items:[
+        {icon:"home",label:"Início",screen:"portal_do_m_dico_in_cio"},
+        {icon:"labs",label:"Exames",screen:"portal_do_m_dico_detalhes_do_exame"},
+      ]},
+      {group:"Pessoal",items:[
+        {icon:"person",label:"Meu Perfil",screen:"meu_perfil"},
+      ]},
+    ]
+  },
+  BILLING_ANALYST: {
+    label:"Analista Billing", icon:"payments",
+    home:"dashboard_billing",
+    menu:[
+      {group:"Principal",items:[
+        {icon:"dashboard",label:"Dashboard",screen:"dashboard_billing"},
+      ]},
+      {group:"Faturamento",items:[
+        {icon:"receipt_long",label:"Procedimentos",screen:"faturamento_procedimentos"},
+        {icon:"price_change",label:"Tabelas de Preço",screen:"faturamento_tabelas_preco"},
+        {icon:"request_quote",label:"Geração TISS",screen:"faturamento_geracao_tiss"},
+        {icon:"analytics",label:"Relatórios",screen:"faturamento_relatorios"},
+      ]},
+    ]
+  },
+  PATIENT: {
+    label:"Portal do Paciente", icon:"person",
+    home:"portal_do_paciente_autentica_o",
+    menu:[
+      {group:"Portal",items:[
+        {icon:"lock",label:"Autenticação",screen:"portal_do_paciente_autentica_o"},
+        {icon:"history",label:"Histórico de Exames",screen:"portal_do_paciente_hist_rico_de_exames"},
+        {icon:"lab_profile",label:"Resultado",screen:"portal_do_paciente_resultado_do_exame"},
+      ]},
+      {group:"Compartilhamento",items:[
+        {icon:"share",label:"Compartilhar Resultado",screen:"modal_compartilhar_resultado"},
+        {icon:"link",label:"Acesso Médico",screen:"acesso_compartilhado_medico"},
+      ]},
+    ]
+  },
+};
+
+let currentRole = "ORGANIZATION_ADMIN";
+let currentScreen = "";
+let isDarkMode = document.documentElement.classList.contains("dark");
+
+function applyTheme(dark) {
+  isDarkMode = dark;
+  document.documentElement.classList.toggle("dark", dark);
+  try { localStorage.setItem("themis-dark-mode", dark ? "true" : "false"); } catch (_) {}
+  const icon = document.getElementById("dark-icon");
+  if (icon) icon.textContent = dark ? "light_mode" : "dark_mode";
+  sendThemeToIframe();
+}
+
+function sendThemeToIframe() {
+  const iframe = document.getElementById("content-frame");
+  if (iframe && iframe.contentWindow) {
+    iframe.contentWindow.postMessage({ type: "theme", dark: isDarkMode }, "*");
+  }
+}
+
+function renderSidebar(role) {
+  const cfg = ROLES[role];
+  const nav = document.getElementById("sidebar-nav");
+  nav.innerHTML = "";
+  document.getElementById("role-label").textContent = cfg.label;
+
+  cfg.menu.forEach(group => {
+    const gt = document.createElement("div");
+    gt.className = "sidebar-group-title";
+    gt.textContent = group.group;
+    nav.appendChild(gt);
+
+    group.items.forEach(item => {
+      const a = document.createElement("button");
+      a.className = "sidebar-item w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 text-left";
+      a.setAttribute("data-screen", item.screen);
+      a.innerHTML = `<span class="material-symbols-outlined text-lg">${item.icon}</span><span>${item.label}</span>`;
+      a.addEventListener("click", () => loadScreen(item.screen));
+      nav.appendChild(a);
+    });
+  });
+}
+
+function updateSidebarActive(screen) {
+  document.querySelectorAll(".sidebar-item").forEach(el => {
+    el.classList.toggle("active", el.getAttribute("data-screen") === screen);
+  });
+}
+
+function loadScreen(screen) {
+  currentScreen = screen;
+  const loader = document.getElementById("iframe-loader");
+  loader.style.opacity = "1";
+  loader.style.pointerEvents = "auto";
+
+  const iframe = document.getElementById("content-frame");
+  iframe.onload = () => {
+    sendThemeToIframe();
+    setTimeout(() => { loader.style.opacity = "0"; loader.style.pointerEvents = "none"; }, 120);
+  };
+  iframe.src = `telas/${screen}/code.html`;
+  updateSidebarActive(screen);
+  document.getElementById("bc-current").textContent = getLabelForScreen(screen);
+  history.replaceState({ role: currentRole, screen }, "", `#${currentRole}/${screen}`);
+}
+
+function getLabelForScreen(screen) {
+  for (const r of Object.values(ROLES)) {
+    for (const g of r.menu) {
+      for (const i of g.items) {
+        if (i.screen === screen) return i.label;
+      }
+    }
+  }
+  return screen.replace(/_/g, " ");
+}
+
+function switchRole(role) {
+  currentRole = role;
+  renderSidebar(role);
+  loadScreen(ROLES[role].home);
+}
+
+document.getElementById("role-select").addEventListener("change", e => switchRole(e.target.value));
+
+window.addEventListener("message", e => {
+  if (e.data && e.data.type === "navigate") loadScreen(e.data.screen);
+  if (e.data && e.data.type === "title") document.getElementById("bc-current").textContent = e.data.title;
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("dark-toggle");
+  if (toggle) toggle.addEventListener("click", () => applyTheme(!isDarkMode));
+  applyTheme(isDarkMode);
+
+  const hash = location.hash.replace("#","");
+  if (hash.includes("/")) {
+    const [r, s] = hash.split("/");
+    if (ROLES[r]) { document.getElementById("role-select").value = r; currentRole = r; renderSidebar(r); loadScreen(s); return; }
+  }
+  switchRole(currentRole);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Organization Admin - Themis Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: { extend: {
+    colors: { "primary": "#0f66bd", "background-light": "#f6f7f8", "background-dark": "#101922" },
+    fontFamily: { "display": ["Manrope", "sans-serif"] },
+    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+  }}
+}
+</script>
+<style>
+body { font-family: 'Manrope', sans-serif; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+.tab-active { color: #0f66bd; border-bottom: 2px solid #0f66bd; }
+</style>
+</head>
+<body class="bg-background-light font-display text-slate-900 antialiased">
+<main class="flex-1 px-6 lg:px-10 py-8">
+<div class="max-w-[1280px] mx-auto flex flex-col gap-6">
+
+<!-- Breadcrumb -->
+<div class="flex items-center gap-2 text-sm">
+  <a class="text-slate-500 hover:text-primary transition-colors" href="#">Plataforma</a>
+  <span class="material-symbols-outlined text-sm text-slate-400">chevron_right</span>
+  <a data-nav="rbac_papeis" class="text-slate-500 hover:text-primary transition-colors cursor-pointer">Papéis e Permissões</a>
+  <span class="material-symbols-outlined text-sm text-slate-400">chevron_right</span>
+  <span class="text-slate-900 font-medium">Organization Admin</span>
+</div>
+
+<!-- Identity Card -->
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
+  <div class="flex flex-wrap items-start gap-6">
+    <div class="w-14 h-14 rounded-xl bg-amber-100 flex items-center justify-center shrink-0">
+      <span class="material-symbols-outlined text-amber-700 text-3xl">shield</span>
+    </div>
+    <div class="flex-1 min-w-0">
+      <div class="flex flex-wrap items-center gap-3 mb-1">
+        <h1 class="text-2xl font-extrabold tracking-tight">Organization Admin</h1>
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800">Nível 1</span>
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-800">Organização</span>
+      </div>
+      <p class="text-slate-500 text-sm">Gerencia uma organização e todas as suas unidades. Pode convidar usuários, gerenciar contratos e acessar relatórios da organização.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Tabs -->
+<div class="flex gap-0 border-b border-slate-200">
+  <button class="px-5 py-3 text-sm font-bold tab-active transition-colors" id="tab-perm">Permissões</button>
+  <button class="px-5 py-3 text-sm font-medium text-slate-500 hover:text-slate-700 transition-colors" id="tab-users">Usuários com este papel</button>
+</div>
+
+<!-- Permission Matrix -->
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden" id="panel-perm">
+  <div class="overflow-x-auto">
+    <table class="w-full text-left border-collapse">
+      <thead>
+        <tr class="border-b border-slate-200 bg-slate-50/50">
+          <th class="px-6 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider w-[220px]">Recurso</th>
+          <th class="px-4 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider text-center w-20">Criar</th>
+          <th class="px-4 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider text-center w-20">Ler</th>
+          <th class="px-4 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider text-center w-20">Atualizar</th>
+          <th class="px-4 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider text-center w-20">Deletar</th>
+          <th class="px-4 py-3.5 text-xs font-bold text-slate-500 uppercase tracking-wider text-center w-28">Escopo</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-100">
+
+        <!-- Module: Plataforma -->
+        <tr class="bg-slate-50">
+          <td colspan="6" class="px-6 py-2.5">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-base">settings</span>
+              <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Plataforma</span>
+            </div>
+          </td>
+        </tr>
+        <tr class="hover:bg-slate-50/50 transition-colors">
+          <td class="px-6 py-3 text-sm font-medium">Organizações</td>
+          <td class="px-4 py-3 text-center"><span class="text-red-500 font-bold text-sm">✕</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-red-500 font-bold text-sm">✕</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800">org</span></td>
+        </tr>
+        <tr class="hover:bg-slate-50/50 transition-colors">
+          <td class="px-6 py-3 text-sm font-medium">Unidades</td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800">org</span></td>
+        </tr>
+        <tr class="hover:bg-slate-50/50 transition-colors">
+          <td class="px-6 py-3 text-sm font-medium">Usuários</td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800">org</span></td>
+        </tr>
+        <tr class="hover:bg-slate-50/50 transition-colors">
+          <td class="px-6 py-3 text-sm font-medium">Contratos</td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-red-500 font-bold text-sm">✕</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800">org</span></td>
+        </tr>
+        <tr class="hover:bg-slate-50/50 transition-colors">
+          <td class="px-6 py-3 text-sm font-medium">Auditoria</td>
+          <td class="px-4 py-3 text-center"><span class="text-slate-300 font-bold text-sm">—</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-slate-300 font-bold text-sm">—</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-slate-300 font-bold text-sm">—</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800">org</span></td>
+        </tr>
+
+        <!-- Module: RIS -->
+        <tr class="bg-slate-50">
+          <td colspan="6" class="px-6 py-2.5">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-base">schedule</span>
+              <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">RIS</span>
+            </div>
+          </td>
+        </tr>
+        <tr class="hover:bg-slate-50/50 transition-colors">
+          <td class="px-6 py-3 text-sm font-medium">Agendamentos</td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800">org</span></td>
+        </tr>
+        <tr class="hover:bg-slate-50/50 transition-colors">
+          <td class="px-6 py-3 text-sm font-medium">Pacientes</td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-red-500 font-bold text-sm">✕</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800">org</span></td>
+        </tr>
+        <tr class="hover:bg-slate-50/50 transition-colors">
+          <td class="px-6 py-3 text-sm font-medium">Worklist</td>
+          <td class="px-4 py-3 text-center"><span class="text-slate-300 font-bold text-sm">—</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-slate-300 font-bold text-sm">—</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-slate-300 font-bold text-sm">—</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800">org</span></td>
+        </tr>
+        <tr class="hover:bg-slate-50/50 transition-colors">
+          <td class="px-6 py-3 text-sm font-medium">Laudos</td>
+          <td class="px-4 py-3 text-center"><span class="text-red-500 font-bold text-sm">✕</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-red-500 font-bold text-sm">✕</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-red-500 font-bold text-sm">✕</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800">org</span></td>
+        </tr>
+        <tr class="hover:bg-slate-50/50 transition-colors">
+          <td class="px-6 py-3 text-sm font-medium">Templates</td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800">org</span></td>
+        </tr>
+
+        <!-- Module: PACS -->
+        <tr class="bg-slate-50">
+          <td colspan="6" class="px-6 py-2.5">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-base">perm_media</span>
+              <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">PACS</span>
+            </div>
+          </td>
+        </tr>
+        <tr class="hover:bg-slate-50/50 transition-colors">
+          <td class="px-6 py-3 text-sm font-medium">Estudos</td>
+          <td class="px-4 py-3 text-center"><span class="text-red-500 font-bold text-sm">✕</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-red-500 font-bold text-sm">✕</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800">org</span></td>
+        </tr>
+        <tr class="hover:bg-slate-50/50 transition-colors">
+          <td class="px-6 py-3 text-sm font-medium">Viewer</td>
+          <td class="px-4 py-3 text-center"><span class="text-slate-300 font-bold text-sm">—</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-slate-300 font-bold text-sm">—</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-slate-300 font-bold text-sm">—</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800">org</span></td>
+        </tr>
+        <tr class="hover:bg-slate-50/50 transition-colors">
+          <td class="px-6 py-3 text-sm font-medium">Gateway</td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800">org</span></td>
+        </tr>
+
+        <!-- Module: Billing -->
+        <tr class="bg-slate-50">
+          <td colspan="6" class="px-6 py-2.5">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-base">payments</span>
+              <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Billing</span>
+            </div>
+          </td>
+        </tr>
+        <tr class="hover:bg-slate-50/50 transition-colors">
+          <td class="px-6 py-3 text-sm font-medium">Procedimentos</td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-red-500 font-bold text-sm">✕</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800">org</span></td>
+        </tr>
+        <tr class="hover:bg-slate-50/50 transition-colors">
+          <td class="px-6 py-3 text-sm font-medium">Tabelas Preço</td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800">org</span></td>
+        </tr>
+        <tr class="hover:bg-slate-50/50 transition-colors">
+          <td class="px-6 py-3 text-sm font-medium">TISS</td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-red-500 font-bold text-sm">✕</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800">org</span></td>
+        </tr>
+        <tr class="hover:bg-slate-50/50 transition-colors">
+          <td class="px-6 py-3 text-sm font-medium">Relatórios</td>
+          <td class="px-4 py-3 text-center"><span class="text-slate-300 font-bold text-sm">—</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-emerald-600 font-bold text-sm">✓</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-slate-300 font-bold text-sm">—</span></td>
+          <td class="px-4 py-3 text-center"><span class="text-slate-300 font-bold text-sm">—</span></td>
+          <td class="px-4 py-3 text-center"><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800">org</span></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Users with this role (hidden panel) -->
+<div class="hidden bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden" id="panel-users">
+  <div class="px-6 py-5 border-b border-slate-200 flex items-center justify-between">
+    <p class="text-sm text-slate-500">Usuários atribuídos ao papel <span class="font-bold text-slate-900">Organization Admin</span></p>
+    <span class="text-sm font-bold text-slate-900">12 usuários</span>
+  </div>
+  <div class="divide-y divide-slate-100">
+    <div class="flex items-center justify-between px-6 py-4 hover:bg-slate-50 transition-colors">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs">MF</div>
+        <div>
+          <p class="text-sm font-semibold">Maria Ferreira</p>
+          <p class="text-xs text-slate-500">maria.ferreira@onelaudos.com</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-xs text-slate-500">Onelaudos</span>
+        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800">Ativo</span>
+      </div>
+    </div>
+    <div class="flex items-center justify-between px-6 py-4 hover:bg-slate-50 transition-colors">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs">RC</div>
+        <div>
+          <p class="text-sm font-semibold">Ricardo Costa</p>
+          <p class="text-xs text-slate-500">ricardo.costa@imagemdourada.com</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-xs text-slate-500">Imagem Dourada</span>
+        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800">Ativo</span>
+      </div>
+    </div>
+    <div class="flex items-center justify-between px-6 py-4 hover:bg-slate-50 transition-colors">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs">AS</div>
+        <div>
+          <p class="text-sm font-semibold">Ana Santos</p>
+          <p class="text-xs text-slate-500">ana.santos@centromed.com</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-xs text-slate-500">CentroMed</span>
+        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800">Ativo</span>
+      </div>
+    </div>
+  </div>
+  <div class="px-6 py-4 bg-slate-50/50 border-t border-slate-200">
+    <span class="text-sm text-slate-500">Mostrando <span class="font-bold text-slate-900">3</span> de <span class="font-bold text-slate-900">12</span> usuários</span>
+  </div>
+</div>
+
+</div>
+</main>
+
+<script>
+document.getElementById('tab-perm').addEventListener('click', function() {
+  this.classList.add('tab-active');
+  document.getElementById('tab-users').classList.remove('tab-active');
+  document.getElementById('panel-perm').classList.remove('hidden');
+  document.getElementById('panel-users').classList.add('hidden');
+});
+document.getElementById('tab-users').addEventListener('click', function() {
+  this.classList.add('tab-active');
+  document.getElementById('tab-perm').classList.remove('tab-active');
+  document.getElementById('panel-users').classList.remove('hidden');
+  document.getElementById('panel-perm').classList.add('hidden');
+});
+</script>
+<script src="../../nav.js"></script>
+</body></html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Adicionar Comissão - Themis Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: { extend: {
+    colors: { "primary": "#0f66bd", "background-light": "#f6f7f8", "background-dark": "#101922" },
+    fontFamily: { "display": ["Manrope", "sans-serif"] },
+    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+  }}
+}
+</script>
+<style>
+body { font-family: 'Manrope', sans-serif; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+</style>
+</head>
+<body class="bg-slate-900/60 backdrop-blur-sm font-display text-slate-900 antialiased min-h-screen flex items-center justify-center p-4">
+
+<div class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
+  <div class="p-6">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center">
+        <span class="material-symbols-outlined text-emerald-600">payments</span>
+      </div>
+      <h2 class="text-lg font-bold text-slate-900">Adicionar Comissão</h2>
+    </div>
+
+    <form class="space-y-5">
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Organização Beneficiária</label>
+        <div class="relative">
+          <input type="text" placeholder="Buscar organização..." value="Grupo Radiológico Paulista"
+                 class="w-full rounded-lg border border-slate-200 px-3 py-2.5 text-sm placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 pr-9"/>
+          <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg pointer-events-none">search</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-2">Tipo</label>
+        <div class="flex gap-3">
+          <label class="flex-1 relative cursor-pointer">
+            <input type="radio" name="tipo" value="percentual" checked class="peer sr-only"/>
+            <div class="rounded-lg border-2 border-primary bg-primary/5 px-4 py-3 text-center peer-checked:ring-2 peer-checked:ring-primary/30 transition-all">
+              <span class="text-sm font-bold text-primary">Percentual</span>
+            </div>
+          </label>
+          <label class="flex-1 relative cursor-pointer">
+            <input type="radio" name="tipo" value="fixo" class="peer sr-only"/>
+            <div class="rounded-lg border-2 border-slate-200 px-4 py-3 text-center peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:ring-2 peer-checked:ring-primary/30 hover:border-slate-300 transition-all">
+              <span class="text-sm font-bold text-slate-600">Valor Fixo</span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Valor</label>
+        <div class="relative">
+          <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm font-semibold text-slate-400">%</span>
+          <input type="number" value="15" min="0" max="100" step="0.5"
+                 class="w-full rounded-lg border border-slate-200 pl-8 pr-3 py-2.5 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20"/>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-2">Módulos Aplicáveis</label>
+        <div class="flex flex-wrap gap-3">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" checked class="rounded border-slate-300 text-primary focus:ring-primary/30"/>
+            <span class="text-sm text-slate-700">RIS</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" checked class="rounded border-slate-300 text-primary focus:ring-primary/30"/>
+            <span class="text-sm text-slate-700">PACS</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" class="rounded border-slate-300 text-primary focus:ring-primary/30"/>
+            <span class="text-sm text-slate-700">Billing</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" class="rounded border-slate-300 text-primary focus:ring-primary/30"/>
+            <span class="text-sm text-slate-700">Viewer</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" class="rounded border-slate-300 text-primary focus:ring-primary/30"/>
+            <span class="text-sm text-slate-700">Todos</span>
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Vigência</label>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs text-slate-500 mb-1">Início</label>
+            <input type="date" value="2026-03-05"
+                   class="w-full rounded-lg border border-slate-200 px-3 py-2.5 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20"/>
+          </div>
+          <div>
+            <label class="block text-xs text-slate-500 mb-1">Fim</label>
+            <input type="date" value="2027-03-05"
+                   class="w-full rounded-lg border border-slate-200 px-3 py-2.5 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20"/>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="flex items-center justify-end gap-3 px-6 py-4 border-t border-slate-100 bg-slate-50/50">
+    <button class="px-4 py-2.5 rounded-lg border border-slate-200 text-sm font-semibold text-slate-600 hover:bg-slate-50 transition-colors">
+      Cancelar
+    </button>
+    <button class="px-5 py-2.5 rounded-lg bg-primary text-sm font-semibold text-white hover:bg-blue-700 transition-colors shadow-sm">
+      Salvar Comissão
+    </button>
+  </div>
+</div>
+
+<script src="../../nav.js"></script>
+</body>
+</html>

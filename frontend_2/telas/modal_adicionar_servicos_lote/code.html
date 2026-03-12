@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Adicionar Serviços em Lote - Themis Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: { extend: {
+    colors: { "primary": "#0f66bd", "background-light": "#f6f7f8", "background-dark": "#101922" },
+    fontFamily: { "display": ["Manrope", "sans-serif"] },
+    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+  }}
+}
+</script>
+<style>
+body { font-family: 'Manrope', sans-serif; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+</style>
+</head>
+<body class="bg-slate-900/60 backdrop-blur-sm font-display text-slate-900 antialiased min-h-screen flex items-center justify-center p-4">
+
+<div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden">
+  <div class="p-6">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+        <span class="material-symbols-outlined text-primary">playlist_add</span>
+      </div>
+      <h2 class="text-lg font-bold text-slate-900">Adicionar Serviços em Lote</h2>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="mb-6">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="w-6 h-6 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">1</span>
+        <label class="text-sm font-semibold text-slate-700">Selecionar Unidade</label>
+      </div>
+      <select class="w-full rounded-lg border border-slate-200 px-3 py-2.5 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20">
+        <option>Hospital São Lucas — Unidade Centro</option>
+        <option>Clínica Radiológica Paulista — Matriz</option>
+        <option>Centro de Diagnóstico Vida — Filial Sul</option>
+      </select>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="mb-6">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="w-6 h-6 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">2</span>
+        <label class="text-sm font-semibold text-slate-700">Módulos</label>
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        <!-- RIS - checked -->
+        <label class="flex items-center gap-3 rounded-lg border-2 border-primary bg-primary/5 px-4 py-3 cursor-pointer transition-colors">
+          <input type="checkbox" checked class="rounded border-slate-300 text-primary focus:ring-primary/30"/>
+          <div class="flex-1">
+            <span class="text-sm font-semibold text-slate-800">RIS</span>
+            <span class="block text-xs text-slate-500">R$ 2.500/mês</span>
+          </div>
+        </label>
+        <!-- PACS - checked -->
+        <label class="flex items-center gap-3 rounded-lg border-2 border-primary bg-primary/5 px-4 py-3 cursor-pointer transition-colors">
+          <input type="checkbox" checked class="rounded border-slate-300 text-primary focus:ring-primary/30"/>
+          <div class="flex-1">
+            <span class="text-sm font-semibold text-slate-800">PACS</span>
+            <span class="block text-xs text-slate-500">R$ 3.000/mês</span>
+          </div>
+        </label>
+        <!-- Billing -->
+        <label class="flex items-center gap-3 rounded-lg border-2 border-slate-200 px-4 py-3 cursor-pointer hover:border-slate-300 transition-colors">
+          <input type="checkbox" class="rounded border-slate-300 text-primary focus:ring-primary/30"/>
+          <div class="flex-1">
+            <span class="text-sm font-semibold text-slate-800">Billing</span>
+            <span class="block text-xs text-slate-500">R$ 1.500/mês</span>
+          </div>
+        </label>
+        <!-- Viewer Web -->
+        <label class="flex items-center gap-3 rounded-lg border-2 border-slate-200 px-4 py-3 cursor-pointer hover:border-slate-300 transition-colors">
+          <input type="checkbox" class="rounded border-slate-300 text-primary focus:ring-primary/30"/>
+          <div class="flex-1">
+            <span class="text-sm font-semibold text-slate-800">Viewer Web</span>
+            <span class="block text-xs text-slate-500">R$ 800/mês</span>
+          </div>
+        </label>
+        <!-- Portal Paciente -->
+        <label class="flex items-center gap-3 rounded-lg border-2 border-slate-200 px-4 py-3 cursor-pointer hover:border-slate-300 transition-colors">
+          <input type="checkbox" class="rounded border-slate-300 text-primary focus:ring-primary/30"/>
+          <div class="flex-1">
+            <span class="text-sm font-semibold text-slate-800">Portal Paciente</span>
+            <span class="block text-xs text-slate-500">R$ 400/mês</span>
+          </div>
+        </label>
+        <!-- Portal Médico -->
+        <label class="flex items-center gap-3 rounded-lg border-2 border-slate-200 px-4 py-3 cursor-pointer hover:border-slate-300 transition-colors">
+          <input type="checkbox" class="rounded border-slate-300 text-primary focus:ring-primary/30"/>
+          <div class="flex-1">
+            <span class="text-sm font-semibold text-slate-800">Portal Médico</span>
+            <span class="block text-xs text-slate-500">R$ 600/mês</span>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Config per module -->
+    <div class="mb-6">
+      <h3 class="text-sm font-semibold text-slate-700 mb-3">Configuração por Módulo</h3>
+      <div class="space-y-3">
+        <div class="rounded-lg border border-slate-200 p-3">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-sm font-semibold text-slate-800">RIS</span>
+            <span class="text-xs text-slate-400">Configurações</span>
+          </div>
+          <div class="flex flex-wrap gap-4">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" checked class="rounded border-slate-300 text-primary focus:ring-primary/30 h-3.5 w-3.5"/>
+              <span class="text-xs text-slate-600">Agendamento online</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" checked class="rounded border-slate-300 text-primary focus:ring-primary/30 h-3.5 w-3.5"/>
+              <span class="text-xs text-slate-600">Worklist DICOM</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" class="rounded border-slate-300 text-primary focus:ring-primary/30 h-3.5 w-3.5"/>
+              <span class="text-xs text-slate-600">Notificações SMS</span>
+            </label>
+          </div>
+        </div>
+        <div class="rounded-lg border border-slate-200 p-3">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-sm font-semibold text-slate-800">PACS</span>
+            <span class="text-xs text-slate-400">Configurações</span>
+          </div>
+          <div class="flex flex-wrap gap-4">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" checked class="rounded border-slate-300 text-primary focus:ring-primary/30 h-3.5 w-3.5"/>
+              <span class="text-xs text-slate-600">Storage ilimitado</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" class="rounded border-slate-300 text-primary focus:ring-primary/30 h-3.5 w-3.5"/>
+              <span class="text-xs text-slate-600">Viewer integrado</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" checked class="rounded border-slate-300 text-primary focus:ring-primary/30 h-3.5 w-3.5"/>
+              <span class="text-xs text-slate-600">Auto-routing</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="rounded-lg bg-primary/5 border border-primary/20 px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-lg">shopping_cart</span>
+        <span class="text-sm font-semibold text-slate-700">2 módulos selecionados</span>
+      </div>
+      <span class="text-lg font-bold text-primary">R$ 5.500<span class="text-sm font-normal text-slate-500">/mês</span></span>
+    </div>
+  </div>
+
+  <div class="flex items-center justify-end gap-3 px-6 py-4 border-t border-slate-100 bg-slate-50/50">
+    <button class="px-4 py-2.5 rounded-lg border border-slate-200 text-sm font-semibold text-slate-600 hover:bg-slate-50 transition-colors">
+      Cancelar
+    </button>
+    <button class="px-5 py-2.5 rounded-lg bg-primary text-sm font-semibold text-white hover:bg-blue-700 transition-colors shadow-sm">
+      Adicionar Serviços
+    </button>
+  </div>
+</div>
+
+<script src="../../nav.js"></script>
+</body>
+</html>

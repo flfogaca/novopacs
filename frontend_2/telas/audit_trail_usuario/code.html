@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Audit Trail Usuário - Themis Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: { extend: {
+    colors: { "primary": "#0f66bd", "background-light": "#f6f7f8", "background-dark": "#101922" },
+    fontFamily: { "display": ["Manrope", "sans-serif"] },
+    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+  }}
+}
+</script>
+<style>
+body { font-family: 'Manrope', sans-serif; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+</style>
+</head>
+<body class="bg-background-light font-display text-slate-900 antialiased">
+
+<main class="max-w-7xl mx-auto px-6 py-8">
+
+  <!-- Breadcrumb -->
+  <nav class="flex items-center gap-1.5 text-sm text-slate-500 mb-6">
+    <a href="#" class="hover:text-primary transition" data-nav="auditoria">Auditoria</a>
+    <span class="material-symbols-outlined" style="font-size:16px">chevron_right</span>
+    <span class="text-slate-900 font-semibold">Trail de Usuário</span>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <h1 class="text-2xl font-extrabold text-slate-900">Audit Trail — Maria Ferreira</h1>
+      <p class="text-sm text-slate-500 mt-1">Histórico completo de ações do usuário</p>
+    </div>
+    <div class="flex items-center gap-2">
+      <button class="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold border border-slate-300 rounded-lg text-slate-700 bg-white hover:bg-slate-50 transition">
+        <span class="material-symbols-outlined" style="font-size:18px">download</span>Exportar CSV
+      </button>
+      <button class="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold border border-slate-300 rounded-lg text-slate-700 bg-white hover:bg-slate-50 transition">
+        <span class="material-symbols-outlined" style="font-size:18px">picture_as_pdf</span>Exportar PDF
+      </button>
+    </div>
+  </div>
+
+  <!-- User Info Card -->
+  <div class="bg-white border border-slate-200 rounded-xl p-5 mb-6 flex items-center gap-5">
+    <div class="w-14 h-14 rounded-full bg-primary/10 text-primary flex items-center justify-center text-lg font-bold shrink-0">MF</div>
+    <div class="flex-1 grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div>
+        <p class="text-xs text-slate-400 uppercase tracking-wide">Nome</p>
+        <p class="text-sm font-semibold">Maria Ferreira</p>
+      </div>
+      <div>
+        <p class="text-xs text-slate-400 uppercase tracking-wide">E-mail</p>
+        <p class="text-sm font-semibold">maria.ferreira@onelaudos.com</p>
+      </div>
+      <div>
+        <p class="text-xs text-slate-400 uppercase tracking-wide">Papel</p>
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 mt-0.5">Organization Admin</span>
+      </div>
+      <div>
+        <p class="text-xs text-slate-400 uppercase tracking-wide">Último Login</p>
+        <p class="text-sm font-semibold">05/03/2026 14:22</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="bg-white border border-slate-200 rounded-xl p-4 mb-6 flex flex-wrap items-end gap-4">
+    <div class="flex-1 min-w-[180px]">
+      <label class="block text-xs font-semibold text-slate-500 mb-1">Período</label>
+      <div class="flex items-center gap-2">
+        <input type="date" value="2026-02-28" class="w-full rounded-lg border-slate-300 text-sm py-2 px-3 focus:ring-primary focus:border-primary"/>
+        <span class="text-slate-400 text-xs">até</span>
+        <input type="date" value="2026-03-05" class="w-full rounded-lg border-slate-300 text-sm py-2 px-3 focus:ring-primary focus:border-primary"/>
+      </div>
+    </div>
+    <div class="min-w-[180px]">
+      <label class="block text-xs font-semibold text-slate-500 mb-1">Tipo de Evento</label>
+      <select class="w-full rounded-lg border-slate-300 text-sm py-2 px-3 focus:ring-primary focus:border-primary">
+        <option>Todos</option>
+        <option>LOGIN</option>
+        <option>CRUD</option>
+        <option>ACCESS</option>
+        <option>CONFIG</option>
+      </select>
+    </div>
+    <div class="min-w-[180px]">
+      <label class="block text-xs font-semibold text-slate-500 mb-1">Recurso</label>
+      <select class="w-full rounded-lg border-slate-300 text-sm py-2 px-3 focus:ring-primary focus:border-primary">
+        <option>Todos</option>
+        <option>Usuários</option>
+        <option>Unidades</option>
+        <option>Contratos</option>
+        <option>Laudos</option>
+      </select>
+    </div>
+    <button class="px-5 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary/90 transition">Filtrar</button>
+  </div>
+
+  <!-- Timeline Table -->
+  <div class="bg-white border border-slate-200 rounded-xl overflow-hidden mb-6">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="border-b border-slate-100 bg-slate-50/60">
+          <th class="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide w-10"></th>
+          <th class="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Data/Hora</th>
+          <th class="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Tipo</th>
+          <th class="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Evento</th>
+          <th class="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Detalhes</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-100">
+        <!-- Row 1 -->
+        <tr class="hover:bg-slate-50/50 transition">
+          <td class="px-5 py-3.5"><span class="material-symbols-outlined text-green-500" style="font-size:20px">check_circle</span></td>
+          <td class="px-5 py-3.5 font-mono text-xs text-slate-600 whitespace-nowrap">05/03/2026 14:22:01</td>
+          <td class="px-5 py-3.5"><span class="inline-flex px-2 py-0.5 rounded text-xs font-bold bg-green-50 text-green-700">LOGIN</span></td>
+          <td class="px-5 py-3.5 font-medium">login_success</td>
+          <td class="px-5 py-3.5 text-slate-500">IP: <code class="text-xs bg-slate-100 px-1 py-0.5 rounded">189.40.78.12</code> &middot; User-Agent: Chrome/120</td>
+        </tr>
+        <!-- Row 2 -->
+        <tr class="hover:bg-slate-50/50 transition">
+          <td class="px-5 py-3.5"><span class="material-symbols-outlined text-blue-500" style="font-size:20px">edit</span></td>
+          <td class="px-5 py-3.5 font-mono text-xs text-slate-600 whitespace-nowrap">05/03/2026 10:15:33</td>
+          <td class="px-5 py-3.5"><span class="inline-flex px-2 py-0.5 rounded text-xs font-bold bg-blue-50 text-blue-700">UPDATE</span></td>
+          <td class="px-5 py-3.5 font-medium">user.profile</td>
+          <td class="px-5 py-3.5 text-slate-500">Campos: telefone &middot; Antes: <span class="line-through text-red-400">(11)9999-0000</span> → Depois: <span class="text-green-600 font-medium">(11)9888-1234</span></td>
+        </tr>
+        <!-- Row 3 -->
+        <tr class="hover:bg-slate-50/50 transition">
+          <td class="px-5 py-3.5"><span class="material-symbols-outlined text-green-500" style="font-size:20px">add_circle</span></td>
+          <td class="px-5 py-3.5 font-mono text-xs text-slate-600 whitespace-nowrap">04/03/2026 16:45:12</td>
+          <td class="px-5 py-3.5"><span class="inline-flex px-2 py-0.5 rounded text-xs font-bold bg-green-50 text-green-700">CREATE</span></td>
+          <td class="px-5 py-3.5 font-medium">unit_access</td>
+          <td class="px-5 py-3.5 text-slate-500">Unidade: Clínica Norte &middot; Concedido por: <code class="text-xs bg-slate-100 px-1 py-0.5 rounded">admin@onelaudos.com</code></td>
+        </tr>
+        <!-- Row 4 -->
+        <tr class="hover:bg-slate-50/50 transition">
+          <td class="px-5 py-3.5"><span class="material-symbols-outlined text-green-500" style="font-size:20px">check_circle</span></td>
+          <td class="px-5 py-3.5 font-mono text-xs text-slate-600 whitespace-nowrap">04/03/2026 09:30:18</td>
+          <td class="px-5 py-3.5"><span class="inline-flex px-2 py-0.5 rounded text-xs font-bold bg-green-50 text-green-700">LOGIN</span></td>
+          <td class="px-5 py-3.5 font-medium">login_success</td>
+          <td class="px-5 py-3.5 text-slate-500">IP: <code class="text-xs bg-slate-100 px-1 py-0.5 rounded">189.40.78.12</code></td>
+        </tr>
+        <!-- Row 5 -->
+        <tr class="hover:bg-slate-50/50 transition">
+          <td class="px-5 py-3.5"><span class="material-symbols-outlined text-blue-500" style="font-size:20px">lock_reset</span></td>
+          <td class="px-5 py-3.5 font-mono text-xs text-slate-600 whitespace-nowrap">03/03/2026 15:20:44</td>
+          <td class="px-5 py-3.5"><span class="inline-flex px-2 py-0.5 rounded text-xs font-bold bg-blue-50 text-blue-700">UPDATE</span></td>
+          <td class="px-5 py-3.5 font-medium">user.password</td>
+          <td class="px-5 py-3.5 text-slate-500">Senha alterada</td>
+        </tr>
+        <!-- Row 6 -->
+        <tr class="hover:bg-slate-50/50 transition">
+          <td class="px-5 py-3.5"><span class="material-symbols-outlined text-slate-400" style="font-size:20px">visibility</span></td>
+          <td class="px-5 py-3.5 font-mono text-xs text-slate-600 whitespace-nowrap">03/03/2026 11:02:15</td>
+          <td class="px-5 py-3.5"><span class="inline-flex px-2 py-0.5 rounded text-xs font-bold bg-slate-100 text-slate-600">READ</span></td>
+          <td class="px-5 py-3.5 font-medium">contract.view</td>
+          <td class="px-5 py-3.5 text-slate-500">Contrato: <code class="text-xs bg-slate-100 px-1 py-0.5 rounded">#2026-001</code></td>
+        </tr>
+        <!-- Row 7 -->
+        <tr class="hover:bg-slate-50/50 transition">
+          <td class="px-5 py-3.5"><span class="material-symbols-outlined text-red-500" style="font-size:20px">error</span></td>
+          <td class="px-5 py-3.5 font-mono text-xs text-slate-600 whitespace-nowrap">01/03/2026 08:00:53</td>
+          <td class="px-5 py-3.5"><span class="inline-flex px-2 py-0.5 rounded text-xs font-bold bg-red-50 text-red-700">LOGIN</span></td>
+          <td class="px-5 py-3.5 font-medium">login_failed</td>
+          <td class="px-5 py-3.5 text-slate-500">IP: <code class="text-xs bg-slate-100 px-1 py-0.5 rounded">201.17.132.5</code> &middot; Motivo: senha incorreta</td>
+        </tr>
+        <!-- Row 8 -->
+        <tr class="hover:bg-slate-50/50 transition">
+          <td class="px-5 py-3.5"><span class="material-symbols-outlined text-amber-500" style="font-size:20px">swap_horiz</span></td>
+          <td class="px-5 py-3.5 font-mono text-xs text-slate-600 whitespace-nowrap">28/02/2026 14:00:00</td>
+          <td class="px-5 py-3.5"><span class="inline-flex px-2 py-0.5 rounded text-xs font-bold bg-amber-50 text-amber-700">UPDATE</span></td>
+          <td class="px-5 py-3.5 font-medium">user.role</td>
+          <td class="px-5 py-3.5 text-slate-500">Papel: <span class="line-through text-red-400">Unit Admin</span> → <span class="text-green-600 font-medium">Organization Admin</span> &middot; Por: <code class="text-xs bg-slate-100 px-1 py-0.5 rounded">platform.admin@themis.health</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="flex items-center justify-between">
+    <p class="text-sm text-slate-500">Mostrando <span class="font-semibold text-slate-700">8</span> de <span class="font-semibold text-slate-700">342</span> eventos</p>
+    <div class="flex items-center gap-1">
+      <button class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-400 hover:bg-slate-50 transition" disabled>
+        <span class="material-symbols-outlined" style="font-size:18px">chevron_left</span>
+      </button>
+      <button class="w-9 h-9 flex items-center justify-center rounded-lg bg-primary text-white text-sm font-semibold">1</button>
+      <button class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 text-sm font-semibold hover:bg-slate-50 transition">2</button>
+      <button class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 text-sm font-semibold hover:bg-slate-50 transition">3</button>
+      <span class="text-slate-400 text-sm px-1">…</span>
+      <button class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 text-sm font-semibold hover:bg-slate-50 transition">43</button>
+      <button class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-400 hover:bg-slate-50 transition">
+        <span class="material-symbols-outlined" style="font-size:18px">chevron_right</span>
+      </button>
+    </div>
+  </div>
+
+</main>
+
+<script src="../../nav.js"></script>
+</body>
+</html>

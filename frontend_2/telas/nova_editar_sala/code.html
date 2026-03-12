@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nova Sala - Themis Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: { extend: {
+    colors: { "primary": "#0f66bd", "background-light": "#f6f7f8", "background-dark": "#101922" },
+    fontFamily: { "display": ["Manrope", "sans-serif"] },
+    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+  }}
+}
+</script>
+<style>
+body { font-family: 'Manrope', sans-serif; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+</style>
+</head>
+<body class="bg-background-light font-display text-slate-900 antialiased">
+
+<main class="p-8 max-w-3xl mx-auto">
+  <!-- Breadcrumb -->
+  <nav class="flex items-center gap-2 text-sm text-slate-500 mb-6">
+    <span class="hover:text-primary cursor-pointer transition-colors">Unidades</span>
+    <span class="material-symbols-outlined text-xs">chevron_right</span>
+    <span class="hover:text-primary cursor-pointer transition-colors">Centro de Imagem SP</span>
+    <span class="material-symbols-outlined text-xs">chevron_right</span>
+    <span class="hover:text-primary cursor-pointer transition-colors" data-nav="listagem_de_salas">Salas</span>
+    <span class="material-symbols-outlined text-xs">chevron_right</span>
+    <span class="text-slate-900 font-medium">Nova Sala</span>
+  </nav>
+
+  <!-- Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">Nova Sala</h1>
+    <p class="text-slate-500 mt-1">Cadastre uma nova sala de exames na unidade.</p>
+  </div>
+
+  <!-- Form Card -->
+  <div class="bg-white rounded-xl shadow-sm border border-slate-200 divide-y divide-slate-200">
+    <!-- Section: Informações Básicas -->
+    <div class="p-6">
+      <h2 class="text-base font-bold text-slate-900 mb-5 flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-xl">info</span>
+        Informações Básicas
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="md:col-span-2">
+          <label class="block text-sm font-semibold text-slate-700 mb-1.5">Nome da Sala</label>
+          <input type="text" placeholder="Ex: Sala RM 01" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary placeholder:text-slate-400"/>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1.5">Tipo</label>
+          <select class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary text-slate-700">
+            <option value="">Selecione o tipo</option>
+            <option>RM – Ressonância Magnética</option>
+            <option>CT – Tomografia Computadorizada</option>
+            <option>RX – Raio-X</option>
+            <option>US – Ultrassom</option>
+            <option>MG – Mamografia</option>
+            <option>DR – Radiografia Digital</option>
+            <option>RF – Radiofluoroscopia</option>
+            <option>XA – Angiografia</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1.5">Localização</label>
+          <input type="text" placeholder="Ex: Bloco A, 1° Andar" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary placeholder:text-slate-400"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section: Capacidade e Observações -->
+    <div class="p-6">
+      <h2 class="text-base font-bold text-slate-900 mb-5 flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-xl">tune</span>
+        Capacidade e Observações
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1.5">Capacidade</label>
+          <input type="number" value="1" min="1" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary"/>
+        </div>
+        <div class="md:col-span-2">
+          <label class="block text-sm font-semibold text-slate-700 mb-1.5">Observações</label>
+          <textarea rows="3" placeholder="Informações adicionais sobre a sala..." class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary placeholder:text-slate-400 resize-none"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section: Status -->
+    <div class="p-6">
+      <h2 class="text-base font-bold text-slate-900 mb-5 flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-xl">toggle_on</span>
+        Status
+      </h2>
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm font-semibold text-slate-700">Sala Ativa</p>
+          <p class="text-xs text-slate-500 mt-0.5">Salas inativas não aparecem no agendamento.</p>
+        </div>
+        <button type="button" class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-primary transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary/20" role="switch" aria-checked="true">
+          <span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Buttons -->
+  <div class="flex items-center justify-end gap-3 mt-6">
+    <button data-nav="listagem_de_salas" class="px-6 py-2.5 rounded-lg border border-slate-300 text-sm font-bold text-slate-700 hover:bg-slate-100 transition-colors">
+      Cancelar
+    </button>
+    <button class="px-6 py-2.5 rounded-lg bg-primary hover:bg-primary/90 text-white text-sm font-bold transition-all shadow-lg shadow-primary/20">
+      Salvar Sala
+    </button>
+  </div>
+</main>
+
+<script src="../../nav.js"></script>
+</body>
+</html>

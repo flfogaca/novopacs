@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Novo/Editar Paciente - RIS / Pacientes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f66bd",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-6 py-3 lg:px-40">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-6 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined">health_and_safety</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">RIS / Pacientes</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">Agenda</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary py-1" href="#">Pacientes</a>
+<a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">Relatórios</a>
+</nav>
+<div class="flex gap-2">
+<button class="flex min-w-[100px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-all">
+<span>Salvar</span>
+</button>
+<button class="flex min-w-[100px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white text-sm font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+<span>Cancelar</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-slate-200 dark:border-slate-700" data-alt="Avatar de perfil do usuário" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBYjYqsRwxQ5DIqu2GeeDwD-M7s1PG5w7MAxmhd_kSo_YgvGQz0weixxghbhQ3pE3d-CfRB8PAFlDS8k35bseTvVOxPGe58DGuZgDoKy4KMRPOHxdzryKh9jf9EkfgbNuFh5uvJGATU2pdyJQzccZw_VNIhYlgBZXHyNbhXdO8edeyXQY9nFEVnmiMGqEUJxTff0UNTbjAfburthrRb2CZ7ai8lxU9eJYWC61c5tRpz7wQIfuY5HIEIGYc1Ezv9v2zI_A-rkENXIJk");'></div>
+</div>
+</header>
+<main class="flex flex-1 justify-center py-8 px-4 lg:px-40">
+<div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+<div class="flex flex-col gap-2 mb-8">
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-sm">
+<a class="hover:text-primary" href="#">RIS / Pacientes</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-slate-900 dark:text-white font-medium">Novo/Editar Paciente</span>
+</div>
+<h1 class="text-3xl font-black tracking-tight text-slate-900 dark:text-white mt-2">Cadastro de Paciente</h1>
+<p class="text-slate-600 dark:text-slate-400">Preencha os campos abaixo para criar ou atualizar o prontuário do paciente.</p>
+</div>
+<form class="flex flex-col gap-10 bg-white dark:bg-slate-900 p-8 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
+<section class="flex flex-col gap-6">
+<div class="flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+<span class="material-symbols-outlined text-primary">person</span>
+<h3 class="text-xl font-bold">Dados Básicos</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+<label class="md:col-span-8 flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Nome Completo*</span>
+<input class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary" placeholder="Nome completo do paciente (sem abreviações)" required="" type="text"/>
+</label>
+<label class="md:col-span-4 flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Prontuário</span>
+<input class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary" placeholder="Gerado automaticamente" type="text"/>
+</label>
+<label class="md:col-span-3 flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Data de Nascimento*</span>
+<input class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary" required="" type="date"/>
+</label>
+<label class="md:col-span-3 flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Sexo Biológico*</span>
+<select class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary" required="">
+<option value="">Selecione</option>
+<option value="M">Masculino</option>
+<option value="F">Feminino</option>
+<option value="I">Indeterminado</option>
+</select>
+</label>
+<label class="md:col-span-3 flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Nacionalidade*</span>
+<select id="sel-nacionalidade" class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary" required="">
+<option value="BR" selected>Brasileiro(a)</option>
+<option value="EX">Estrangeiro(a)</option>
+<option value="NA">Naturalizado(a)</option>
+</select>
+</label>
+<label id="wrap-pais" class="md:col-span-3 flex flex-col gap-2 hidden">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">País de Origem*</span>
+<select id="sel-pais" class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary">
+<option value="">Selecione o país</option>
+<option value="US">Estados Unidos</option>
+<option value="AR">Argentina</option>
+<option value="PY">Paraguai</option>
+<option value="UY">Uruguai</option>
+<option value="CL">Chile</option>
+<option value="CO">Colômbia</option>
+<option value="PE">Peru</option>
+<option value="BO">Bolívia</option>
+<option value="VE">Venezuela</option>
+<option value="PT">Portugal</option>
+<option value="ES">Espanha</option>
+<option value="IT">Itália</option>
+<option value="DE">Alemanha</option>
+<option value="FR">França</option>
+<option value="JP">Japão</option>
+<option value="CN">China</option>
+<option value="IN">Índia</option>
+<option value="AO">Angola</option>
+<option value="MZ">Moçambique</option>
+<option value="CV">Cabo Verde</option>
+<option value="HT">Haiti</option>
+<option value="OT">Outro</option>
+</select>
+</label>
+</div>
+</section>
+
+<!-- Documentos de Identificação -->
+<section class="flex flex-col gap-6">
+<div class="flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+<span class="material-symbols-outlined text-primary">badge</span>
+<h3 class="text-xl font-bold">Documentos de Identificação</h3>
+</div>
+<div class="bg-slate-50 dark:bg-slate-800/40 rounded-lg p-5 border border-slate-200 dark:border-slate-700 space-y-5">
+<div class="flex items-center justify-between">
+<p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Documento Principal*</p>
+<span class="text-xs text-slate-400">Padrão FHIR BR Core / TISS</span>
+</div>
+<!-- Tipo de Documento (sempre visível) -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+<label class="md:col-span-3 flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Tipo de Documento*</span>
+<select id="sel-tipo-doc" class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-primary focus:border-primary" required="">
+<option value="CPF">CPF</option>
+<option value="RG">RG</option>
+<option value="CNH">CNH</option>
+<option value="CERT_NASC">Certidão de Nascimento</option>
+<option value="PASSAPORTE">Passaporte</option>
+<option value="CRNM">CRNM (Registro Migratório)</option>
+<option value="DNI">DNI (Doc. Estrangeiro)</option>
+<option value="OUTRO">Outro</option>
+</select>
+</label>
+<!-- Campos padrão (Número / Emissor / UF) -->
+<label id="wrap-numero-doc" class="md:col-span-4 flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Número*</span>
+<input id="input-numero-doc" class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-primary focus:border-primary" placeholder="000.000.000-00" required="" type="text"/>
+</label>
+<label id="wrap-emissor" class="md:col-span-3 flex flex-col gap-2">
+<span id="lbl-emissor" class="text-sm font-semibold text-slate-700 dark:text-slate-300">Órgão Emissor</span>
+<input id="input-emissor" class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-primary focus:border-primary" placeholder="SSP, DETRAN..." type="text"/>
+</label>
+<label id="wrap-uf-doc" class="md:col-span-2 flex flex-col gap-2">
+<span id="lbl-uf-doc" class="text-sm font-semibold text-slate-700 dark:text-slate-300">UF</span>
+<select id="sel-uf-doc" class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-primary focus:border-primary">
+<option value="">--</option>
+<option>AC</option><option>AL</option><option>AM</option><option>AP</option><option>BA</option><option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option><option>MG</option><option>MS</option><option>MT</option><option>PA</option><option>PB</option><option>PE</option><option>PI</option><option>PR</option><option>RJ</option><option>RN</option><option>RO</option><option>RR</option><option>RS</option><option>SC</option><option>SE</option><option>SP</option><option>TO</option>
+</select>
+</label>
+<!-- Campos Certidão de Nascimento (ocultos por padrão) -->
+<label id="wrap-cert-matricula" class="md:col-span-3 flex flex-col gap-2 hidden">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Matrícula (32 dígitos)*</span>
+<input class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-primary focus:border-primary font-mono text-xs" placeholder="00000.00.00.0000.0.00000.000.0000000-00" type="text"/>
+</label>
+<label id="wrap-cert-livro" class="md:col-span-2 flex flex-col gap-2 hidden">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Livro</span>
+<input class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-primary focus:border-primary" placeholder="Nº" type="text"/>
+</label>
+<label id="wrap-cert-folha" class="md:col-span-2 flex flex-col gap-2 hidden">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Folha</span>
+<input class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-primary focus:border-primary" placeholder="Nº" type="text"/>
+</label>
+<label id="wrap-cert-termo" class="md:col-span-2 flex flex-col gap-2 hidden">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Termo</span>
+<input class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-primary focus:border-primary" placeholder="Nº" type="text"/>
+</label>
+</div>
+<!-- Documentos Adicionais -->
+<div id="docs-adicionais" class="space-y-3"></div>
+<button id="btn-add-doc" type="button" class="inline-flex items-center gap-1.5 text-primary text-sm font-semibold hover:text-primary/80 transition-colors mt-1">
+<span class="material-symbols-outlined text-lg">add_circle</span>
+Adicionar Documento
+</button>
+</div>
+</section>
+
+<!-- Informações Complementares -->
+<section class="flex flex-col gap-6">
+<div class="flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+<span class="material-symbols-outlined text-primary">family_restroom</span>
+<h3 class="text-xl font-bold">Informações Complementares</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+<label class="md:col-span-6 flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Nome da Mãe*</span>
+<input class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary" placeholder="Nome completo da mãe (obrigatório para SUS)" required="" type="text"/>
+</label>
+<label class="md:col-span-6 flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">CNS (Cartão Nacional de Saúde)</span>
+<input class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary" placeholder="000 0000 0000 0000" maxlength="18" type="text"/>
+<span class="text-xs text-slate-400">15 dígitos — identificador único no SUS</span>
+</label>
+</div>
+</section>
+<section class="flex flex-col gap-6">
+<div class="flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+<span class="material-symbols-outlined text-primary">contact_phone</span>
+<h3 class="text-xl font-bold">Contato</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<label class="flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Telefone</span>
+<input class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary" placeholder="(00) 00000-0000" type="tel"/>
+</label>
+<label class="flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">E-mail</span>
+<input class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary" placeholder="paciente@exemplo.com.br" type="email"/>
+</label>
+</div>
+</section>
+<section class="flex flex-col gap-6">
+<div class="flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<h3 class="text-xl font-bold">Endereço</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+<label class="md:col-span-3 flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">CEP</span>
+<input class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary" placeholder="00000-000" type="text"/>
+</label>
+<label class="md:col-span-7 flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Rua/Logradouro</span>
+<input class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary" placeholder="Ex: Av. Paulista" type="text"/>
+</label>
+<label class="md:col-span-2 flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Número</span>
+<input class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary" placeholder="123" type="text"/>
+</label>
+<label class="md:col-span-4 flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Bairro</span>
+<input class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary" placeholder="Bairro" type="text"/>
+</label>
+<label class="md:col-span-4 flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Cidade</span>
+<input class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary" placeholder="Cidade" type="text"/>
+</label>
+<label class="md:col-span-2 flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">UF</span>
+<input class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary uppercase" maxlength="2" placeholder="SP" type="text"/>
+</label>
+<label class="md:col-span-12 flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Complemento</span>
+<input class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary" placeholder="Apto, Bloco, Referência" type="text"/>
+</label>
+</div>
+</section>
+<section class="flex flex-col gap-6">
+<div class="flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+<span class="material-symbols-outlined text-primary">credit_card</span>
+<h3 class="text-xl font-bold">Convênio</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+<label class="md:col-span-6 flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Nome do Convênio</span>
+<select class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary">
+<option value="">Selecione o plano</option>
+<option value="SUS">SUS (Sistema Único de Saúde)</option>
+<option value="UNIMED">Unimed</option>
+<option value="BRADESCO">Bradesco Saúde</option>
+<option value="AMIL">Amil</option>
+<option value="PARTICULAR">Particular</option>
+</select>
+</label>
+<label class="md:col-span-4 flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Carteira</span>
+<input class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary" placeholder="Nº da carteirinha" type="text"/>
+</label>
+<label class="md:col-span-2 flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Validade</span>
+<input class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary" type="month"/>
+</label>
+</div>
+</section>
+<section class="flex flex-col gap-6">
+<div class="flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+<span class="material-symbols-outlined text-primary">clinical_notes</span>
+<h3 class="text-xl font-bold">Observações Clínicas</h3>
+</div>
+<div class="flex flex-col gap-5">
+<div class="flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Alergias</span>
+<div class="flex flex-wrap gap-2 p-3 min-h-[50px] border border-slate-300 dark:border-slate-700 rounded-lg">
+<span class="bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 text-xs font-bold px-2 py-1 rounded flex items-center gap-1">
+                                            Penicilina
+                                            <button class="material-symbols-outlined text-sm" type="button">close</button>
+</span>
+<span class="bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 text-xs font-bold px-2 py-1 rounded flex items-center gap-1">
+                                            Lactose
+                                            <button class="material-symbols-outlined text-sm" type="button">close</button>
+</span>
+<input class="flex-1 bg-transparent border-none focus:ring-0 p-0 text-sm" placeholder="Adicionar alergia..." type="text"/>
+</div>
+</div>
+<label class="flex flex-col gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Observações</span>
+<textarea class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary resize-none" placeholder="Notas relevantes sobre o paciente" rows="4"></textarea>
+</label>
+</div>
+</section>
+<div class="flex justify-between items-center pt-6 border-t border-slate-100 dark:border-slate-800">
+<p class="text-xs text-slate-400">* Campos obrigatórios</p>
+<div class="flex gap-4">
+<button class="px-6 py-2 rounded-lg text-slate-600 dark:text-slate-300 font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" type="button">Limpar Formulário</button>
+<button class="px-8 py-2 rounded-lg bg-primary text-white font-bold hover:bg-primary/90 shadow-md hover:shadow-lg transition-all" type="submit">Concluir Cadastro</button>
+</div>
+</div>
+</form>
+<!-- TODO: Implementar integração com viaCEP para preenchimento automático de endereço -->
+<!-- VERIFICAR: Se existem novos gêneros a serem incluídos no dropdown de Sexo conforme padrão da unidade -->
+</div>
+</main>
+<footer class="flex justify-center py-6 px-4 border-t border-slate-200 dark:border-slate-800 text-slate-400 text-sm">
+<p>© 2024 RIS Management System. Todos os direitos reservados.</p>
+</footer>
+</div>
+</div>
+<script>
+(function(){
+  const selNac = document.getElementById('sel-nacionalidade');
+  const wrapPais = document.getElementById('wrap-pais');
+  const selTipo = document.getElementById('sel-tipo-doc');
+  const wrapNumero = document.getElementById('wrap-numero-doc');
+  const inputNumero = document.getElementById('input-numero-doc');
+  const wrapEmissor = document.getElementById('wrap-emissor');
+  const inputEmissor = document.getElementById('input-emissor');
+  const lblEmissor = document.getElementById('lbl-emissor');
+  const wrapUf = document.getElementById('wrap-uf-doc');
+  const lblUf = document.getElementById('lbl-uf-doc');
+  const certMatricula = document.getElementById('wrap-cert-matricula');
+  const certLivro = document.getElementById('wrap-cert-livro');
+  const certFolha = document.getElementById('wrap-cert-folha');
+  const certTermo = document.getElementById('wrap-cert-termo');
+  const docsAdicionais = document.getElementById('docs-adicionais');
+  const btnAddDoc = document.getElementById('btn-add-doc');
+
+  const UF_OPTIONS = '<option value="">--</option><option>AC</option><option>AL</option><option>AM</option><option>AP</option><option>BA</option><option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option><option>MG</option><option>MS</option><option>MT</option><option>PA</option><option>PB</option><option>PE</option><option>PI</option><option>PR</option><option>RJ</option><option>RN</option><option>RO</option><option>RR</option><option>RS</option><option>SC</option><option>SE</option><option>SP</option><option>TO</option>';
+  const TIPOS_DOC = {CPF:'CPF',RG:'RG',CNH:'CNH',CERT_NASC:'Certidão de Nascimento',PASSAPORTE:'Passaporte',CRNM:'CRNM (Registro Migratório)',DNI:'DNI (Doc. Estrangeiro)',OUTRO:'Outro'};
+  const MAX_EXTRAS = 3;
+  let extraCount = 0;
+  let isEstrangeiro = false;
+
+  function updateNacionalidade(){
+    const v = selNac.value;
+    isEstrangeiro = (v === 'EX' || v === 'NA');
+    wrapPais.classList.toggle('hidden', !isEstrangeiro);
+
+    if(isEstrangeiro && selTipo.value === 'CPF'){
+      selTipo.value = 'PASSAPORTE';
+    } else if(!isEstrangeiro && (selTipo.value === 'PASSAPORTE' || selTipo.value === 'CRNM' || selTipo.value === 'DNI')){
+      selTipo.value = 'CPF';
+    }
+    updateTipoDoc();
+  }
+
+  function showFields(standard, certidao){
+    [wrapNumero, wrapEmissor, wrapUf].forEach(function(el){ el.classList.toggle('hidden', !standard); });
+    [certMatricula, certLivro, certFolha, certTermo].forEach(function(el){ el.classList.toggle('hidden', !certidao); });
+  }
+
+  function updateTipoDoc(){
+    const tipo = selTipo.value;
+    const isCertidao = (tipo === 'CERT_NASC');
+
+    if(isCertidao){
+      showFields(false, true);
+      return;
+    }
+
+    showFields(true, false);
+
+    const isCPF = (tipo === 'CPF');
+    const isPassOrCrnm = (tipo === 'PASSAPORTE' || tipo === 'CRNM' || tipo === 'DNI');
+
+    wrapEmissor.classList.toggle('hidden', isCPF);
+    wrapUf.classList.toggle('hidden', isCPF);
+
+    if(isPassOrCrnm){
+      lblEmissor.textContent = 'País de Emissão';
+      inputEmissor.placeholder = 'Ex: EUA, Argentina...';
+      wrapUf.innerHTML = '<span id="lbl-uf-doc" class="text-sm font-semibold text-slate-700 dark:text-slate-300">Validade</span><input class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-primary focus:border-primary" type="date"/>';
+    } else if(!isCPF){
+      lblEmissor.textContent = 'Órgão Emissor';
+      inputEmissor.placeholder = 'SSP, DETRAN...';
+      wrapUf.innerHTML = '<span id="lbl-uf-doc" class="text-sm font-semibold text-slate-700 dark:text-slate-300">UF</span><select class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-primary focus:border-primary">' + UF_OPTIONS + '</select>';
+    }
+
+    switch(tipo){
+      case 'CPF':
+        inputNumero.placeholder = '000.000.000-00';
+        inputNumero.maxLength = 14;
+        break;
+      case 'RG':
+        inputNumero.placeholder = 'Nº do RG';
+        inputNumero.maxLength = 20;
+        break;
+      case 'CNH':
+        inputNumero.placeholder = '00000000000';
+        inputNumero.maxLength = 11;
+        break;
+      case 'PASSAPORTE':
+        inputNumero.placeholder = 'Nº do Passaporte';
+        inputNumero.maxLength = 20;
+        break;
+      case 'CRNM':
+        inputNumero.placeholder = 'Nº do CRNM';
+        inputNumero.maxLength = 20;
+        break;
+      case 'DNI':
+        inputNumero.placeholder = 'Nº do Documento';
+        inputNumero.maxLength = 30;
+        break;
+      default:
+        inputNumero.placeholder = 'Número do documento';
+        inputNumero.maxLength = 30;
+    }
+  }
+
+  function addDocExtra(){
+    if(extraCount >= MAX_EXTRAS) return;
+    extraCount++;
+    const id = 'doc-extra-' + extraCount;
+    const div = document.createElement('div');
+    div.id = id;
+    div.className = 'grid grid-cols-1 md:grid-cols-12 gap-4 items-end bg-white dark:bg-slate-800 p-4 rounded-lg border border-slate-200 dark:border-slate-700 animate-fadeIn';
+
+    let optionsHtml = '';
+    for(const k in TIPOS_DOC) optionsHtml += '<option value="'+k+'">'+TIPOS_DOC[k]+'</option>';
+
+    div.innerHTML =
+      '<label class="md:col-span-3 flex flex-col gap-2">' +
+        '<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Tipo</span>' +
+        '<select class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-primary focus:border-primary">' + optionsHtml + '</select>' +
+      '</label>' +
+      '<label class="md:col-span-4 flex flex-col gap-2">' +
+        '<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Número</span>' +
+        '<input class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-primary focus:border-primary" placeholder="Número do documento" type="text"/>' +
+      '</label>' +
+      '<label class="md:col-span-3 flex flex-col gap-2">' +
+        '<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Órgão Emissor</span>' +
+        '<input class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-primary focus:border-primary" placeholder="SSP, DETRAN..." type="text"/>' +
+      '</label>' +
+      '<div class="md:col-span-2 flex items-end gap-2">' +
+        '<label class="flex-1 flex flex-col gap-2">' +
+          '<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">UF</span>' +
+          '<select class="w-full h-12 rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-primary focus:border-primary">' + UF_OPTIONS + '</select>' +
+        '</label>' +
+        '<button type="button" class="btn-remove-doc flex items-center justify-center h-12 w-12 rounded-lg text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors" title="Remover documento">' +
+          '<span class="material-symbols-outlined">delete</span>' +
+        '</button>' +
+      '</div>';
+
+    docsAdicionais.appendChild(div);
+    if(extraCount >= MAX_EXTRAS) btnAddDoc.classList.add('opacity-40','pointer-events-none');
+
+    div.querySelector('.btn-remove-doc').addEventListener('click', function(){
+      div.remove();
+      extraCount--;
+      btnAddDoc.classList.remove('opacity-40','pointer-events-none');
+    });
+  }
+
+  selNac.addEventListener('change', updateNacionalidade);
+  selTipo.addEventListener('change', updateTipoDoc);
+  btnAddDoc.addEventListener('click', addDocExtra);
+
+  updateNacionalidade();
+})();
+</script>
+<script src="../../nav.js"></script>
+</body></html>

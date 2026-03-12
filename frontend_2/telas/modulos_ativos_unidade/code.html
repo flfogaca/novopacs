@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Módulos Ativos - Themis Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: { extend: {
+    colors: { "primary": "#0f66bd", "background-light": "#f6f7f8", "background-dark": "#101922" },
+    fontFamily: { "display": ["Manrope", "sans-serif"] },
+    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+  }}
+}
+</script>
+<style>
+body { font-family: 'Manrope', sans-serif; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+.toggle-track { width: 36px; height: 20px; border-radius: 9999px; position: relative; transition: background-color 0.2s; cursor: pointer; }
+.toggle-track::after { content: ''; position: absolute; width: 16px; height: 16px; border-radius: 9999px; background: white; top: 2px; left: 2px; transition: transform 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.15); }
+.toggle-on { background-color: #10b981; }
+.toggle-on::after { transform: translateX(16px); }
+.toggle-off { background-color: #cbd5e1; }
+</style>
+</head>
+<body class="bg-background-light font-display text-slate-900 antialiased">
+
+<main class="max-w-7xl mx-auto px-6 py-8">
+
+  <!-- Breadcrumb -->
+  <nav class="flex items-center gap-1.5 text-xs text-slate-500 mb-4">
+    <span>Unidades</span>
+    <span class="material-symbols-outlined" style="font-size:14px">chevron_right</span>
+    <span>Centro de Imagem SP</span>
+    <span class="material-symbols-outlined" style="font-size:14px">chevron_right</span>
+    <span class="text-slate-900 font-semibold">Módulos Ativos</span>
+  </nav>
+
+  <!-- Header -->
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <h1 class="text-2xl font-extrabold text-slate-900">Módulos Ativos</h1>
+      <p class="text-sm text-slate-500 mt-1">Módulos habilitados pelo contrato para a unidade Centro de Imagem São Paulo</p>
+    </div>
+  </div>
+
+  <!-- Contract Reference -->
+  <div class="flex items-center gap-2 bg-white rounded-lg border border-slate-200 px-4 py-3 mb-8 w-fit">
+    <span class="material-symbols-outlined text-slate-400" style="font-size:18px">description</span>
+    <span class="text-xs text-slate-600">Contrato:</span>
+    <span class="text-xs font-bold text-primary cursor-pointer hover:underline" data-nav="detalhe_do_contrato">Onelaudos #2026-001</span>
+  </div>
+
+  <!-- Module Cards Grid -->
+  <div class="grid grid-cols-2 gap-5 mb-8">
+
+    <!-- RIS -->
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex gap-4">
+      <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center shrink-0">
+        <span class="material-symbols-outlined text-blue-600" style="font-size:24px">event_note</span>
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-bold text-slate-900">RIS</span>
+            <div class="toggle-track toggle-on"></div>
+          </div>
+          <span class="text-xs font-bold text-slate-700">R$ 2.500/mês</span>
+        </div>
+        <p class="text-xs text-slate-500 mb-3">Sistema de Informação em Radiologia</p>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-semibold">Agendamento</span>
+          <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-semibold">Worklist</span>
+          <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-semibold">Laudos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PACS -->
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex gap-4">
+      <div class="w-12 h-12 rounded-xl bg-violet-100 flex items-center justify-center shrink-0">
+        <span class="material-symbols-outlined text-violet-600" style="font-size:24px">image</span>
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-bold text-slate-900">PACS</span>
+            <div class="toggle-track toggle-on"></div>
+          </div>
+          <span class="text-xs font-bold text-slate-700">R$ 3.000/mês</span>
+        </div>
+        <p class="text-xs text-slate-500 mb-3">Picture Archiving and Communication System</p>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-semibold">Armazenamento</span>
+          <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-semibold">Gateway DICOM</span>
+          <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-semibold">Viewer</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Billing -->
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex gap-4">
+      <div class="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center shrink-0">
+        <span class="material-symbols-outlined text-emerald-600" style="font-size:24px">receipt_long</span>
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-bold text-slate-900">Billing</span>
+            <div class="toggle-track toggle-on"></div>
+          </div>
+          <span class="text-xs font-bold text-slate-700">R$ 1.500/mês</span>
+        </div>
+        <p class="text-xs text-slate-500 mb-3">Módulo de Faturamento</p>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-semibold">Faturamento</span>
+          <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-semibold">TISS</span>
+          <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-semibold">Tabelas Preço</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Viewer Web -->
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex gap-4">
+      <div class="w-12 h-12 rounded-xl bg-cyan-100 flex items-center justify-center shrink-0">
+        <span class="material-symbols-outlined text-cyan-600" style="font-size:24px">web</span>
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-bold text-slate-900">Viewer Web</span>
+            <div class="toggle-track toggle-on"></div>
+          </div>
+          <span class="text-xs font-bold text-slate-700">R$ 800/mês</span>
+        </div>
+        <p class="text-xs text-slate-500 mb-3">Visualizador DICOM Web</p>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-semibold">Viewer online</span>
+          <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-semibold">MPR</span>
+          <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-semibold">3D</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Portal Paciente (Inactive) -->
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex gap-4 opacity-50">
+      <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center shrink-0">
+        <span class="material-symbols-outlined text-slate-400" style="font-size:24px">person</span>
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-bold text-slate-500">Portal Paciente</span>
+            <div class="toggle-track toggle-off"></div>
+          </div>
+          <span class="text-xs font-bold text-slate-400">R$ 400/mês</span>
+        </div>
+        <p class="text-xs text-slate-400 mb-3">Portal de acesso do paciente</p>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-50 text-slate-400 text-[10px] font-semibold">Resultados</span>
+          <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-50 text-slate-400 text-[10px] font-semibold">Histórico</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Portal Médico (Inactive) -->
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex gap-4 opacity-50">
+      <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center shrink-0">
+        <span class="material-symbols-outlined text-slate-400" style="font-size:24px">stethoscope</span>
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-bold text-slate-500">Portal Médico</span>
+            <div class="toggle-track toggle-off"></div>
+          </div>
+          <span class="text-xs font-bold text-slate-400">R$ 600/mês</span>
+        </div>
+        <p class="text-xs text-slate-400 mb-3">Portal do médico solicitante</p>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-50 text-slate-400 text-[10px] font-semibold">Laudos</span>
+          <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-50 text-slate-400 text-[10px] font-semibold">Imagens</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Summary Footer -->
+  <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex items-center justify-between">
+    <div class="flex items-center gap-6">
+      <div class="flex items-center gap-2">
+        <span class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center">
+          <span class="material-symbols-outlined text-emerald-600" style="font-size:18px">check_circle</span>
+        </span>
+        <div>
+          <div class="text-sm font-bold text-slate-900">4 módulos ativos</div>
+          <div class="text-[11px] text-slate-500">de 6 disponíveis</div>
+        </div>
+      </div>
+      <div class="w-px h-8 bg-slate-200"></div>
+      <div>
+        <div class="text-sm font-bold text-slate-900">R$ 7.800<span class="text-xs font-semibold text-slate-500">/mês</span></div>
+        <div class="text-[11px] text-slate-500">Custo total</div>
+      </div>
+      <div class="w-px h-8 bg-slate-200"></div>
+      <div>
+        <div class="text-sm font-bold text-slate-900">31/12/2026</div>
+        <div class="text-[11px] text-slate-500">Contrato válido até</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script src="../../nav.js"></script>
+</body>
+</html>

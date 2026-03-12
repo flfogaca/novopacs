@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Audit Trail Laudo - Themis Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: { extend: {
+    colors: { "primary": "#0f66bd", "background-light": "#f6f7f8", "background-dark": "#101922" },
+    fontFamily: { "display": ["Manrope", "sans-serif"] },
+    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+  }}
+}
+</script>
+<style>
+body { font-family: 'Manrope', sans-serif; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+</style>
+</head>
+<body class="bg-background-light font-display text-slate-900 antialiased">
+
+<main class="max-w-7xl mx-auto px-6 py-8">
+
+  <!-- Breadcrumb -->
+  <nav class="flex items-center gap-1.5 text-sm text-slate-500 mb-6">
+    <a href="#" class="hover:text-primary transition" data-nav="auditoria">Auditoria</a>
+    <span class="material-symbols-outlined" style="font-size:16px">chevron_right</span>
+    <span class="text-slate-900 font-semibold">Trail de Laudo</span>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <h1 class="text-2xl font-extrabold text-slate-900">Histórico do Laudo #2026-0847</h1>
+      <p class="text-sm text-slate-500 mt-1">Rastreabilidade completa de alterações</p>
+    </div>
+    <div class="flex items-center gap-2">
+      <button class="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold border border-slate-300 rounded-lg text-slate-700 bg-white hover:bg-slate-50 transition">
+        <span class="material-symbols-outlined" style="font-size:18px">compare</span>Comparar Versões
+      </button>
+      <button class="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold border border-slate-300 rounded-lg text-slate-700 bg-white hover:bg-slate-50 transition">
+        <span class="material-symbols-outlined" style="font-size:18px">download</span>Exportar Histórico
+      </button>
+    </div>
+  </div>
+
+  <!-- Report Info Card -->
+  <div class="bg-white border border-slate-200 rounded-xl p-5 mb-8 flex items-center gap-5">
+    <div class="w-14 h-14 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+      <span class="material-symbols-outlined" style="font-size:28px">description</span>
+    </div>
+    <div class="flex-1 grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div>
+        <p class="text-xs text-slate-400 uppercase tracking-wide">Paciente</p>
+        <p class="text-sm font-semibold">Ana Silva</p>
+      </div>
+      <div>
+        <p class="text-xs text-slate-400 uppercase tracking-wide">Exame</p>
+        <p class="text-sm font-semibold">RM Crânio</p>
+      </div>
+      <div>
+        <p class="text-xs text-slate-400 uppercase tracking-wide">Data</p>
+        <p class="text-sm font-semibold">04/03/2026</p>
+      </div>
+      <div>
+        <p class="text-xs text-slate-400 uppercase tracking-wide">Status</p>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-green-50 text-green-700 mt-0.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Laudado
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Version History Timeline -->
+  <div class="relative pl-8 mb-10">
+    <div class="absolute left-[15px] top-2 bottom-2 w-0.5 bg-slate-200"></div>
+
+    <!-- v3 (current) -->
+    <div class="relative mb-8">
+      <div class="absolute -left-8 top-1 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold z-10">v3</div>
+      <div class="bg-white border border-primary/30 rounded-xl shadow-sm overflow-hidden">
+        <div class="px-5 py-4 border-b border-slate-100 flex flex-wrap items-center gap-x-4 gap-y-2">
+          <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary/10 text-primary">Atual</span>
+          <span class="text-sm font-semibold">Aditamento</span>
+          <span class="text-xs text-slate-500 font-mono">05/03/2026 09:15</span>
+          <span class="text-sm text-slate-600">Dr. Ricardo Silva</span>
+          <span class="inline-flex items-center gap-1 text-xs text-green-600 font-semibold ml-auto">
+            <span class="material-symbols-outlined" style="font-size:16px">verified</span>Assinatura digital: ✓ Válida
+          </span>
+        </div>
+        <div class="px-5 py-4">
+          <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">Alterações</p>
+          <div class="rounded-lg border border-slate-200 overflow-hidden text-sm font-mono">
+            <div class="bg-red-50 text-red-800 px-4 py-2 border-b border-slate-200">
+              <span class="select-none text-red-400 mr-2">−</span>Não foram identificadas alterações significativas no parênquima cerebral.
+            </div>
+            <div class="bg-green-50 text-green-800 px-4 py-2 border-b border-slate-200">
+              <span class="select-none text-green-400 mr-2">+</span>Não foram identificadas alterações significativas no parênquima cerebral. <strong>Nota: Pequena área de hipersinal em T2/FLAIR na substância branca periventricular à direita, inespecífica, sugerindo acompanhamento.</strong>
+            </div>
+            <div class="bg-red-50 text-red-800 px-4 py-2 border-b border-slate-200">
+              <span class="select-none text-red-400 mr-2">−</span>Conclusão: Exame dentro dos limites da normalidade.
+            </div>
+            <div class="bg-green-50 text-green-800 px-4 py-2">
+              <span class="select-none text-green-400 mr-2">+</span>Conclusão: Exame dentro dos limites da normalidade, <strong>com achado inespecífico em substância branca que merece acompanhamento evolutivo.</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- v2 -->
+    <div class="relative mb-8">
+      <div class="absolute -left-8 top-1 w-8 h-8 rounded-full bg-slate-300 text-white flex items-center justify-center text-xs font-bold z-10">v2</div>
+      <div class="bg-white border border-slate-200 rounded-xl overflow-hidden">
+        <div class="px-5 py-4 border-b border-slate-100 flex flex-wrap items-center gap-x-4 gap-y-2">
+          <span class="text-sm font-semibold">Revisão</span>
+          <span class="text-xs text-slate-500 font-mono">04/03/2026 15:30</span>
+          <span class="text-sm text-slate-600">Dra. Ana Costa</span>
+          <span class="inline-flex items-center gap-1 text-xs text-green-600 font-semibold ml-auto">
+            <span class="material-symbols-outlined" style="font-size:16px">verified</span>Assinatura: ✓ Válida
+          </span>
+        </div>
+        <div class="px-5 py-4">
+          <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Alterações</p>
+          <p class="text-sm text-slate-600">Corrigido dimensão do achado: <span class="line-through text-red-400">1.2cm</span> → <span class="text-green-600 font-medium">1.5cm</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- v1 (original) -->
+    <div class="relative">
+      <div class="absolute -left-8 top-1 w-8 h-8 rounded-full bg-slate-300 text-white flex items-center justify-center text-xs font-bold z-10">v1</div>
+      <div class="bg-white border border-slate-200 rounded-xl overflow-hidden">
+        <div class="px-5 py-4 border-b border-slate-100 flex flex-wrap items-center gap-x-4 gap-y-2">
+          <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600">Original</span>
+          <span class="text-sm font-semibold">Criação</span>
+          <span class="text-xs text-slate-500 font-mono">04/03/2026 14:32</span>
+          <span class="text-sm text-slate-600">Dr. Ricardo Silva</span>
+          <span class="inline-flex items-center gap-1 text-xs text-green-600 font-semibold ml-auto">
+            <span class="material-symbols-outlined" style="font-size:16px">verified</span>Assinatura: ✓ Válida
+          </span>
+        </div>
+        <div class="px-5 py-4">
+          <details class="group">
+            <summary class="cursor-pointer text-sm font-semibold text-primary flex items-center gap-1 select-none">
+              <span class="material-symbols-outlined transition-transform group-open:rotate-90" style="font-size:18px">chevron_right</span>
+              Ver laudo original completo
+            </summary>
+            <div class="mt-3 p-4 bg-slate-50 rounded-lg text-sm text-slate-700 leading-relaxed space-y-2">
+              <p><strong>RESSONÂNCIA MAGNÉTICA DO CRÂNIO</strong></p>
+              <p><strong>Técnica:</strong> Sequências multiplanares ponderadas em T1, T2, FLAIR, difusão e T1 pós-contraste (gadolínio).</p>
+              <p><strong>Achados:</strong></p>
+              <p>Estruturas da linha média centradas. Sistema ventricular com morfologia e dimensões preservadas. Não foram identificadas alterações significativas no parênquima cerebral. Cerebelo e tronco encefálico sem alterações. Ausência de coleções extra-axiais. Órbitas, seios paranasais e mastoides com aspecto habitual.</p>
+              <p><strong>Conclusão:</strong> Exame dentro dos limites da normalidade.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Signature Verification Section -->
+  <h2 class="text-lg font-bold text-slate-900 mb-4">Verificação de Assinaturas Digitais</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+    <!-- Sig 1 -->
+    <div class="bg-white border border-slate-200 rounded-xl p-4">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="material-symbols-outlined text-green-500" style="font-size:22px">verified</span>
+        <span class="text-sm font-bold text-green-700">Assinatura Válida</span>
+      </div>
+      <div class="space-y-1.5 text-xs text-slate-600">
+        <p><span class="font-semibold text-slate-500">Signatário:</span> Dr. Ricardo Silva</p>
+        <p><span class="font-semibold text-slate-500">CRM:</span> 123456/SP</p>
+        <p><span class="font-semibold text-slate-500">Certificado:</span> ICP-Brasil A3</p>
+        <p><span class="font-semibold text-slate-500">Timestamp:</span> 05/03/2026 09:15:22 UTC-3</p>
+        <p><span class="font-semibold text-slate-500">Versão:</span> v3 — Aditamento</p>
+      </div>
+    </div>
+    <!-- Sig 2 -->
+    <div class="bg-white border border-slate-200 rounded-xl p-4">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="material-symbols-outlined text-green-500" style="font-size:22px">verified</span>
+        <span class="text-sm font-bold text-green-700">Assinatura Válida</span>
+      </div>
+      <div class="space-y-1.5 text-xs text-slate-600">
+        <p><span class="font-semibold text-slate-500">Signatário:</span> Dra. Ana Costa</p>
+        <p><span class="font-semibold text-slate-500">CRM:</span> 654321/SP</p>
+        <p><span class="font-semibold text-slate-500">Certificado:</span> ICP-Brasil A3</p>
+        <p><span class="font-semibold text-slate-500">Timestamp:</span> 04/03/2026 15:30:45 UTC-3</p>
+        <p><span class="font-semibold text-slate-500">Versão:</span> v2 — Revisão</p>
+      </div>
+    </div>
+    <!-- Sig 3 -->
+    <div class="bg-white border border-slate-200 rounded-xl p-4">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="material-symbols-outlined text-green-500" style="font-size:22px">verified</span>
+        <span class="text-sm font-bold text-green-700">Assinatura Válida</span>
+      </div>
+      <div class="space-y-1.5 text-xs text-slate-600">
+        <p><span class="font-semibold text-slate-500">Signatário:</span> Dr. Ricardo Silva</p>
+        <p><span class="font-semibold text-slate-500">CRM:</span> 123456/SP</p>
+        <p><span class="font-semibold text-slate-500">Certificado:</span> ICP-Brasil A3</p>
+        <p><span class="font-semibold text-slate-500">Timestamp:</span> 04/03/2026 14:32:10 UTC-3</p>
+        <p><span class="font-semibold text-slate-500">Versão:</span> v1 — Criação</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script src="../../nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Acesso Dados Paciente - Themis Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: { extend: {
+    colors: { "primary": "#0f66bd", "background-light": "#f6f7f8", "background-dark": "#101922" },
+    fontFamily: { "display": ["Manrope", "sans-serif"] },
+    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+  }}
+}
+</script>
+<style>
+body { font-family: 'Manrope', sans-serif; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+</style>
+</head>
+<body class="bg-background-light font-display text-slate-900 antialiased">
+
+<main class="max-w-7xl mx-auto px-6 py-8">
+
+  <!-- Breadcrumb -->
+  <nav class="flex items-center gap-1.5 text-sm text-slate-500 mb-6">
+    <a href="#" class="hover:text-primary transition" data-nav="auditoria">Auditoria</a>
+    <span class="material-symbols-outlined" style="font-size:16px">chevron_right</span>
+    <span class="text-slate-900 font-semibold">Acesso a Dados de Paciente</span>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="mb-6">
+    <h1 class="text-2xl font-extrabold text-slate-900">Log de Acesso — Dados de Paciente</h1>
+    <p class="text-sm text-slate-500 mt-1">Registro de acessos a dados sensíveis de pacientes (LGPD compliance)</p>
+  </div>
+
+  <!-- LGPD Banner -->
+  <div class="flex items-start gap-3 bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
+    <span class="material-symbols-outlined text-amber-600 mt-0.5" style="font-size:22px">gavel</span>
+    <div>
+      <p class="text-sm font-semibold text-amber-800">Conformidade LGPD</p>
+      <p class="text-sm text-amber-700 mt-0.5">Este relatório atende aos requisitos da Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018)</p>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="bg-white border border-slate-200 rounded-xl p-4 mb-6 flex flex-wrap items-end gap-4">
+    <div class="flex-1 min-w-[200px]">
+      <label class="block text-xs font-semibold text-slate-500 mb-1">Paciente</label>
+      <div class="relative">
+        <span class="absolute inset-y-0 left-3 flex items-center text-slate-400"><span class="material-symbols-outlined" style="font-size:18px">search</span></span>
+        <input type="text" placeholder="Buscar por nome ou CPF…" value="Ana Silva" class="w-full pl-9 pr-3 py-2 rounded-lg border-slate-300 text-sm focus:ring-primary focus:border-primary"/>
+      </div>
+    </div>
+    <div class="min-w-[180px]">
+      <label class="block text-xs font-semibold text-slate-500 mb-1">Período</label>
+      <div class="flex items-center gap-2">
+        <input type="date" value="2026-02-28" class="w-full rounded-lg border-slate-300 text-sm py-2 px-3 focus:ring-primary focus:border-primary"/>
+        <span class="text-slate-400 text-xs">até</span>
+        <input type="date" value="2026-03-05" class="w-full rounded-lg border-slate-300 text-sm py-2 px-3 focus:ring-primary focus:border-primary"/>
+      </div>
+    </div>
+    <div class="min-w-[180px]">
+      <label class="block text-xs font-semibold text-slate-500 mb-1">Tipo de Acesso</label>
+      <select class="w-full rounded-lg border-slate-300 text-sm py-2 px-3 focus:ring-primary focus:border-primary">
+        <option>Todos</option>
+        <option>Visualização</option>
+        <option>Edição</option>
+        <option>Download</option>
+        <option>Compartilhamento</option>
+      </select>
+    </div>
+    <button class="px-5 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary/90 transition">Filtrar</button>
+  </div>
+
+  <!-- Patient Info Card -->
+  <div class="bg-white border border-slate-200 rounded-xl p-5 mb-6 flex items-center gap-5">
+    <div class="w-14 h-14 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+      <span class="material-symbols-outlined" style="font-size:28px">person</span>
+    </div>
+    <div class="flex-1 grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div>
+        <p class="text-xs text-slate-400 uppercase tracking-wide">Paciente</p>
+        <p class="text-sm font-semibold">Ana Silva</p>
+      </div>
+      <div>
+        <p class="text-xs text-slate-400 uppercase tracking-wide">CPF</p>
+        <p class="text-sm font-semibold font-mono">***.***.789-00</p>
+      </div>
+      <div>
+        <p class="text-xs text-slate-400 uppercase tracking-wide">Nascimento</p>
+        <p class="text-sm font-semibold">15/04/1985</p>
+      </div>
+      <div>
+        <p class="text-xs text-slate-400 uppercase tracking-wide">Prontuário</p>
+        <p class="text-sm font-semibold font-mono">#PAC-2024-0847</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Access Log Table -->
+  <div class="bg-white border border-slate-200 rounded-xl overflow-hidden mb-6">
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-slate-100 bg-slate-50/60">
+            <th class="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide whitespace-nowrap">Data/Hora</th>
+            <th class="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Usuário</th>
+            <th class="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Papel</th>
+            <th class="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide whitespace-nowrap">Recurso Acessado</th>
+            <th class="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Tipo</th>
+            <th class="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">IP</th>
+            <th class="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Justificativa</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100">
+          <tr class="hover:bg-slate-50/50 transition">
+            <td class="px-5 py-3 font-mono text-xs text-slate-600 whitespace-nowrap">05/03/2026 14:30</td>
+            <td class="px-5 py-3 font-medium">Dr. Ricardo Silva</td>
+            <td class="px-5 py-3"><span class="inline-flex px-2 py-0.5 rounded text-xs font-semibold bg-purple-50 text-purple-700">Radiologista</span></td>
+            <td class="px-5 py-3">Laudo RM Crânio</td>
+            <td class="px-5 py-3"><span class="inline-flex items-center gap-1 text-blue-600"><span class="material-symbols-outlined" style="font-size:16px">visibility</span>Visualização</span></td>
+            <td class="px-5 py-3 font-mono text-xs text-slate-500">189.40.78.12</td>
+            <td class="px-5 py-3 text-slate-500">Laudar exame</td>
+          </tr>
+          <tr class="hover:bg-slate-50/50 transition">
+            <td class="px-5 py-3 font-mono text-xs text-slate-600 whitespace-nowrap">05/03/2026 10:00</td>
+            <td class="px-5 py-3 font-medium">Maria Ferreira</td>
+            <td class="px-5 py-3"><span class="inline-flex px-2 py-0.5 rounded text-xs font-semibold bg-blue-50 text-blue-700">Org Admin</span></td>
+            <td class="px-5 py-3">Cadastro paciente</td>
+            <td class="px-5 py-3"><span class="inline-flex items-center gap-1 text-amber-600"><span class="material-symbols-outlined" style="font-size:16px">edit</span>Edição</span></td>
+            <td class="px-5 py-3 font-mono text-xs text-slate-500">189.40.78.15</td>
+            <td class="px-5 py-3 text-slate-500">Atualização cadastral</td>
+          </tr>
+          <tr class="hover:bg-slate-50/50 transition">
+            <td class="px-5 py-3 font-mono text-xs text-slate-600 whitespace-nowrap">04/03/2026 16:00</td>
+            <td class="px-5 py-3 font-medium">Dr. Carlos Mendes</td>
+            <td class="px-5 py-3"><span class="inline-flex px-2 py-0.5 rounded text-xs font-semibold bg-emerald-50 text-emerald-700">Médico Solicitante</span></td>
+            <td class="px-5 py-3">Laudo RM Crânio</td>
+            <td class="px-5 py-3"><span class="inline-flex items-center gap-1 text-green-600"><span class="material-symbols-outlined" style="font-size:16px">download</span>Download PDF</span></td>
+            <td class="px-5 py-3 font-mono text-xs text-slate-500">200.158.45.30</td>
+            <td class="px-5 py-3 text-slate-500">Consulta médica</td>
+          </tr>
+          <tr class="hover:bg-slate-50/50 transition">
+            <td class="px-5 py-3 font-mono text-xs text-slate-600 whitespace-nowrap">04/03/2026 09:00</td>
+            <td class="px-5 py-3 font-medium">Técnico João</td>
+            <td class="px-5 py-3"><span class="inline-flex px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 text-slate-700">Técnico</span></td>
+            <td class="px-5 py-3">Imagens DICOM</td>
+            <td class="px-5 py-3"><span class="inline-flex items-center gap-1 text-blue-600"><span class="material-symbols-outlined" style="font-size:16px">visibility</span>Visualização</span></td>
+            <td class="px-5 py-3 font-mono text-xs text-slate-500">192.168.1.50</td>
+            <td class="px-5 py-3 text-slate-500">Execução exame</td>
+          </tr>
+          <tr class="hover:bg-slate-50/50 transition">
+            <td class="px-5 py-3 font-mono text-xs text-slate-600 whitespace-nowrap">03/03/2026 11:30</td>
+            <td class="px-5 py-3 font-medium">Recepção Ana</td>
+            <td class="px-5 py-3"><span class="inline-flex px-2 py-0.5 rounded text-xs font-semibold bg-pink-50 text-pink-700">Recepcionista</span></td>
+            <td class="px-5 py-3">Agendamento</td>
+            <td class="px-5 py-3"><span class="inline-flex items-center gap-1 text-blue-600"><span class="material-symbols-outlined" style="font-size:16px">visibility</span>Visualização</span></td>
+            <td class="px-5 py-3 font-mono text-xs text-slate-500">192.168.1.20</td>
+            <td class="px-5 py-3 text-slate-500">Check-in</td>
+          </tr>
+          <tr class="hover:bg-slate-50/50 transition">
+            <td class="px-5 py-3 font-mono text-xs text-slate-600 whitespace-nowrap">02/03/2026 15:00</td>
+            <td class="px-5 py-3 font-medium">Sistema</td>
+            <td class="px-5 py-3"><span class="inline-flex px-2 py-0.5 rounded text-xs font-semibold bg-gray-100 text-gray-600">Sistema</span></td>
+            <td class="px-5 py-3">Resultado compartilhado</td>
+            <td class="px-5 py-3"><span class="inline-flex items-center gap-1 text-violet-600"><span class="material-symbols-outlined" style="font-size:16px">share</span>Compartilhamento</span></td>
+            <td class="px-5 py-3 font-mono text-xs text-slate-400">—</td>
+            <td class="px-5 py-3 text-slate-500">Link enviado ao médico</td>
+          </tr>
+          <tr class="hover:bg-slate-50/50 transition">
+            <td class="px-5 py-3 font-mono text-xs text-slate-600 whitespace-nowrap">01/03/2026 08:00</td>
+            <td class="px-5 py-3 font-medium">Portal Paciente</td>
+            <td class="px-5 py-3"><span class="inline-flex px-2 py-0.5 rounded text-xs font-semibold bg-cyan-50 text-cyan-700">Paciente</span></td>
+            <td class="px-5 py-3">Resultado exame</td>
+            <td class="px-5 py-3"><span class="inline-flex items-center gap-1 text-blue-600"><span class="material-symbols-outlined" style="font-size:16px">visibility</span>Visualização</span></td>
+            <td class="px-5 py-3 font-mono text-xs text-slate-500">177.92.45.120</td>
+            <td class="px-5 py-3 text-slate-500">Acesso portal</td>
+          </tr>
+          <tr class="hover:bg-slate-50/50 transition">
+            <td class="px-5 py-3 font-mono text-xs text-slate-600 whitespace-nowrap">28/02/2026 10:00</td>
+            <td class="px-5 py-3 font-medium">Maria Ferreira</td>
+            <td class="px-5 py-3"><span class="inline-flex px-2 py-0.5 rounded text-xs font-semibold bg-blue-50 text-blue-700">Org Admin</span></td>
+            <td class="px-5 py-3">Histórico exames</td>
+            <td class="px-5 py-3"><span class="inline-flex items-center gap-1 text-blue-600"><span class="material-symbols-outlined" style="font-size:16px">visibility</span>Visualização</span></td>
+            <td class="px-5 py-3 font-mono text-xs text-slate-500">189.40.78.15</td>
+            <td class="px-5 py-3 text-slate-500">Auditoria interna</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Export Button -->
+  <div class="flex items-center justify-between">
+    <p class="text-sm text-slate-500">Mostrando <span class="font-semibold text-slate-700">8</span> registros de acesso</p>
+    <button class="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary/90 transition">
+      <span class="material-symbols-outlined" style="font-size:18px">description</span>Gerar Relatório LGPD
+    </button>
+  </div>
+
+</main>
+
+<script src="../../nav.js"></script>
+</body>
+</html>

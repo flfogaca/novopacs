@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f66bd",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Nova/Editar Unidade - Plataforma</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 transition-colors duration-200">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-6 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<div class="bg-primary p-1.5 rounded-lg text-white">
+<span class="material-symbols-outlined block">domain</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight">Nova/Editar Unidade</h2>
+</div>
+<div class="flex flex-1 justify-end gap-4 items-center">
+<nav class="hidden md:flex items-center gap-6 mr-6">
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Plataforma</a>
+<a class="text-primary text-sm font-semibold border-b-2 border-primary py-1" href="#">Unidades</a>
+</nav>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition-colors">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition-colors">
+<span class="material-symbols-outlined text-xl">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-1 max-w-5xl mx-auto w-full px-4 py-8">
+<!-- Breadcrumb -->
+<nav class="flex items-center gap-2 mb-6 text-sm">
+<a class="text-slate-500 hover:text-primary" href="#">Plataforma</a>
+<span class="material-symbols-outlined text-xs text-slate-400">chevron_right</span>
+<a class="text-slate-500 hover:text-primary" href="#">Unidades</a>
+<span class="material-symbols-outlined text-xs text-slate-400">chevron_right</span>
+<span class="font-semibold text-primary">Nova Unidade</span>
+</nav>
+<!-- Header Content -->
+<div class="mb-8">
+<h1 class="text-3xl font-extrabold tracking-tight mb-2">Configuração de Unidade</h1>
+<p class="text-slate-500 dark:text-slate-400 max-w-2xl">Cadastre os dados operacionais, localização e horários de funcionamento da nova unidade física.</p>
+</div>
+<!-- Validation Message (Alert for inactive status) -->
+<div class="mb-8 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl flex gap-3 items-start">
+<span class="material-symbols-outlined text-amber-600">info</span>
+<div>
+<p class="text-sm font-medium text-amber-800 dark:text-amber-200">Nota sobre desativação</p>
+<p class="text-xs text-amber-700 dark:text-amber-300 mt-1">O status "Inativo" não poderá ser selecionado se houverem exames pendentes vinculados a esta unidade.</p>
+</div>
+</div>
+<form class="space-y-8">
+<!-- Seção: Dados Básicos -->
+<section class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+<div class="px-6 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">info</span>
+<h2 class="font-bold text-lg">Dados Básicos</h2>
+</div>
+<div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-1.5 md:col-span-2">
+<label class="text-sm font-semibold">Nome da Unidade *</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="Ex: Matriz São Paulo" required="" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold">Código Interno</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="Ex: SP-001" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold">Tipo de Unidade *</label>
+<select class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" required="">
+<option value="">Selecione um tipo</option>
+<option value="lab">Laboratório</option>
+<option value="clinic">Clínica</option>
+<option value="hospital">Hospital</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold">Telefone</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="(00) 0000-0000" type="tel"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold">E-mail de Contato</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="contato@unidade.com" type="email"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold">Timezone</label>
+<select class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary">
+<option selected="" value="America/Sao_Paulo">America/Sao_Paulo (UTC-03:00)</option>
+<option value="America/Manaus">America/Manaus (UTC-04:00)</option>
+<option value="America/Noronha">America/Noronha (UTC-02:00)</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold">Status</label>
+<select class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary">
+<option selected="" value="ACTIVE">Ativo</option>
+<option value="INACTIVE">Inativo (Verificar pendências)</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5 md:col-span-2">
+<label class="text-sm font-semibold">URL da Logomarca</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="https://exemplo.com/logo.png" type="url"/>
+</div>
+</div>
+</section>
+<!-- Seção: Endereço -->
+<section class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+<div class="px-6 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<h2 class="font-bold text-lg">Endereço</h2>
+</div>
+<div class="p-6 grid grid-cols-1 md:grid-cols-6 gap-6">
+<div class="flex flex-col gap-1.5 md:col-span-2">
+<label class="text-sm font-semibold">CEP *</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="00000-000" required="" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5 md:col-span-4">
+<label class="text-sm font-semibold">Rua / Logradouro *</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="Ex: Av. Paulista" required="" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5 md:col-span-1">
+<label class="text-sm font-semibold">Número</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="123" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5 md:col-span-2">
+<label class="text-sm font-semibold">Complemento</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="Ex: Sala 401" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5 md:col-span-3">
+<label class="text-sm font-semibold">Cidade *</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="Ex: São Paulo" required="" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5 md:col-span-2">
+<label class="text-sm font-semibold">Estado (UF) *</label>
+<select class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" required="">
+<option value="">Selecione</option>
+<option value="SP">São Paulo</option>
+<option value="RJ">Rio de Janeiro</option>
+<option value="MG">Minas Gerais</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5 md:col-span-2">
+<label class="text-sm font-semibold">Latitude (Opcional)</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="-23.5505" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5 md:col-span-2">
+<label class="text-sm font-semibold">Longitude (Opcional)</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="-46.6333" type="text"/>
+</div>
+</div>
+</section>
+<!-- Seção: Horários de Funcionamento -->
+<section class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+<div class="px-6 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">schedule</span>
+<h2 class="font-bold text-lg">Horários de Funcionamento</h2>
+</div>
+<div class="p-6">
+<div class="grid grid-cols-1 gap-4">
+<!-- Header for Table View on desktop -->
+<div class="hidden md:grid grid-cols-12 gap-4 px-2 mb-2 text-xs font-bold uppercase text-slate-500">
+<div class="col-span-3">Dia da Semana</div>
+<div class="col-span-3">Abertura</div>
+<div class="col-span-3">Fechamento</div>
+<div class="col-span-3 text-center">Fechado?</div>
+</div>
+<!-- Dias -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center border-b border-slate-100 dark:border-slate-800 pb-4 md:pb-2">
+<div class="col-span-3 font-medium">Segunda-feira</div>
+<div class="col-span-3"><input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" type="time" value="08:00"/></div>
+<div class="col-span-3"><input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" type="time" value="18:00"/></div>
+<div class="col-span-3 flex justify-center"><input class="h-5 w-5 rounded text-primary border-slate-300 focus:ring-primary" type="checkbox"/></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center border-b border-slate-100 dark:border-slate-800 pb-4 md:pb-2">
+<div class="col-span-3 font-medium">Terça-feira</div>
+<div class="col-span-3"><input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" type="time" value="08:00"/></div>
+<div class="col-span-3"><input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" type="time" value="18:00"/></div>
+<div class="col-span-3 flex justify-center"><input class="h-5 w-5 rounded text-primary border-slate-300 focus:ring-primary" type="checkbox"/></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center border-b border-slate-100 dark:border-slate-800 pb-4 md:pb-2">
+<div class="col-span-3 font-medium">Quarta-feira</div>
+<div class="col-span-3"><input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" type="time" value="08:00"/></div>
+<div class="col-span-3"><input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" type="time" value="18:00"/></div>
+<div class="col-span-3 flex justify-center"><input class="h-5 w-5 rounded text-primary border-slate-300 focus:ring-primary" type="checkbox"/></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center border-b border-slate-100 dark:border-slate-800 pb-4 md:pb-2">
+<div class="col-span-3 font-medium">Quinta-feira</div>
+<div class="col-span-3"><input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" type="time" value="08:00"/></div>
+<div class="col-span-3"><input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" type="time" value="18:00"/></div>
+<div class="col-span-3 flex justify-center"><input class="h-5 w-5 rounded text-primary border-slate-300 focus:ring-primary" type="checkbox"/></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center border-b border-slate-100 dark:border-slate-800 pb-4 md:pb-2">
+<div class="col-span-3 font-medium">Sexta-feira</div>
+<div class="col-span-3"><input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" type="time" value="08:00"/></div>
+<div class="col-span-3"><input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" type="time" value="18:00"/></div>
+<div class="col-span-3 flex justify-center"><input class="h-5 w-5 rounded text-primary border-slate-300 focus:ring-primary" type="checkbox"/></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center border-b border-slate-100 dark:border-slate-800 pb-4 md:pb-2">
+<div class="col-span-3 font-medium">Sábado</div>
+<div class="col-span-3"><input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" type="time" value="08:00"/></div>
+<div class="col-span-3"><input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary" type="time" value="12:00"/></div>
+<div class="col-span-3 flex justify-center"><input class="h-5 w-5 rounded text-primary border-slate-300 focus:ring-primary" type="checkbox"/></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+<div class="col-span-3 font-medium">Domingo</div>
+<div class="col-span-3"><input class="w-full rounded-lg border-slate-200 bg-slate-50 dark:border-slate-700 dark:bg-slate-800/50 cursor-not-allowed" disabled="" type="time"/></div>
+<div class="col-span-3"><input class="w-full rounded-lg border-slate-200 bg-slate-50 dark:border-slate-700 dark:bg-slate-800/50 cursor-not-allowed" disabled="" type="time"/></div>
+<div class="col-span-3 flex justify-center"><input checked="" class="h-5 w-5 rounded text-primary border-slate-300 focus:ring-primary" type="checkbox"/></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Actions -->
+<div class="flex flex-col sm:flex-row items-center justify-end gap-4 pb-12">
+<button class="w-full sm:w-auto px-6 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" type="button">
+                        Cancelar
+                    </button>
+<button class="w-full sm:w-auto px-10 py-2.5 rounded-lg bg-primary text-white font-bold hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all" type="submit">
+                        Salvar Unidade
+                    </button>
+</div>
+</form>
+</main>
+<!-- Sidebar / Navigation Elements (Simulated as content bottom for this specific view layout) -->
+<footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-6">
+<div class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
+<div class="flex items-center gap-4">
+<p>© 2024 Nova Gestão de Unidades</p>
+<span class="text-slate-300">|</span>
+<p>Admin Mode: <span class="text-primary font-semibold">ORGANIZATION_ADMIN</span></p>
+</div>
+<div class="flex gap-4">
+<a class="hover:text-primary" href="#">Ajuda</a>
+<a class="hover:text-primary" href="#">Termos</a>
+<a class="hover:text-primary" href="#">Privacidade</a>
+</div>
+</div>
+</footer>
+</div>
+<script src="../../nav.js"></script>
+</body></html>

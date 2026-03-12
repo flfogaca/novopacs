@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Equipamentos DICOM - Themis Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: { extend: {
+    colors: { "primary": "#0f66bd", "background-light": "#f6f7f8", "background-dark": "#101922" },
+    fontFamily: { "display": ["Manrope", "sans-serif"] },
+    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+  }}
+}
+</script>
+<style>
+body { font-family: 'Manrope', sans-serif; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+</style>
+</head>
+<body class="bg-background-light font-display text-slate-900 antialiased">
+
+<main class="p-8">
+  <!-- Breadcrumb -->
+  <nav class="flex items-center gap-2 text-sm text-slate-500 mb-6">
+    <span class="hover:text-primary cursor-pointer transition-colors">Unidades</span>
+    <span class="material-symbols-outlined text-xs">chevron_right</span>
+    <span class="hover:text-primary cursor-pointer transition-colors">Centro de Imagem SP</span>
+    <span class="material-symbols-outlined text-xs">chevron_right</span>
+    <span class="text-slate-900 font-medium">Equipamentos DICOM</span>
+  </nav>
+
+  <!-- Header -->
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+    <div>
+      <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">Equipamentos DICOM</h1>
+      <p class="text-slate-500 mt-1">Gerencie os equipamentos de imagem conectados à unidade.</p>
+    </div>
+    <button data-nav="novo_editar_equipamento_dicom" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg font-bold transition-all shadow-lg shadow-primary/20">
+      <span class="material-symbols-outlined text-lg">add</span>
+      Novo Equipamento
+    </button>
+  </div>
+
+  <!-- Filters -->
+  <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm mb-6">
+    <div class="flex flex-col md:flex-row items-center gap-4">
+      <div class="relative flex-1 w-full">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+        <input type="text" placeholder="Buscar por nome, AE Title ou IP..." class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary text-slate-700"/>
+      </div>
+      <select class="px-4 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary text-slate-700 min-w-[160px]">
+        <option>Modalidade: Todos</option>
+        <option>MR</option>
+        <option>CT</option>
+        <option>CR</option>
+        <option>US</option>
+        <option>MG</option>
+        <option>DX</option>
+      </select>
+      <select class="px-4 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary text-slate-700 min-w-[160px]">
+        <option>Status: Todos</option>
+        <option>Online</option>
+        <option>Offline</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="border-b border-slate-200 bg-slate-50">
+            <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Nome</th>
+            <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">AE Title</th>
+            <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">IP:Porta</th>
+            <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Modalidade</th>
+            <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Sala</th>
+            <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Fabricante</th>
+            <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
+            <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider text-center">Ações</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100">
+          <!-- Row 1 -->
+          <tr class="hover:bg-slate-50 transition-colors">
+            <td class="px-6 py-4">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-blue-100 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-blue-600 text-lg">scanner</span>
+                </div>
+                <span class="text-sm font-semibold text-slate-900">Siemens MAGNETOM Aera</span>
+              </div>
+            </td>
+            <td class="px-6 py-4"><code class="text-sm bg-slate-100 px-2 py-0.5 rounded text-slate-700 font-mono">MAGNETOM_AE</code></td>
+            <td class="px-6 py-4 text-sm text-slate-500 font-mono">192.168.1.101:4242</td>
+            <td class="px-6 py-4"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-blue-100 text-blue-700">MR</span></td>
+            <td class="px-6 py-4 text-sm text-slate-700">Sala RM 01</td>
+            <td class="px-6 py-4 text-sm text-slate-500">Siemens</td>
+            <td class="px-6 py-4">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-green-50 text-green-700">
+                <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Online
+              </span>
+            </td>
+            <td class="px-6 py-4 text-center">
+              <div class="flex items-center justify-center gap-2">
+                <button data-nav="teste_conexao_dicom" class="text-xs font-semibold text-primary hover:text-primary/80 border border-primary/30 px-3 py-1.5 rounded-lg hover:bg-primary/5 transition-colors">Testar</button>
+                <button data-nav="novo_editar_equipamento_dicom" class="text-xs font-semibold text-slate-600 hover:text-slate-900 border border-slate-300 px-3 py-1.5 rounded-lg hover:bg-slate-50 transition-colors">Editar</button>
+              </div>
+            </td>
+          </tr>
+          <!-- Row 2 -->
+          <tr class="hover:bg-slate-50 transition-colors">
+            <td class="px-6 py-4">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-purple-100 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-purple-600 text-lg">scanner</span>
+                </div>
+                <span class="text-sm font-semibold text-slate-900">GE Revolution CT</span>
+              </div>
+            </td>
+            <td class="px-6 py-4"><code class="text-sm bg-slate-100 px-2 py-0.5 rounded text-slate-700 font-mono">GE_REVOLUTION</code></td>
+            <td class="px-6 py-4 text-sm text-slate-500 font-mono">192.168.1.102:4242</td>
+            <td class="px-6 py-4"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-purple-100 text-purple-700">CT</span></td>
+            <td class="px-6 py-4 text-sm text-slate-700">Sala CT 01</td>
+            <td class="px-6 py-4 text-sm text-slate-500">GE Healthcare</td>
+            <td class="px-6 py-4">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-green-50 text-green-700">
+                <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Online
+              </span>
+            </td>
+            <td class="px-6 py-4 text-center">
+              <div class="flex items-center justify-center gap-2">
+                <button data-nav="teste_conexao_dicom" class="text-xs font-semibold text-primary hover:text-primary/80 border border-primary/30 px-3 py-1.5 rounded-lg hover:bg-primary/5 transition-colors">Testar</button>
+                <button data-nav="novo_editar_equipamento_dicom" class="text-xs font-semibold text-slate-600 hover:text-slate-900 border border-slate-300 px-3 py-1.5 rounded-lg hover:bg-slate-50 transition-colors">Editar</button>
+              </div>
+            </td>
+          </tr>
+          <!-- Row 3 -->
+          <tr class="hover:bg-slate-50 transition-colors">
+            <td class="px-6 py-4">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-amber-100 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-amber-600 text-lg">scanner</span>
+                </div>
+                <span class="text-sm font-semibold text-slate-900">Fuji FDR D-EVO II</span>
+              </div>
+            </td>
+            <td class="px-6 py-4"><code class="text-sm bg-slate-100 px-2 py-0.5 rounded text-slate-700 font-mono">FUJI_DEVO</code></td>
+            <td class="px-6 py-4 text-sm text-slate-500 font-mono">192.168.1.103:4242</td>
+            <td class="px-6 py-4"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-amber-100 text-amber-700">CR</span></td>
+            <td class="px-6 py-4 text-sm text-slate-700">Sala RX 01</td>
+            <td class="px-6 py-4 text-sm text-slate-500">Fujifilm</td>
+            <td class="px-6 py-4">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-red-50 text-red-700">
+                <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>Offline
+              </span>
+            </td>
+            <td class="px-6 py-4 text-center">
+              <div class="flex items-center justify-center gap-2">
+                <button data-nav="teste_conexao_dicom" class="text-xs font-semibold text-primary hover:text-primary/80 border border-primary/30 px-3 py-1.5 rounded-lg hover:bg-primary/5 transition-colors">Testar</button>
+                <button data-nav="novo_editar_equipamento_dicom" class="text-xs font-semibold text-slate-600 hover:text-slate-900 border border-slate-300 px-3 py-1.5 rounded-lg hover:bg-slate-50 transition-colors">Editar</button>
+              </div>
+            </td>
+          </tr>
+          <!-- Row 4 -->
+          <tr class="hover:bg-slate-50 transition-colors">
+            <td class="px-6 py-4">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-teal-100 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-teal-600 text-lg">scanner</span>
+                </div>
+                <span class="text-sm font-semibold text-slate-900">Samsung HS70A</span>
+              </div>
+            </td>
+            <td class="px-6 py-4"><code class="text-sm bg-slate-100 px-2 py-0.5 rounded text-slate-700 font-mono">SAMSUNG_HS70</code></td>
+            <td class="px-6 py-4 text-sm text-slate-500 font-mono">192.168.1.104:4242</td>
+            <td class="px-6 py-4"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-teal-100 text-teal-700">US</span></td>
+            <td class="px-6 py-4 text-sm text-slate-700">Sala US 01</td>
+            <td class="px-6 py-4 text-sm text-slate-500">Samsung</td>
+            <td class="px-6 py-4">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-green-50 text-green-700">
+                <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Online
+              </span>
+            </td>
+            <td class="px-6 py-4 text-center">
+              <div class="flex items-center justify-center gap-2">
+                <button data-nav="teste_conexao_dicom" class="text-xs font-semibold text-primary hover:text-primary/80 border border-primary/30 px-3 py-1.5 rounded-lg hover:bg-primary/5 transition-colors">Testar</button>
+                <button data-nav="novo_editar_equipamento_dicom" class="text-xs font-semibold text-slate-600 hover:text-slate-900 border border-slate-300 px-3 py-1.5 rounded-lg hover:bg-slate-50 transition-colors">Editar</button>
+              </div>
+            </td>
+          </tr>
+          <!-- Row 5 -->
+          <tr class="hover:bg-slate-50 transition-colors">
+            <td class="px-6 py-4">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-pink-100 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-pink-600 text-lg">scanner</span>
+                </div>
+                <span class="text-sm font-semibold text-slate-900">Hologic Selenia</span>
+              </div>
+            </td>
+            <td class="px-6 py-4"><code class="text-sm bg-slate-100 px-2 py-0.5 rounded text-slate-700 font-mono">HOLOGIC_SEL</code></td>
+            <td class="px-6 py-4 text-sm text-slate-500 font-mono">192.168.1.105:4242</td>
+            <td class="px-6 py-4"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-pink-100 text-pink-700">MG</span></td>
+            <td class="px-6 py-4 text-sm text-slate-700">Sala MG 01</td>
+            <td class="px-6 py-4 text-sm text-slate-500">Hologic</td>
+            <td class="px-6 py-4">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-red-50 text-red-700">
+                <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>Offline
+              </span>
+            </td>
+            <td class="px-6 py-4 text-center">
+              <div class="flex items-center justify-center gap-2">
+                <button data-nav="teste_conexao_dicom" class="text-xs font-semibold text-primary hover:text-primary/80 border border-primary/30 px-3 py-1.5 rounded-lg hover:bg-primary/5 transition-colors">Testar</button>
+                <button data-nav="novo_editar_equipamento_dicom" class="text-xs font-semibold text-slate-600 hover:text-slate-900 border border-slate-300 px-3 py-1.5 rounded-lg hover:bg-slate-50 transition-colors">Editar</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Pagination -->
+    <div class="px-6 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
+      <span class="text-sm text-slate-500">Mostrando <span class="font-bold text-slate-900">1–5</span> de <span class="font-bold text-slate-900">5</span> equipamentos</span>
+      <div class="flex items-center gap-2">
+        <button class="p-2 bg-white border border-slate-200 rounded-lg text-slate-400 hover:text-slate-900 transition-colors disabled:opacity-50" disabled>
+          <span class="material-symbols-outlined text-sm">chevron_left</span>
+        </button>
+        <button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-white text-sm font-bold">1</button>
+        <button class="p-2 bg-white border border-slate-200 rounded-lg text-slate-400 hover:text-slate-900 transition-colors disabled:opacity-50" disabled>
+          <span class="material-symbols-outlined text-sm">chevron_right</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="../../nav.js"></script>
+</body>
+</html>

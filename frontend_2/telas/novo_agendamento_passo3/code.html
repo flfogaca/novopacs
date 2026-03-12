@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Selecionar Horário - Themis Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: { extend: {
+    colors: { "primary": "#0f66bd", "background-light": "#f6f7f8", "background-dark": "#101922" },
+    fontFamily: { "display": ["Manrope", "sans-serif"] },
+    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+  }}
+}
+</script>
+<style>
+body { font-family: 'Manrope', sans-serif; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+</style>
+</head>
+<body class="bg-background-light font-display text-slate-900 antialiased">
+
+<main class="min-h-screen flex flex-col">
+  <!-- Step Indicator -->
+  <div class="bg-white border-b border-slate-200 px-8 py-5">
+    <div class="max-w-4xl mx-auto flex items-center gap-3">
+      <!-- Step 1 Done -->
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center">
+          <span class="material-symbols-outlined text-lg">check</span>
+        </div>
+        <span class="text-sm font-semibold text-emerald-600">Paciente</span>
+      </div>
+      <div class="flex-1 h-0.5 bg-emerald-500 rounded-full"></div>
+      <!-- Step 2 Done -->
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center">
+          <span class="material-symbols-outlined text-lg">check</span>
+        </div>
+        <span class="text-sm font-semibold text-emerald-600">Exame</span>
+      </div>
+      <div class="flex-1 h-0.5 bg-emerald-500 rounded-full"></div>
+      <!-- Step 3 Active -->
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold">3</div>
+        <span class="text-sm font-bold text-primary">Horário</span>
+      </div>
+      <div class="flex-1 h-0.5 bg-slate-200 rounded-full"></div>
+      <!-- Step 4 -->
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center text-sm font-bold">4</div>
+        <span class="text-sm font-medium text-slate-400">Confirmação</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="flex-1 p-8">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">Selecionar Horário</h2>
+      <p class="text-slate-500 mt-1 mb-6">Escolha a unidade, equipamento e horário disponível.</p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Left Column: Filters + Calendar -->
+        <div class="lg:col-span-2 space-y-6">
+          <!-- Unit & Equipment selects -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Unidade</label>
+              <select class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary">
+                <option>Centro de Imagem São Paulo</option>
+                <option>Unidade Campinas</option>
+                <option>Hospital Central</option>
+              </select>
+            </div>
+            <div class="space-y-1.5">
+              <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Equipamento</label>
+              <select class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary">
+                <option>Siemens MAGNETOM Aera (RM)</option>
+                <option>GE Signa Explorer (RM)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Calendar Grid -->
+          <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+            <div class="flex items-center justify-between mb-4">
+              <button class="p-1.5 rounded-lg hover:bg-slate-100 transition-colors">
+                <span class="material-symbols-outlined text-slate-500">chevron_left</span>
+              </button>
+              <h3 class="text-sm font-bold text-slate-900">Março 2026</h3>
+              <button class="p-1.5 rounded-lg hover:bg-slate-100 transition-colors">
+                <span class="material-symbols-outlined text-slate-500">chevron_right</span>
+              </button>
+            </div>
+            <div class="grid grid-cols-5 gap-1 text-center">
+              <!-- Header -->
+              <div class="text-xs font-bold text-slate-400 uppercase py-2">Seg</div>
+              <div class="text-xs font-bold text-slate-400 uppercase py-2">Ter</div>
+              <div class="text-xs font-bold text-slate-400 uppercase py-2">Qua</div>
+              <div class="text-xs font-bold text-slate-400 uppercase py-2">Qui</div>
+              <div class="text-xs font-bold text-slate-400 uppercase py-2">Sex</div>
+              <!-- Week 1: Mar 2-6 -->
+              <div class="py-2 px-1 rounded-lg text-sm text-slate-400 cursor-not-allowed">2</div>
+              <div class="py-2 px-1 rounded-lg text-sm text-slate-400 cursor-not-allowed">3</div>
+              <div class="py-2 px-1 rounded-lg text-sm text-slate-400 cursor-not-allowed">4</div>
+              <div class="py-2 px-1 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100 cursor-pointer">5</div>
+              <div class="py-2 px-1 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100 cursor-pointer">6</div>
+              <!-- Week 2: Mar 9-13 -->
+              <div class="py-2 px-1 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100 cursor-pointer">
+                <span>9</span>
+                <div class="flex justify-center gap-0.5 mt-0.5"><span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span><span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span></div>
+              </div>
+              <div class="py-2 px-1 rounded-lg text-sm font-bold text-white bg-primary cursor-pointer">
+                <span>10</span>
+                <div class="flex justify-center gap-0.5 mt-0.5"><span class="w-1.5 h-1.5 bg-white/60 rounded-full"></span><span class="w-1.5 h-1.5 bg-white/60 rounded-full"></span></div>
+              </div>
+              <div class="py-2 px-1 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100 cursor-pointer">
+                <span>11</span>
+                <div class="flex justify-center gap-0.5 mt-0.5"><span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span></div>
+              </div>
+              <div class="py-2 px-1 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100 cursor-pointer">
+                <span>12</span>
+                <div class="flex justify-center gap-0.5 mt-0.5"><span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span><span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span><span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span></div>
+              </div>
+              <div class="py-2 px-1 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100 cursor-pointer">
+                <span>13</span>
+                <div class="flex justify-center gap-0.5 mt-0.5"><span class="w-1.5 h-1.5 bg-amber-400 rounded-full"></span></div>
+              </div>
+              <!-- Week 3: Mar 16-20 -->
+              <div class="py-2 px-1 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100 cursor-pointer">
+                <span>16</span>
+                <div class="flex justify-center gap-0.5 mt-0.5"><span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span></div>
+              </div>
+              <div class="py-2 px-1 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100 cursor-pointer">
+                <span>17</span>
+                <div class="flex justify-center gap-0.5 mt-0.5"><span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span><span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span></div>
+              </div>
+              <div class="py-2 px-1 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100 cursor-pointer">
+                <span>18</span>
+                <div class="flex justify-center gap-0.5 mt-0.5"><span class="w-1.5 h-1.5 bg-slate-300 rounded-full"></span></div>
+              </div>
+              <div class="py-2 px-1 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100 cursor-pointer">
+                <span>19</span>
+                <div class="flex justify-center gap-0.5 mt-0.5"><span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span></div>
+              </div>
+              <div class="py-2 px-1 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100 cursor-pointer">
+                <span>20</span>
+                <div class="flex justify-center gap-0.5 mt-0.5"><span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span><span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span></div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500">
+              <span class="flex items-center gap-1"><span class="w-2 h-2 bg-emerald-400 rounded-full"></span>Disponível</span>
+              <span class="flex items-center gap-1"><span class="w-2 h-2 bg-amber-400 rounded-full"></span>Pouca disponibilidade</span>
+              <span class="flex items-center gap-1"><span class="w-2 h-2 bg-slate-300 rounded-full"></span>Lotado</span>
+            </div>
+          </div>
+
+          <!-- Time Slots for selected day (10/Mar) -->
+          <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+            <h4 class="text-sm font-bold text-slate-900 mb-1">Horários disponíveis — 10 de Março, 2026</h4>
+            <p class="text-xs text-slate-400 mb-4">Sala RM 01 • Siemens MAGNETOM Aera</p>
+            <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2">
+              <button class="py-2 px-3 text-sm font-medium bg-slate-100 text-slate-400 rounded-lg cursor-not-allowed line-through">08:00</button>
+              <button class="py-2 px-3 text-sm font-medium bg-slate-100 text-slate-400 rounded-lg cursor-not-allowed line-through">08:30</button>
+              <button class="py-2 px-3 text-sm font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg hover:bg-emerald-100 cursor-pointer">09:00</button>
+              <button class="py-2 px-3 text-sm font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg hover:bg-emerald-100 cursor-pointer">09:30</button>
+              <button class="py-2 px-3 text-sm font-medium bg-slate-100 text-slate-400 rounded-lg cursor-not-allowed line-through">10:00</button>
+              <button class="py-2 px-3 text-sm font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg hover:bg-emerald-100 cursor-pointer">10:30</button>
+              <button class="py-2 px-3 text-sm font-medium bg-slate-100 text-slate-400 rounded-lg cursor-not-allowed line-through">11:00</button>
+              <button class="py-2 px-3 text-sm font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg hover:bg-emerald-100 cursor-pointer">11:30</button>
+              <button class="py-2 px-3 text-sm font-medium bg-slate-100 text-slate-400 rounded-lg cursor-not-allowed line-through">13:00</button>
+              <button class="py-2 px-3 text-sm font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg hover:bg-emerald-100 cursor-pointer">13:30</button>
+              <button class="py-2 px-3 text-sm font-bold bg-primary text-white rounded-lg ring-2 ring-primary/30 shadow-md">14:00</button>
+              <button class="py-2 px-3 text-sm font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg hover:bg-emerald-100 cursor-pointer">14:30</button>
+              <button class="py-2 px-3 text-sm font-medium bg-slate-100 text-slate-400 rounded-lg cursor-not-allowed line-through">15:00</button>
+              <button class="py-2 px-3 text-sm font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg hover:bg-emerald-100 cursor-pointer">15:30</button>
+              <button class="py-2 px-3 text-sm font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg hover:bg-emerald-100 cursor-pointer">16:00</button>
+              <button class="py-2 px-3 text-sm font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg hover:bg-emerald-100 cursor-pointer">16:30</button>
+              <button class="py-2 px-3 text-sm font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg hover:bg-emerald-100 cursor-pointer">17:00</button>
+              <button class="py-2 px-3 text-sm font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg hover:bg-emerald-100 cursor-pointer">17:30</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Summary -->
+        <div class="lg:col-span-1">
+          <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm sticky top-8">
+            <h4 class="text-sm font-bold text-slate-900 mb-4 flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-lg">summarize</span>
+              Resumo do Agendamento
+            </h4>
+            <div class="space-y-3">
+              <div>
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Paciente</span>
+                <p class="text-sm font-semibold text-slate-900 mt-0.5">Ana Silva</p>
+              </div>
+              <div class="h-px bg-slate-100"></div>
+              <div>
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Exame</span>
+                <p class="text-sm font-semibold text-slate-900 mt-0.5">RM Crânio</p>
+                <p class="text-xs text-slate-500 font-mono">40801030</p>
+              </div>
+              <div class="h-px bg-slate-100"></div>
+              <div>
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Unidade</span>
+                <p class="text-sm font-semibold text-slate-900 mt-0.5">Centro de Imagem SP</p>
+              </div>
+              <div class="h-px bg-slate-100"></div>
+              <div>
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Data</span>
+                <p class="text-sm font-semibold text-slate-900 mt-0.5">10/03/2026</p>
+              </div>
+              <div class="h-px bg-slate-100"></div>
+              <div>
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Horário</span>
+                <p class="text-lg font-extrabold text-primary mt-0.5">14:00</p>
+              </div>
+            </div>
+            <div class="mt-5 pt-4 border-t border-slate-100">
+              <div class="flex items-center gap-2 text-xs text-slate-500">
+                <span class="material-symbols-outlined text-sm text-emerald-500">info</span>
+                Duração estimada: 40 minutos
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="bg-white border-t border-slate-200 px-8 py-4 sticky bottom-0">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <button data-nav="novo_agendamento_passo2" class="inline-flex items-center gap-2 px-6 py-2.5 border border-slate-300 text-slate-700 rounded-lg font-semibold text-sm hover:bg-slate-50 transition-colors">
+        <span class="material-symbols-outlined text-lg">arrow_back</span>
+        Voltar
+      </button>
+      <button data-nav="novo_agendamento_passo4" class="inline-flex items-center gap-2 px-6 py-2.5 bg-primary text-white rounded-lg font-semibold text-sm hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20">
+        Próximo: Confirmação
+        <span class="material-symbols-outlined text-lg">arrow_forward</span>
+      </button>
+    </div>
+  </div>
+</main>
+
+<script src="../../nav.js"></script>
+</body>
+</html>

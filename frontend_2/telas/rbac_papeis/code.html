@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Papéis e Permissões - Themis Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: { extend: {
+    colors: { "primary": "#0f66bd", "background-light": "#f6f7f8", "background-dark": "#101922" },
+    fontFamily: { "display": ["Manrope", "sans-serif"] },
+    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+  }}
+}
+</script>
+<style>
+body { font-family: 'Manrope', sans-serif; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+</style>
+</head>
+<body class="bg-background-light font-display text-slate-900 antialiased">
+<main class="flex-1 px-6 lg:px-10 py-8">
+<div class="max-w-[1280px] mx-auto flex flex-col gap-6">
+
+<!-- Breadcrumb -->
+<div class="flex items-center gap-2 text-sm">
+  <a class="text-slate-500 hover:text-primary transition-colors" href="#">Plataforma</a>
+  <span class="material-symbols-outlined text-sm text-slate-400">chevron_right</span>
+  <span class="text-slate-900 font-medium">Papéis e Permissões</span>
+</div>
+
+<!-- Page Header -->
+<div class="flex flex-wrap justify-between items-center gap-4">
+  <div>
+    <h1 class="text-3xl font-extrabold tracking-tight">Papéis e Permissões</h1>
+    <p class="text-slate-500 text-sm mt-1">Gerencie os papéis do sistema e suas permissões de acesso.</p>
+  </div>
+</div>
+
+<!-- Info Banner -->
+<div class="flex items-start gap-3 bg-blue-50 border border-blue-200 rounded-xl px-5 py-4">
+  <span class="material-symbols-outlined text-blue-600 mt-0.5">info</span>
+  <div>
+    <p class="text-sm text-blue-800 font-semibold">Papéis definidos pelo sistema</p>
+    <p class="text-sm text-blue-700 mt-0.5">Os papéis abaixo são pré-configurados pela plataforma e não podem ser criados ou excluídos. Clique em "Ver detalhes" para visualizar a matriz de permissões de cada papel.</p>
+  </div>
+</div>
+
+<!-- Table -->
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+  <div class="overflow-x-auto">
+    <table class="w-full text-left border-collapse">
+      <thead>
+        <tr class="border-b border-slate-200 bg-slate-50/50">
+          <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Papel</th>
+          <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Nível</th>
+          <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Escopo</th>
+          <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Descrição</th>
+          <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Ações</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-100">
+
+        <!-- Platform Admin -->
+        <tr class="hover:bg-slate-50 transition-colors">
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-red-100 flex items-center justify-center">
+                <span class="material-symbols-outlined text-red-600 text-lg">shield</span>
+              </div>
+              <span class="text-sm font-semibold">Platform Admin</span>
+            </div>
+          </td>
+          <td class="px-6 py-4">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-100 text-red-800">Nível 0</span>
+          </td>
+          <td class="px-6 py-4 text-sm text-slate-600">Global</td>
+          <td class="px-6 py-4 text-sm text-slate-600">Acesso total à plataforma</td>
+          <td class="px-6 py-4 text-right">
+            <button data-nav="rbac_detalhe_papel" class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary/80 transition-colors">
+              <span class="material-symbols-outlined text-base">visibility</span> Ver detalhes
+            </button>
+          </td>
+        </tr>
+
+        <!-- Organization Admin -->
+        <tr class="hover:bg-slate-50 transition-colors">
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-amber-100 flex items-center justify-center">
+                <span class="material-symbols-outlined text-amber-700 text-lg">shield</span>
+              </div>
+              <span class="text-sm font-semibold">Organization Admin</span>
+            </div>
+          </td>
+          <td class="px-6 py-4">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800">Nível 1</span>
+          </td>
+          <td class="px-6 py-4 text-sm text-slate-600">Organização</td>
+          <td class="px-6 py-4 text-sm text-slate-600">Gerencia uma organização e suas unidades</td>
+          <td class="px-6 py-4 text-right">
+            <button data-nav="rbac_detalhe_papel" class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary/80 transition-colors">
+              <span class="material-symbols-outlined text-base">visibility</span> Ver detalhes
+            </button>
+          </td>
+        </tr>
+
+        <!-- Organization Manager -->
+        <tr class="hover:bg-slate-50 transition-colors">
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-amber-100 flex items-center justify-center">
+                <span class="material-symbols-outlined text-amber-700 text-lg">shield</span>
+              </div>
+              <span class="text-sm font-semibold">Organization Manager</span>
+            </div>
+          </td>
+          <td class="px-6 py-4">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800">Nível 1</span>
+          </td>
+          <td class="px-6 py-4 text-sm text-slate-600">Organização</td>
+          <td class="px-6 py-4 text-sm text-slate-600">Visão gerencial da organização (somente leitura)</td>
+          <td class="px-6 py-4 text-right">
+            <button data-nav="rbac_detalhe_papel" class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary/80 transition-colors">
+              <span class="material-symbols-outlined text-base">visibility</span> Ver detalhes
+            </button>
+          </td>
+        </tr>
+
+        <!-- Unit Admin -->
+        <tr class="hover:bg-slate-50 transition-colors">
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-blue-100 flex items-center justify-center">
+                <span class="material-symbols-outlined text-blue-700 text-lg">shield</span>
+              </div>
+              <span class="text-sm font-semibold">Unit Admin</span>
+            </div>
+          </td>
+          <td class="px-6 py-4">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-800">Nível 2</span>
+          </td>
+          <td class="px-6 py-4 text-sm text-slate-600">Unidade</td>
+          <td class="px-6 py-4 text-sm text-slate-600">Administra uma unidade específica</td>
+          <td class="px-6 py-4 text-right">
+            <button data-nav="rbac_detalhe_papel" class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary/80 transition-colors">
+              <span class="material-symbols-outlined text-base">visibility</span> Ver detalhes
+            </button>
+          </td>
+        </tr>
+
+        <!-- Radiologista -->
+        <tr class="hover:bg-slate-50 transition-colors">
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center">
+                <span class="material-symbols-outlined text-slate-600 text-lg">person</span>
+              </div>
+              <span class="text-sm font-semibold">Radiologista</span>
+            </div>
+          </td>
+          <td class="px-6 py-4">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-700">Nível 3</span>
+          </td>
+          <td class="px-6 py-4 text-sm text-slate-600">Unidade</td>
+          <td class="px-6 py-4 text-sm text-slate-600">Laudos e worklist de radiologia</td>
+          <td class="px-6 py-4 text-right">
+            <button data-nav="rbac_detalhe_papel" class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary/80 transition-colors">
+              <span class="material-symbols-outlined text-base">visibility</span> Ver detalhes
+            </button>
+          </td>
+        </tr>
+
+        <!-- Técnico -->
+        <tr class="hover:bg-slate-50 transition-colors">
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center">
+                <span class="material-symbols-outlined text-slate-600 text-lg">person</span>
+              </div>
+              <span class="text-sm font-semibold">Técnico</span>
+            </div>
+          </td>
+          <td class="px-6 py-4">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-700">Nível 3</span>
+          </td>
+          <td class="px-6 py-4 text-sm text-slate-600">Unidade</td>
+          <td class="px-6 py-4 text-sm text-slate-600">Execução de exames e worklist técnico</td>
+          <td class="px-6 py-4 text-right">
+            <button data-nav="rbac_detalhe_papel" class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary/80 transition-colors">
+              <span class="material-symbols-outlined text-base">visibility</span> Ver detalhes
+            </button>
+          </td>
+        </tr>
+
+        <!-- Recepcionista -->
+        <tr class="hover:bg-slate-50 transition-colors">
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center">
+                <span class="material-symbols-outlined text-slate-600 text-lg">person</span>
+              </div>
+              <span class="text-sm font-semibold">Recepcionista</span>
+            </div>
+          </td>
+          <td class="px-6 py-4">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-700">Nível 3</span>
+          </td>
+          <td class="px-6 py-4 text-sm text-slate-600">Unidade</td>
+          <td class="px-6 py-4 text-sm text-slate-600">Agendamentos e recepção de pacientes</td>
+          <td class="px-6 py-4 text-right">
+            <button data-nav="rbac_detalhe_papel" class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary/80 transition-colors">
+              <span class="material-symbols-outlined text-base">visibility</span> Ver detalhes
+            </button>
+          </td>
+        </tr>
+
+        <!-- Médico Solicitante -->
+        <tr class="hover:bg-slate-50 transition-colors">
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center">
+                <span class="material-symbols-outlined text-slate-600 text-lg">person</span>
+              </div>
+              <span class="text-sm font-semibold">Médico Solicitante</span>
+            </div>
+          </td>
+          <td class="px-6 py-4">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-700">Nível 3</span>
+          </td>
+          <td class="px-6 py-4 text-sm text-slate-600">Externo</td>
+          <td class="px-6 py-4 text-sm text-slate-600">Acesso ao portal do médico</td>
+          <td class="px-6 py-4 text-right">
+            <button data-nav="rbac_detalhe_papel" class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary/80 transition-colors">
+              <span class="material-symbols-outlined text-base">visibility</span> Ver detalhes
+            </button>
+          </td>
+        </tr>
+
+        <!-- Analista Billing -->
+        <tr class="hover:bg-slate-50 transition-colors">
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-blue-100 flex items-center justify-center">
+                <span class="material-symbols-outlined text-blue-700 text-lg">person</span>
+              </div>
+              <span class="text-sm font-semibold">Analista Billing</span>
+            </div>
+          </td>
+          <td class="px-6 py-4">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-800">Nível 2</span>
+          </td>
+          <td class="px-6 py-4 text-sm text-slate-600">Organização</td>
+          <td class="px-6 py-4 text-sm text-slate-600">Faturamento e relatórios financeiros</td>
+          <td class="px-6 py-4 text-right">
+            <button data-nav="rbac_detalhe_papel" class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary/80 transition-colors">
+              <span class="material-symbols-outlined text-base">visibility</span> Ver detalhes
+            </button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Footer -->
+  <div class="px-6 py-4 bg-slate-50/50 border-t border-slate-200 flex items-center justify-between">
+    <span class="text-sm text-slate-500">Total: <span class="font-bold text-slate-900">9</span> papéis definidos</span>
+  </div>
+</div>
+
+</div>
+</main>
+<script src="../../nav.js"></script>
+</body></html>
