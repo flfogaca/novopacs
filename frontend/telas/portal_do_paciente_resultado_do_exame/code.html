@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f66bd",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Portal do Paciente — Resultado | Themis Health</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Header Section -->
+<header class="sticky top-0 z-50 bg-white dark:bg-slate-900 border-b border-primary/10 shadow-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<svg class="size-8" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.263 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z" fill="currentColor"></path>
+</svg>
+</div>
+<h1 class="text-xl font-bold tracking-tight">Themis Health</h1>
+</div>
+<div class="hidden md:block">
+<h2 class="text-lg font-semibold text-slate-600 dark:text-slate-400">Resultado do Exame</h2>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-lg font-bold text-sm hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-lg">share</span>
+<span class="hidden sm:inline">Compartilhar</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg font-bold text-sm hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-lg">download</span>
+<span class="hidden sm:inline">Baixar PDF</span>
+</button>
+<div class="ml-2 border-l border-primary/20 pl-4">
+<div class="size-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold overflow-hidden">
+<img alt="Avatar do usuário" data-alt="Foto de perfil do paciente de rosto sorridente" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAryozBxCqAbnZNTgU_-5pYQL5WsKKLChf9IEKGGzIZPfxPI78rTe-2P5Z8I1H2RM_0V0EEkD3eu0R6jM-6wYiTDshnXX4xowZLq-5H14YfVDu0BzHmyIMCp7vOPe8_xzgXNsM-YHhfMSjY1OBbLJIcy5iQ15q2u09M4rjtGXQWp27sCd2Cqxmx8JDTS1NaXT2L4KIxOzM8qUQLZB1xTY1znEgk7733OKa_9HF5UnZEbmDZo53KW8UjY_Sppqrwkp_q-11-OwNmKsw"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<!-- Summary Cards Section -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+<div class="bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
+<p class="text-xs font-semibold uppercase text-slate-500 mb-1">Paciente</p>
+<p class="text-base font-bold text-slate-900 dark:text-slate-100">João Silva Fernandes</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
+<p class="text-xs font-semibold uppercase text-slate-500 mb-1">Exame</p>
+<p class="text-base font-bold text-slate-900 dark:text-slate-100">RM de Crânio com Contraste</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
+<p class="text-xs font-semibold uppercase text-slate-500 mb-1">Data da Realização</p>
+<p class="text-base font-bold text-slate-900 dark:text-slate-100">15 de Outubro, 2023</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
+<p class="text-xs font-semibold uppercase text-slate-500 mb-1">Unidade</p>
+<p class="text-base font-bold text-slate-900 dark:text-slate-100">Unidade Central - Matriz</p>
+</div>
+</div>
+<!-- PDF Viewer Container -->
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-md border border-slate-200 dark:border-slate-800 overflow-hidden mb-8">
+<div class="bg-slate-100 dark:bg-slate-800 p-3 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="text-sm font-medium text-slate-600 dark:text-slate-400">Laudo Médico Finalizado</span>
+<span class="px-2 py-0.5 bg-green-100 text-green-700 text-[10px] font-bold rounded uppercase">Assinado Digitalmente</span>
+</div>
+<div class="flex gap-2">
+<button class="p-1 hover:bg-slate-200 dark:hover:bg-slate-700 rounded transition-colors">
+<span class="material-symbols-outlined text-lg">zoom_in</span>
+</button>
+<button class="p-1 hover:bg-slate-200 dark:hover:bg-slate-700 rounded transition-colors">
+<span class="material-symbols-outlined text-lg">zoom_out</span>
+</button>
+<button class="p-1 hover:bg-slate-200 dark:hover:bg-slate-700 rounded transition-colors">
+<span class="material-symbols-outlined text-lg">print</span>
+</button>
+</div>
+</div>
+<!-- Simulated PDF Viewer Content -->
+<div class="p-8 md:p-12 lg:p-16 flex flex-col items-center bg-slate-200 dark:bg-slate-950/50 min-h-[600px] overflow-y-auto">
+<div class="bg-white dark:bg-white text-slate-900 w-full max-w-[800px] aspect-[1/1.41] shadow-2xl p-10 flex flex-col font-serif">
+<div class="flex justify-between border-b-2 border-slate-900 pb-4 mb-6">
+<div>
+<h3 class="text-2xl font-bold uppercase tracking-widest italic">Themis Health</h3>
+<p class="text-[10px]">Centro de Diagnóstico por Imagem Avançado</p>
+</div>
+<div class="text-right text-[10px]">
+<p>CRM/SP: 123.456</p>
+<p>Data: 15/10/2023 14:30</p>
+</div>
+</div>
+<div class="space-y-6 text-sm">
+<div class="font-sans text-xs flex justify-between bg-slate-100 p-2 rounded">
+<span>Paciente: JOAO SILVA FERNANDES</span>
+<span>ID: #TH-99238</span>
+</div>
+<h4 class="font-bold border-b border-slate-300 pb-1 uppercase">Relatório Médico de Ressonância Magnética</h4>
+<div class="space-y-4 leading-relaxed">
+<p><strong>Técnica:</strong> Exame realizado em aparelho de alto campo magnético (1.5 Tesla), com sequências ponderadas em T1, T2, FLAIR e Difusão, antes e após a administração intravenosa de contraste paramagnético (Gadofosveset).</p>
+<p><strong>Indicação Clínica:</strong> Cefaleia crônica a esclarecer.</p>
+<p><strong>Descrição:</strong> Estruturas da linha média em posição anatômica. Sistema ventricular com forma, topografia e dimensões normais. Sulcos corticais e cisternas basais de amplitude preservada para a idade. Intensidade de sinal do parênquima encefálico sem alterações focais significativas nas sequências avaliadas.</p>
+<p><strong>Conclusão:</strong> Exame de ressonância magnética do crânio dentro dos padrões da normalidade para a faixa etária do paciente.</p>
+</div>
+<div class="mt-20 flex flex-col items-center">
+<div class="w-48 h-12 border-b border-slate-900 mb-1 flex items-end justify-center">
+<span class="font-serif italic text-lg opacity-40">Dra. Helena M. Rocha</span>
+</div>
+<p class="text-[10px] font-sans font-bold uppercase">Dra. Helena M. Rocha - CRM/SP 987.654</p>
+<p class="text-[10px] font-sans">Radiologista Especialista em Neurorradiologia</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Key Images Gallery -->
+<section class="mb-12">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">view_quilt</span>
+                    Imagens principais (Key Images)
+                </h3>
+<button class="text-primary font-semibold text-sm hover:underline">Ver todas as imagens (DICOM Web)</button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+<div class="group relative aspect-square bg-slate-900 rounded-lg overflow-hidden cursor-pointer border-2 border-transparent hover:border-primary transition-all">
+<img alt="DICOM Slice 1" class="w-full h-full object-cover opacity-80 group-hover:opacity-100" data-alt="Imagem de raio-x ou ressonância magnética de um cérebro" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC304fUZo9duZj6g28yEwL9lVSi1Kcnv9uykL0Glc9KbnfJ-yPB0D6k-XXW5fjTSW9AoZjccMvkyTRcWiEF7BxbSf4Y74ot_OIvfP98k2NzPNGRS2aBcolqHmv7608SqaEerasqnqzVxJ336_aybZyNt9NH0dsN0ZQ-TIFjLuJCmjjZSOH0VpX5kqkC3xUMPjwvLD8_xOH449Wwl6a78r3GF-J1iSO5Is46ERCG5U7rz5nH1mnrptZ51f5YyArbAWBe9Ppm79H080o"/>
+<div class="absolute bottom-2 left-2 bg-black/60 px-1.5 py-0.5 rounded text-[10px] text-white">SAG T1 #12</div>
+</div>
+<div class="group relative aspect-square bg-slate-900 rounded-lg overflow-hidden cursor-pointer border-2 border-transparent hover:border-primary transition-all">
+<img alt="DICOM Slice 2" class="w-full h-full object-cover opacity-80 group-hover:opacity-100" data-alt="Imagem médica detalhada de um corte de ressonância de crânio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDno22xx_dKpklr08t5PKq4JCVzUvomNEKjKSSWAFbFyzgp-dZOQRsbEviFN3JkfM2YHSzqvbzf4UgXacnyrca0zKfB1WpuFOhGlPJPRuATFbIisWKqaifPLEyt9dnlndFBl1YrBkupMeKEPZF726Atdh35fzjO6-ybMTgg2YYKBx6SADfoqYJBUIKbBj2ZIQ5yj1BbhZu0FEMRJHHcXFg5CYun9Y0EjOBIT_zpOqr73PQ1VsyHAOp9U4fpDtLJXum9yamzTzivyrc"/>
+<div class="absolute bottom-2 left-2 bg-black/60 px-1.5 py-0.5 rounded text-[10px] text-white">AX FLAIR #45</div>
+</div>
+<div class="group relative aspect-square bg-slate-900 rounded-lg overflow-hidden cursor-pointer border-2 border-transparent hover:border-primary transition-all">
+<img alt="DICOM Slice 3" class="w-full h-full object-cover opacity-80 group-hover:opacity-100" data-alt="Visão axial de exame de imagem cerebral" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPC6r4pP3mzGPs17Ic5Vnu-Nh-K6p2N2IrdS3uvL4fXkuiKIIRROFjDXlPxTM2kG2sOuazHk1zPjp7RnWQdxQkPfCSaQfbitBnVyuVAz64NZ3-4kWh-WvH8wlpF3gZfvHQ4d7hg4GifNCt00Q6weYtfew-LRotHUubKGfawyMX51_yuJ2T5fSGPWVpmqEkX0ytkvJdv50qKcvwwXYa7TY2RljkQUfNbkFNXjlWZX_dY0Ddgv6HehMesX4Bn6s01ABx_ZSjmy2CU4I"/>
+<div class="absolute bottom-2 left-2 bg-black/60 px-1.5 py-0.5 rounded text-[10px] text-white">AX T2 #23</div>
+</div>
+<div class="group relative aspect-square bg-slate-900 rounded-lg overflow-hidden cursor-pointer border-2 border-transparent hover:border-primary transition-all">
+<img alt="DICOM Slice 4" class="w-full h-full object-cover opacity-80 group-hover:opacity-100" data-alt="Corte anatômico de ressonância magnética colorida" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvN8Fk0eTpqJOIab6Lq-6K4c-dNDqTmjPVk0EJ9Jg5fAxIAM30txpShJjhoIpraZ5gcti7rmIO0LxPPlzbCKfXCF3os9zQ6wAxdU3DVchtwfR71fLb7yV1K8N-4aWmKs4WQdcEvdnHfsQ6jCXe3vFyAE4kofEDBU66Utx6vD_-6U0Bj41rmE3VfHeTLKmRC5ym3J3_oKUeAc9AaySq53luMecModc3Cxwz6qJK3wkjvTwPTkzDupVxm9Fb8JbJk8x24Q8gwUNUGXY"/>
+<div class="absolute bottom-2 left-2 bg-black/60 px-1.5 py-0.5 rounded text-[10px] text-white">COR T2 #18</div>
+</div>
+<div class="group relative aspect-square bg-slate-900 rounded-lg overflow-hidden cursor-pointer border-2 border-transparent hover:border-primary transition-all">
+<img alt="DICOM Slice 5" class="w-full h-full object-cover opacity-80 group-hover:opacity-100" data-alt="Imagem digital de processamento de diagnóstico por imagem" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqwE30cioYmQ3-1NwKGcT-5b7JXdjK26YsLgPs2cs6IEDcMJz7ZhsGgk2ezoxV4_Md0ioL2POaMNRwCUrMuJ2924xOFSH_jReQUMOzY_VZMvYBRfA-12jWrKG1NW9l-l39d-6j9ZCvTP5ZHqhy8BfmFZ-KgXK9ksaoPPKBKqHRL0ozkWb74wQNsF5sUgMJK89TC1AU2VlRAlOhIoziOzyFmyQ0Jx9V-RQIPxw51i0yIPc-K5KiD-P_ZzD1qZDSFLCCwWcKpPvzsB4"/>
+<div class="absolute bottom-2 left-2 bg-black/60 px-1.5 py-0.5 rounded text-[10px] text-white">AX DWI #09</div>
+</div>
+<div class="group relative aspect-square bg-slate-800 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-slate-400 dark:border-slate-600 hover:border-primary cursor-pointer transition-all">
+<span class="material-symbols-outlined text-slate-400">add_circle</span>
+<span class="text-[10px] font-bold text-slate-400 uppercase mt-2 text-center px-2">Ver 124 imagens</span>
+</div>
+</div>
+</section>
+<!-- Footer Actions -->
+<footer class="mt-16 pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col items-center gap-4">
+<a class="text-primary font-medium hover:underline flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-lg">history</span>
+                Ver histórico completo de exames
+            </a>
+<p class="text-xs text-slate-500 text-center">
+                Este laudo é um documento médico confidencial. Proteja seus dados. <br/>
+                Themis Health - Tecnologia a favor da vida.
+            </p>
+</footer>
+</main>
+<!-- Modal Share Overlay (Hidden by default, used for structure) -->
+<div class="fixed inset-0 z-[100] bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+<div class="bg-white dark:bg-slate-900 w-full max-w-md rounded-xl shadow-2xl p-6 border border-slate-200 dark:border-slate-800">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold">Compartilhar com médico</h3>
+<button class="p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400 mb-4">
+                Insira o e-mail do seu médico para enviar um link de visualização segura válido por 7 dias.
+            </p>
+<div class="space-y-4">
+<div>
+<label class="block text-xs font-bold uppercase text-slate-500 mb-1" for="doctor-email">E-mail do Destinatário</label>
+<input class="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg focus:ring-primary focus:border-primary text-sm p-3" id="doctor-email" placeholder="medico@exemplo.com.br" type="email"/>
+</div>
+<div class="flex items-center gap-2">
+<input class="rounded border-slate-300 text-primary focus:ring-primary" id="include-images" type="checkbox"/>
+<label class="text-sm text-slate-600 dark:text-slate-400" for="include-images">Incluir acesso às imagens DICOM</label>
+</div>
+<button class="w-full py-3 bg-primary text-white font-bold rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">send</span>
+                    Enviar Acesso
+                </button>
+</div>
+</div>
+</div>
+</body></html>

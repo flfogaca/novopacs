@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f66bd",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined { font-size: 20px; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Header / Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-10 py-3">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-6">
+<span class="material-symbols-outlined text-3xl">medical_services</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight">Themis Health</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary" href="#">Unidades</a>
+<a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary" href="#">Salas</a>
+<a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary" href="#">Equipamentos</a>
+<a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary" href="#">Relatórios</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-4">
+<label class="hidden lg:flex flex-col min-w-40 h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg bg-slate-100 dark:bg-slate-800 h-full">
+<div class="text-slate-500 flex items-center justify-center pl-4">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full border-none bg-transparent focus:ring-0 text-sm" placeholder="Buscar na plataforma..."/>
+</div>
+</label>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+<div class="bg-primary/20 rounded-full size-10 flex items-center justify-center text-primary font-bold">UA</div>
+</div>
+</header>
+<main class="px-4 md:px-10 lg:px-40 py-8">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 mb-6 items-center">
+<a class="text-slate-500 text-sm font-medium hover:text-primary" href="#">Plataforma</a>
+<span class="text-slate-400"><span class="material-symbols-outlined text-xs">chevron_right</span></span>
+<a class="text-slate-500 text-sm font-medium hover:text-primary" href="#">Unidades</a>
+<span class="text-slate-400"><span class="material-symbols-outlined text-xs">chevron_right</span></span>
+<span class="text-slate-900 dark:text-white text-sm font-bold">Detalhe da Unidade</span>
+</div>
+<!-- Unit Identity Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
+<div class="flex gap-5">
+<div class="bg-primary rounded-xl min-h-24 w-24 flex items-center justify-center text-white" data-alt="Logotipo da unidade hospitalar com ícone médico">
+<span class="material-symbols-outlined text-5xl">domain</span>
+</div>
+<div class="flex flex-col justify-center">
+<div class="flex items-center gap-3">
+<h1 class="text-slate-900 dark:text-white text-3xl font-extrabold tracking-tight">Unidade Central de Diagnóstico</h1>
+<span class="px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-xs font-bold uppercase tracking-wider">Ativo</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-base font-medium mt-1">
+                            ID: UN-00124 • São Paulo, SP
+                        </p>
+</div>
+</div>
+<div class="flex gap-3 w-full md:w-auto">
+<button class="flex-1 md:flex-none px-6 h-11 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white text-sm font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                        Editar
+                    </button>
+<div class="relative group">
+<button class="flex items-center gap-2 px-6 h-11 rounded-lg bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors">
+                            Ações <span class="material-symbols-outlined">expand_more</span>
+</button>
+<!-- Simple Dropdown Placeholder -->
+<div class="absolute right-0 mt-2 w-48 bg-white dark:bg-slate-900 rounded-lg shadow-xl border border-slate-200 dark:border-slate-800 hidden group-hover:block z-10">
+<button class="w-full text-left px-4 py-3 text-sm text-red-600 dark:text-red-400 hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center gap-2">
+<span class="material-symbols-outlined">block</span> Desativar Unidade
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Tabs Navigation -->
+<div class="border-b border-slate-200 dark:border-slate-800 mb-8 overflow-x-auto">
+<div class="flex gap-10 whitespace-nowrap min-w-max">
+<button class="border-b-2 border-primary text-primary pb-4 px-1 text-sm font-bold flex items-center gap-2">
+<span class="material-symbols-outlined">database</span> Dados
+                    </button>
+<button class="border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 pb-4 px-1 text-sm font-bold flex items-center gap-2">
+<span class="material-symbols-outlined">account_tree</span> Hierarquia
+                    </button>
+<button class="border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 pb-4 px-1 text-sm font-bold flex items-center gap-2">
+<span class="material-symbols-outlined">bar_chart</span> Estatísticas
+                    </button>
+<button class="border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 pb-4 px-1 text-sm font-bold flex items-center gap-2">
+<span class="material-symbols-outlined">settings_suggest</span> Configurações
+                    </button>
+</div>
+</div>
+<!-- Content Area: Infrastructure Management -->
+<div class="space-y-10">
+<!-- Section: Rooms (Salas) -->
+<section>
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">Gerenciamento de Salas</h2>
+<button class="flex items-center gap-2 px-4 h-10 rounded-lg bg-primary/10 text-primary text-sm font-bold hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">add</span> Nova sala
+                        </button>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider">
+<th class="px-6 py-4">Nome</th>
+<th class="px-6 py-4">Código</th>
+<th class="px-6 py-4">Tipo</th>
+<th class="px-6 py-4">Andar</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4 text-right">Ações</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30">
+<td class="px-6 py-4 font-bold text-slate-900 dark:text-white">Sala de Ressonância 01</td>
+<td class="px-6 py-4 text-slate-500">RM-01</td>
+<td class="px-6 py-4">Ressonância Magnética</td>
+<td class="px-6 py-4">Térreo</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 rounded bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-[10px] font-bold uppercase">Disponível</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30">
+<td class="px-6 py-4 font-bold text-slate-900 dark:text-white">Sala de Tomografia 02</td>
+<td class="px-6 py-4 text-slate-500">TC-02</td>
+<td class="px-6 py-4">Tomografia Computadorizada</td>
+<td class="px-6 py-4">1º Andar</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 rounded bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-[10px] font-bold uppercase">Disponível</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Section: DICOM Equipments -->
+<section>
+<div class="flex justify-between items-center mb-4">
+<div class="flex items-center gap-3">
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">Equipamentos DICOM</h2>
+<span class="px-2 py-1 rounded bg-primary/10 text-primary text-[10px] font-bold">VALIDE AE TITLE</span>
+</div>
+<button class="flex items-center gap-2 px-4 h-10 rounded-lg bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined">add</span> Novo Equipamento
+                        </button>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider">
+<th class="px-6 py-4">Equipamento / AE Title</th>
+<th class="px-6 py-4">Network (IP:Port)</th>
+<th class="px-6 py-4">Modalidade</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4 text-right">Ações</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-bold text-slate-900 dark:text-white">Siemens Magnetom Vida</span>
+<span class="text-xs text-primary font-mono font-semibold">MR_UNIT_CENTRAL</span>
+</div>
+</td>
+<td class="px-6 py-4 text-slate-500 font-mono">192.168.10.45:104</td>
+<td class="px-6 py-4"><span class="px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold">MR</span></td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-emerald-500"></div>
+<span class="text-slate-600 dark:text-slate-300">Ativo</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-3">
+<button class="flex items-center gap-1 text-primary text-xs font-bold hover:underline">
+<span class="material-symbols-outlined text-sm">wifi_tethering</span> Testar
+                                            </button>
+<button class="text-slate-400 hover:text-primary">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-bold text-slate-900 dark:text-white">GE Revolution CT</span>
+<span class="text-xs text-primary font-mono font-semibold">CT_UNIT_REVOL</span>
+</div>
+</td>
+<td class="px-6 py-4 text-slate-500 font-mono">192.168.10.46:104</td>
+<td class="px-6 py-4"><span class="px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold">CT</span></td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-emerald-500"></div>
+<span class="text-slate-600 dark:text-slate-300">Ativo</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-3">
+<button class="flex items-center gap-1 text-primary text-xs font-bold hover:underline">
+<span class="material-symbols-outlined text-sm">wifi_tethering</span> Testar
+                                            </button>
+<button class="text-slate-400 hover:text-primary">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</main>
+<!-- Placeholder Modal: Create Equipment -->
+<div class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+<div class="bg-white dark:bg-slate-900 w-full max-w-xl rounded-xl shadow-2xl overflow-hidden border border-slate-200 dark:border-slate-800">
+<div class="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center bg-slate-50 dark:bg-slate-800/50">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Novo Equipamento DICOM</h3>
+<button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="p-6">
+<form class="space-y-4">
+<div class="grid grid-cols-2 gap-4">
+<div class="col-span-2">
+<label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Nome do Equipamento *</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:border-primary focus:ring-primary" placeholder="Ex: RM Sala 01" type="text"/>
+</div>
+<div class="col-span-2">
+<label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">AE Title * (Máx 16, Alfanumérico)</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:border-primary focus:ring-primary font-mono" maxlength="16" placeholder="AE_TITLE_EQUIP" type="text"/>
+<p class="text-[10px] text-slate-400 mt-1 italic">Deve ser único na unidade.</p>
+</div>
+<div>
+<label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Endereço IP *</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:border-primary focus:ring-primary font-mono" placeholder="0.0.0.0" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Porta *</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:border-primary focus:ring-primary font-mono" type="number" value="104"/>
+</div>
+<div>
+<label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Modality Type *</label>
+<select class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:border-primary focus:ring-primary">
+<option value="">Selecione...</option>
+<option value="MR">MR - Ressonância Magnética</option>
+<option value="CT">CT - Tomografia Computadorizada</option>
+<option value="US">US - Ultrassom</option>
+<option value="DX">DX - Digital Radiography</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Fabricante</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:border-primary focus:ring-primary" placeholder="Siemens, GE, Philips..." type="text"/>
+</div>
+<div class="col-span-2">
+<label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Status</label>
+<div class="flex items-center gap-4 mt-2">
+<label class="flex items-center gap-2 cursor-pointer">
+<input checked="" class="text-primary focus:ring-primary" name="status" type="radio"/>
+<span class="text-sm">Ativo</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="text-primary focus:ring-primary" name="status" type="radio"/>
+<span class="text-sm">Inativo</span>
+</label>
+</div>
+</div>
+</div>
+<div class="flex justify-end gap-3 pt-6">
+<button class="px-6 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-bold hover:bg-slate-200 transition-colors" type="button">Cancelar</button>
+<button class="px-6 py-2 rounded-lg bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors" type="submit">Salvar Equipamento</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

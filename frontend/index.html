@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Themis Health - Apresentação Novo PACS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "primary": "#0f66bd",
+        "primary-dark": "#0a4f94",
+        "background-light": "#f6f7f8",
+        "background-dark": "#101922",
+      },
+      fontFamily: {
+        "display": ["Manrope", "sans-serif"]
+      },
+      borderRadius: {
+        "DEFAULT": "0.25rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "2xl": "1rem",
+        "full": "9999px"
+      },
+    },
+  },
+}
+</script>
+<style>
+body { font-family: 'Manrope', sans-serif; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+.row-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+.row-scroll::-webkit-scrollbar { height: 6px; }
+.row-scroll::-webkit-scrollbar-track { background: transparent; }
+.row-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+.row-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+.swipe-hint {
+  animation: swipe-fade 0.4s ease-out forwards;
+}
+@keyframes swipe-fade {
+  0% { opacity: 0.8; transform: translateX(0); }
+  100% { opacity: 0; transform: translateX(var(--swipe-dir, -30px)); }
+}
+
+.card-thumb {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-thumb:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 40px -12px rgba(15, 102, 189, 0.25);
+}
+.card-thumb:hover .card-overlay {
+  opacity: 1;
+}
+.card-thumb:hover .card-label {
+  color: #0f66bd;
+}
+
+#board-view { transition: opacity 0.3s ease; }
+#detail-view { transition: opacity 0.3s ease; }
+
+.fade-in { opacity: 1 !important; }
+.fade-out { opacity: 0 !important; pointer-events: none !important; }
+
+.module-badge {
+  animation: pulse-subtle 3s ease-in-out infinite;
+}
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.loading-spinner {
+  border: 3px solid #e2e8f0;
+  border-top-color: #0f66bd;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.search-highlight {
+  outline: 2px solid #0f66bd;
+  outline-offset: 2px;
+}
+</style>
+</head>
+<body class="bg-background-light min-h-screen flex flex-col font-display text-slate-900 antialiased">
+
+<!-- ========== BOARD VIEW ========== -->
+<div id="board-view" class="flex flex-col min-h-screen">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-10 py-4 flex items-center justify-between gap-6">
+      <div class="flex items-center gap-4">
+        <div class="size-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/20">
+          <span class="material-symbols-outlined !text-2xl">health_and_safety</span>
+        </div>
+        <div>
+          <h1 class="text-xl font-extrabold tracking-tight text-slate-900">Themis Health</h1>
+          <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Apresentação Novo PACS</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="relative hidden sm:block">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
+          <input
+            id="search-input"
+            type="text"
+            placeholder="Buscar tela..."
+            class="pl-10 pr-4 py-2.5 w-72 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-400"
+          />
+        </div>
+        <div class="flex items-center gap-2 text-xs font-bold text-slate-400 bg-slate-50 px-3 py-2 rounded-lg border border-slate-100">
+          <span class="material-symbols-outlined text-base">grid_view</span>
+          <span id="total-count">35 telas</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Board Content -->
+  <main class="flex-1 max-w-[1600px] mx-auto w-full px-6 lg:px-10 py-8 space-y-10">
+
+    <!-- Fileiras will be rendered by JS -->
+    <div id="board-container" class="space-y-10"></div>
+
+    <!-- Keyboard Hints -->
+    <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 py-8 text-xs text-slate-400 font-medium border-t border-slate-100 mt-8">
+      <span class="flex items-center gap-1.5">
+        <kbd class="px-2 py-0.5 bg-slate-100 border border-slate-200 rounded text-[10px] font-bold">Click</kbd>
+        Abrir tela
+      </span>
+      <span class="flex items-center gap-1.5">
+        <kbd class="px-2 py-0.5 bg-slate-100 border border-slate-200 rounded text-[10px] font-bold">Scroll</kbd>
+        Navegar fileira
+      </span>
+      <span class="flex items-center gap-1.5">
+        <kbd class="px-2 py-0.5 bg-slate-100 border border-slate-200 rounded text-[10px] font-bold">←</kbd>
+        <kbd class="px-2 py-0.5 bg-slate-100 border border-slate-200 rounded text-[10px] font-bold">→</kbd>
+        Anterior / Próximo
+      </span>
+      <span class="flex items-center gap-1.5">
+        <kbd class="px-2 py-0.5 bg-slate-100 border border-slate-200 rounded text-[10px] font-bold">Swipe</kbd>
+        Deslizar entre telas
+      </span>
+      <span class="flex items-center gap-1.5">
+        <kbd class="px-2 py-0.5 bg-slate-100 border border-slate-200 rounded text-[10px] font-bold">F</kbd>
+        Fullscreen
+      </span>
+      <span class="flex items-center gap-1.5">
+        <kbd class="px-2 py-0.5 bg-slate-100 border border-slate-200 rounded text-[10px] font-bold">Esc</kbd>
+        Voltar
+      </span>
+    </div>
+  </main>
+</div>
+
+<!-- ========== DETAIL VIEW ========== -->
+<div id="detail-view" class="fixed inset-0 z-[100] bg-background-light flex flex-col fade-out">
+
+  <!-- Detail Toolbar -->
+  <header class="h-14 bg-white border-b border-slate-200 shadow-sm flex items-center justify-between px-4 lg:px-6 shrink-0 z-10">
+    <div class="flex items-center gap-3">
+      <button id="btn-back" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors text-sm font-bold text-slate-600" title="Voltar ao Board (Esc)">
+        <span class="material-symbols-outlined text-lg">arrow_back</span>
+        <span class="hidden sm:inline">Board</span>
+      </button>
+      <div class="h-6 w-px bg-slate-200"></div>
+      <div class="flex items-center gap-2">
+        <span id="detail-module" class="text-xs font-bold text-primary uppercase tracking-wider"></span>
+        <span class="material-symbols-outlined text-slate-300 text-xs">chevron_right</span>
+        <span id="detail-title" class="text-sm font-bold text-slate-900 truncate max-w-[300px]"></span>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <div class="hidden sm:flex items-center gap-1 bg-slate-50 rounded-lg px-3 py-1.5 border border-slate-100 mr-2">
+        <span id="detail-counter" class="text-xs font-bold text-slate-500"></span>
+      </div>
+      <button id="btn-prev" class="size-9 flex items-center justify-center rounded-lg hover:bg-slate-100 transition-colors text-slate-500" title="Anterior (←)">
+        <span class="material-symbols-outlined">chevron_left</span>
+      </button>
+      <button id="btn-next" class="size-9 flex items-center justify-center rounded-lg hover:bg-slate-100 transition-colors text-slate-500" title="Próximo (→)">
+        <span class="material-symbols-outlined">chevron_right</span>
+      </button>
+      <div class="h-6 w-px bg-slate-200 mx-1"></div>
+      <button id="btn-fullscreen" class="size-9 flex items-center justify-center rounded-lg hover:bg-slate-100 transition-colors text-slate-500" title="Fullscreen (F)">
+        <span class="material-symbols-outlined">fullscreen</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Loading Spinner -->
+  <div id="iframe-loader" class="absolute inset-0 top-14 flex items-center justify-center bg-background-light z-20 transition-opacity duration-300">
+    <div class="flex flex-col items-center gap-4">
+      <div class="loading-spinner"></div>
+      <p class="text-sm font-medium text-slate-400">Carregando tela...</p>
+    </div>
+  </div>
+
+  <!-- Iframe -->
+  <iframe
+    id="screen-iframe"
+    class="flex-1 w-full border-0 bg-white"
+    sandbox="allow-scripts allow-same-origin"
+  ></iframe>
+</div>
+
+<script>
+const MODULES = [
+  {
+    id: "auth",
+    title: "Autenticação",
+    icon: "lock",
+    color: "emerald",
+    screens: [
+      { folder: "p01_login_unificado", label: "Login Unificado" },
+      { folder: "p02_recuperar_senha", label: "Recuperar Senha" },
+      { folder: "p03_reset_de_senha", label: "Reset de Senha" },
+      { folder: "ativa_o_de_conta_convite", label: "Ativação de Conta (Convite)" },
+      { folder: "seguran_a_2fa", label: "Segurança 2FA" },
+    ]
+  },
+  {
+    id: "platform",
+    title: "Plataforma / Backoffice",
+    icon: "dashboard_customize",
+    color: "blue",
+    screens: [
+      { folder: "p06_dashboard_principal", label: "Dashboard Principal" },
+      { folder: "listagem_de_organiza_es", label: "Listagem de Organizações" },
+      { folder: "nova_editar_organiza_o", label: "Nova/Editar Organização" },
+      { folder: "detalhe_da_organiza_o", label: "Detalhe da Organização" },
+      { folder: "listagem_de_unidades", label: "Listagem de Unidades" },
+      { folder: "nova_editar_unidade", label: "Nova/Editar Unidade" },
+      { folder: "detalhe_da_unidade", label: "Detalhe da Unidade" },
+      { folder: "listagem_de_contratos", label: "Listagem de Contratos" },
+      { folder: "novo_editar_contrato", label: "Novo/Editar Contrato" },
+      { folder: "detalhe_do_contrato", label: "Detalhe do Contrato" },
+      { folder: "listagem_de_usu_rios", label: "Listagem de Usuários" },
+      { folder: "convidar_usu_rio", label: "Convidar Usuário" },
+      { folder: "detalhe_do_usu_rio", label: "Detalhe do Usuário" },
+      { folder: "meu_perfil", label: "Meu Perfil" },
+      { folder: "auditoria_e_logs", label: "Auditoria e Logs" },
+    ]
+  },
+  {
+    id: "ris",
+    title: "RIS + Portal do Paciente + Portal do Médico",
+    icon: "clinical_notes",
+    color: "amber",
+    screens: [
+      { folder: "pacientes_ris", label: "Pacientes" },
+      { folder: "novo_editar_paciente", label: "Novo/Editar Paciente" },
+      { folder: "agendamentos_ris", label: "Agendamentos" },
+      { folder: "novo_agendamento_wizard", label: "Novo Agendamento (Wizard)" },
+      { folder: "detalhe_do_agendamento_ris", label: "Detalhe do Agendamento" },
+      { folder: "worklist_do_t_cnico_ris", label: "Worklist do Técnico" },
+      { folder: "worklist_de_laudos_ris", label: "Worklist de Laudos" },
+      { folder: "dashboard_de_sla_ris", label: "Dashboard de SLA" },
+      { folder: "tipos_de_exame_configura_es", label: "Tipos de Exame (Configurações)" },
+      { folder: "portal_do_m_dico_in_cio", label: "Portal do Médico - Início" },
+      { folder: "portal_do_m_dico_detalhes_do_exame", label: "Portal do Médico - Detalhes do Exame" },
+      { folder: "portal_do_paciente_autentica_o", label: "Portal do Paciente - Autenticação" },
+      { folder: "portal_do_paciente_hist_rico_de_exames", label: "Portal do Paciente - Histórico de Exames" },
+      { folder: "portal_do_paciente_resultado_do_exame", label: "Portal do Paciente - Resultado do Exame" },
+    ]
+  },
+  {
+    id: "pacs",
+    title: "PACS",
+    icon: "radiology",
+    color: "violet",
+    screens: [
+      { folder: "cockpit_de_laudo", label: "Cockpit de Laudo" },
+      { folder: "monitoramento_gateway_dicom", label: "Monitoramento Gateway DICOM" },
+    ]
+  },
+];
+
+const COLOR_MAP = {
+  emerald: { bg: "bg-emerald-50", border: "border-emerald-200", text: "text-emerald-700", icon_bg: "bg-emerald-100", badge: "bg-emerald-100 text-emerald-700" },
+  blue:    { bg: "bg-blue-50",    border: "border-blue-200",    text: "text-blue-700",    icon_bg: "bg-blue-100",    badge: "bg-blue-100 text-blue-700" },
+  amber:   { bg: "bg-amber-50",   border: "border-amber-200",   text: "text-amber-700",   icon_bg: "bg-amber-100",   badge: "bg-amber-100 text-amber-700" },
+  violet:  { bg: "bg-violet-50",  border: "border-violet-200",  text: "text-violet-700",  icon_bg: "bg-violet-100",  badge: "bg-violet-100 text-violet-700" },
+};
+
+const allScreens = [];
+MODULES.forEach(mod => {
+  mod.screens.forEach(scr => {
+    allScreens.push({ ...scr, moduleId: mod.id, moduleTitle: mod.title });
+  });
+});
+
+let currentIndex = -1;
+
+// ---- RENDER BOARD ----
+function renderBoard() {
+  const container = document.getElementById("board-container");
+  container.innerHTML = "";
+
+  MODULES.forEach((mod, modIdx) => {
+    const colors = COLOR_MAP[mod.color];
+    const section = document.createElement("section");
+    section.className = "space-y-4";
+    section.setAttribute("data-module", mod.id);
+
+    section.innerHTML = `
+      <div class="flex items-center gap-4 mb-2">
+        <div class="flex items-center gap-3">
+          <div class="size-10 ${colors.icon_bg} rounded-xl flex items-center justify-center ${colors.text}">
+            <span class="material-symbols-outlined !text-2xl">${mod.icon}</span>
+          </div>
+          <div>
+            <h2 class="text-lg font-extrabold tracking-tight text-slate-900">Fileira ${modIdx + 1} — ${mod.title}</h2>
+            <p class="text-xs text-slate-400 font-medium">${mod.screens.length} tela${mod.screens.length !== 1 ? 's' : ''}</p>
+          </div>
+        </div>
+        <span class="module-badge ${colors.badge} text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">${mod.id}</span>
+      </div>
+      <div class="row-scroll flex gap-5 overflow-x-auto pb-4 -mx-2 px-2" data-row="${mod.id}"></div>
+    `;
+
+    const row = section.querySelector(`[data-row="${mod.id}"]`);
+
+    mod.screens.forEach(scr => {
+      const globalIdx = allScreens.findIndex(s => s.folder === scr.folder);
+      const card = document.createElement("button");
+      card.className = "card-thumb flex-shrink-0 w-[280px] bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm cursor-pointer text-left group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2";
+      card.setAttribute("data-folder", scr.folder);
+      card.setAttribute("data-index", globalIdx);
+      card.setAttribute("data-label", scr.label.toLowerCase());
+
+      card.innerHTML = `
+        <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
+          <img
+            src="telas/${scr.folder}/screen.png"
+            alt="${scr.label}"
+            class="w-full h-full object-cover object-top"
+            loading="lazy"
+          />
+          <div class="card-overlay absolute inset-0 bg-primary/10 backdrop-blur-[1px] flex items-center justify-center opacity-0 transition-opacity duration-200">
+            <div class="size-12 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
+              <span class="material-symbols-outlined text-primary !text-2xl">open_in_new</span>
+            </div>
+          </div>
+          <div class="absolute top-2 right-2 ${colors.badge} text-[9px] font-bold px-2 py-0.5 rounded-full opacity-80">
+            ${globalIdx + 1}/${allScreens.length}
+          </div>
+        </div>
+        <div class="px-4 py-3">
+          <p class="card-label text-sm font-bold text-slate-800 truncate transition-colors">${scr.label}</p>
+          <p class="text-[11px] text-slate-400 font-medium mt-0.5 truncate">${scr.folder}</p>
+        </div>
+      `;
+
+      card.addEventListener("click", () => openDetail(globalIdx));
+      row.appendChild(card);
+    });
+
+    container.appendChild(section);
+  });
+}
+
+// ---- DETAIL VIEW ----
+function openDetail(index) {
+  if (index < 0 || index >= allScreens.length) return;
+  currentIndex = index;
+  const scr = allScreens[index];
+
+  document.getElementById("detail-module").textContent = scr.moduleTitle;
+  document.getElementById("detail-title").textContent = scr.label;
+  document.getElementById("detail-counter").textContent = `${index + 1} / ${allScreens.length}`;
+
+  const loader = document.getElementById("iframe-loader");
+  loader.style.opacity = "1";
+  loader.style.pointerEvents = "auto";
+
+  const iframe = document.getElementById("screen-iframe");
+  iframe.onload = () => {
+    setTimeout(() => {
+      loader.style.opacity = "0";
+      loader.style.pointerEvents = "none";
+    }, 150);
+  };
+  iframe.src = `telas/${scr.folder}/code.html`;
+
+  document.getElementById("board-view").classList.add("fade-out");
+  document.getElementById("detail-view").classList.remove("fade-out");
+  document.getElementById("detail-view").classList.add("fade-in");
+
+  updateNavButtons();
+  history.pushState({ index }, "", `#${scr.folder}`);
+}
+
+function closeDetail() {
+  document.getElementById("detail-view").classList.remove("fade-in");
+  document.getElementById("detail-view").classList.add("fade-out");
+  document.getElementById("board-view").classList.remove("fade-out");
+
+  const iframe = document.getElementById("screen-iframe");
+  iframe.src = "about:blank";
+  currentIndex = -1;
+  history.pushState(null, "", window.location.pathname);
+}
+
+function goNext() {
+  if (currentIndex < allScreens.length - 1) openDetail(currentIndex + 1);
+}
+
+function goPrev() {
+  if (currentIndex > 0) openDetail(currentIndex - 1);
+}
+
+function updateNavButtons() {
+  document.getElementById("btn-prev").disabled = currentIndex <= 0;
+  document.getElementById("btn-prev").classList.toggle("opacity-30", currentIndex <= 0);
+  document.getElementById("btn-next").disabled = currentIndex >= allScreens.length - 1;
+  document.getElementById("btn-next").classList.toggle("opacity-30", currentIndex >= allScreens.length - 1);
+}
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.getElementById("detail-view").requestFullscreen().catch(() => {});
+  } else {
+    document.exitFullscreen();
+  }
+}
+
+// ---- SEARCH ----
+function handleSearch(query) {
+  const q = query.toLowerCase().trim();
+  const cards = document.querySelectorAll("[data-folder]");
+  const sections = document.querySelectorAll("[data-module]");
+  let visibleCount = 0;
+
+  if (!q) {
+    cards.forEach(c => { c.style.display = ""; c.classList.remove("search-highlight"); });
+    sections.forEach(s => s.style.display = "");
+    document.getElementById("total-count").textContent = `${allScreens.length} telas`;
+    return;
+  }
+
+  const modulesWithVisible = new Set();
+
+  cards.forEach(card => {
+    const label = card.getAttribute("data-label");
+    const folder = card.getAttribute("data-folder");
+    const match = label.includes(q) || folder.includes(q);
+    card.style.display = match ? "" : "none";
+    card.classList.toggle("search-highlight", match);
+    if (match) {
+      visibleCount++;
+      const section = card.closest("[data-module]");
+      if (section) modulesWithVisible.add(section.getAttribute("data-module"));
+    }
+  });
+
+  sections.forEach(s => {
+    s.style.display = modulesWithVisible.has(s.getAttribute("data-module")) ? "" : "none";
+  });
+
+  document.getElementById("total-count").textContent = `${visibleCount} de ${allScreens.length}`;
+}
+
+// ---- KEYBOARD ----
+document.addEventListener("keydown", (e) => {
+  if (e.target.tagName === "INPUT") return;
+
+  const inDetail = currentIndex >= 0;
+
+  switch (e.key) {
+    case "ArrowRight":
+      if (inDetail) { e.preventDefault(); goNext(); }
+      break;
+    case "ArrowLeft":
+      if (inDetail) { e.preventDefault(); goPrev(); }
+      break;
+    case "Escape":
+      if (inDetail) { e.preventDefault(); closeDetail(); }
+      break;
+    case "f":
+    case "F":
+      if (inDetail) { e.preventDefault(); toggleFullscreen(); }
+      break;
+    case "Home":
+      if (inDetail) { e.preventDefault(); closeDetail(); }
+      break;
+  }
+});
+
+// ---- HORIZONTAL SCROLL ON ROWS (trackpad / Magic Mouse) ----
+function enableRowHorizontalScroll() {
+  document.querySelectorAll(".row-scroll").forEach(row => {
+    row.addEventListener("wheel", (e) => {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      if (e.deltaY === 0) return;
+
+      const maxScroll = row.scrollWidth - row.clientWidth;
+      if (maxScroll <= 0) return;
+
+      const atStart = row.scrollLeft <= 0 && e.deltaY < 0;
+      const atEnd = row.scrollLeft >= maxScroll - 1 && e.deltaY > 0;
+      if (atStart || atEnd) return;
+
+      e.preventDefault();
+      row.scrollLeft += e.deltaY;
+    }, { passive: false });
+  });
+}
+
+// ---- SWIPE GESTURE ON DETAIL VIEW (trackpad / touch) ----
+let swipeStartX = 0;
+let swipeStartY = 0;
+let swiping = false;
+
+function setupSwipeNavigation() {
+  const detailView = document.getElementById("detail-view");
+
+  detailView.addEventListener("pointerdown", (e) => {
+    if (e.target.closest("header")) return;
+    swipeStartX = e.clientX;
+    swipeStartY = e.clientY;
+    swiping = true;
+  });
+
+  detailView.addEventListener("pointerup", (e) => {
+    if (!swiping) return;
+    swiping = false;
+    const dx = e.clientX - swipeStartX;
+    const dy = e.clientY - swipeStartY;
+    if (Math.abs(dx) < 80 || Math.abs(dy) > Math.abs(dx) * 0.6) return;
+    if (dx < 0) goNext();
+    else goPrev();
+  });
+
+  detailView.addEventListener("pointercancel", () => { swiping = false; });
+
+  let wheelAccum = 0;
+  let wheelTimeout = null;
+
+  detailView.addEventListener("wheel", (e) => {
+    if (currentIndex < 0) return;
+    if (e.target.closest("header")) return;
+
+    const isHorizontal = Math.abs(e.deltaX) > Math.abs(e.deltaY);
+    const delta = isHorizontal ? e.deltaX : 0;
+    if (delta === 0) return;
+
+    e.preventDefault();
+    wheelAccum += delta;
+
+    clearTimeout(wheelTimeout);
+    wheelTimeout = setTimeout(() => { wheelAccum = 0; }, 300);
+
+    const threshold = 120;
+    if (Math.abs(wheelAccum) >= threshold) {
+      if (wheelAccum > 0) goNext();
+      else goPrev();
+      wheelAccum = 0;
+    }
+  }, { passive: false });
+}
+
+// ---- BUTTON BINDINGS ----
+document.getElementById("btn-back").addEventListener("click", closeDetail);
+document.getElementById("btn-prev").addEventListener("click", goPrev);
+document.getElementById("btn-next").addEventListener("click", goNext);
+document.getElementById("btn-fullscreen").addEventListener("click", toggleFullscreen);
+document.getElementById("search-input").addEventListener("input", (e) => handleSearch(e.target.value));
+
+// ---- POPSTATE (browser back) ----
+window.addEventListener("popstate", (e) => {
+  if (e.state && typeof e.state.index === "number") {
+    openDetail(e.state.index);
+  } else {
+    closeDetail();
+  }
+});
+
+// ---- INIT ----
+window.addEventListener("DOMContentLoaded", () => {
+  renderBoard();
+  enableRowHorizontalScroll();
+  setupSwipeNavigation();
+
+  const hash = window.location.hash.replace("#", "");
+  if (hash) {
+    const idx = allScreens.findIndex(s => s.folder === hash);
+    if (idx >= 0) openDetail(idx);
+  }
+});
+</script>
+</body>
+</html>

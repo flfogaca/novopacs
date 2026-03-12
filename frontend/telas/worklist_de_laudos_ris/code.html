@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Themis Health - Worklist de Laudos</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f66bd",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 flex flex-col bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 shrink-0">
+<div class="p-6 flex items-center gap-3">
+<div class="bg-primary size-10 rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-2xl">medical_services</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-slate-900 dark:text-white text-base font-bold leading-none">Themis Health</h1>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium mt-1">RIS / Workflow</p>
+</div>
+</div>
+<nav class="flex-1 px-4 py-2 space-y-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-primary/10 text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined fill-[1]">assignment</span>
+<span class="text-sm font-bold">Worklist de Laudos</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-sm font-medium">Pacientes</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Configurações</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3 px-3 py-2">
+<div class="size-8 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Profile photo of a male radiologist" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8GfXPa3hDXzPUXuSXLy_fwj0q0pWDiO4kC7z-QmuC_8tk-zJuDjF0cDsrnB5fULoS_k0XvMe2-O2f400k6PmJwLtKH78mZeuMFbtYvGh2nntE7d0DdHl-vsONXw7lvY_W9mhRFTqmVJVf1jmq4Bg7SbUVRtrxMVT6i24KaiWCqMQzLvYdBdWmC250lyl0kR4CDODo8750q8P_Mndjur2NvHv2qP1aZkcuKTPVW2GFe_ldKljZiX5zrec-GfSS8mnwRntRMo8tOOE"/>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-bold truncate">Dr. Ricardo S.</p>
+<p class="text-xs text-slate-500 truncate uppercase">Radiologist</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-xl cursor-pointer">logout</span>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col min-w-0 overflow-hidden">
+<!-- Header -->
+<header class="h-16 flex items-center justify-between px-8 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shrink-0">
+<div class="flex items-center gap-4">
+<h2 class="text-lg font-bold">Worklist de Laudos</h2>
+<div class="flex items-center gap-2 px-3 py-1 bg-primary/5 rounded-full border border-primary/20">
+<span class="size-2 bg-primary rounded-full animate-pulse"></span>
+<span class="text-primary text-[10px] font-bold uppercase tracking-wider">Ao Vivo</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<label class="relative block">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3">
+<span class="material-symbols-outlined text-slate-400 text-xl">search</span>
+</span>
+<input class="placeholder:text-slate-400 block bg-slate-50 dark:bg-slate-800 w-64 border-none rounded-lg py-2 pl-10 pr-3 text-sm focus:ring-2 focus:ring-primary" name="search" placeholder="Buscar paciente ou exame..." type="text"/>
+</label>
+<button class="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-primary/90 transition-all">
+<span class="material-symbols-outlined text-sm">refresh</span>
+                        Atualizar
+                    </button>
+<div class="w-px h-6 bg-slate-200 dark:bg-slate-700 mx-1"></div>
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-900"></span>
+</button>
+</div>
+</header>
+<!-- Content Area -->
+<div class="flex-1 overflow-y-auto p-6 space-y-6">
+<!-- Filters -->
+<div class="flex flex-wrap gap-3">
+<div class="group relative">
+<button class="flex items-center gap-2 px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-sm font-medium hover:border-primary transition-colors">
+<span class="text-slate-500 font-normal">Modalidade:</span> Todas
+                            <span class="material-symbols-outlined text-lg text-slate-400">expand_more</span>
+</button>
+</div>
+<div class="group relative">
+<button class="flex items-center gap-2 px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-sm font-medium hover:border-primary transition-colors">
+<span class="text-slate-500 font-normal">Prioridade:</span> Alta / Urgente
+                            <span class="material-symbols-outlined text-lg text-slate-400">expand_more</span>
+</button>
+</div>
+<div class="group relative">
+<button class="flex items-center gap-2 px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-sm font-medium hover:border-primary transition-colors">
+<span class="text-slate-500 font-normal">Período:</span> Hoje
+                            <span class="material-symbols-outlined text-lg text-slate-400">calendar_month</span>
+</button>
+</div>
+<div class="group relative">
+<button class="flex items-center gap-2 px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-sm font-medium hover:border-primary transition-colors">
+<span class="text-slate-500 font-normal">Unidade:</span> Central
+                            <span class="material-symbols-outlined text-lg text-slate-400">location_on</span>
+</button>
+</div>
+</div>
+<!-- Stats Cards -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Aguardando</span>
+<span class="material-symbols-outlined text-slate-400">hourglass_empty</span>
+</div>
+<div class="flex items-end gap-2">
+<span class="text-2xl font-bold">12</span>
+<span class="text-xs text-green-500 font-bold mb-1">+2%</span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Meus Laudos</span>
+<span class="material-symbols-outlined text-primary">edit_note</span>
+</div>
+<div class="flex items-end gap-2">
+<span class="text-2xl font-bold">04</span>
+<span class="text-xs text-slate-400 font-bold mb-1">estável</span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-primary/20 bg-primary/5">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold text-primary uppercase tracking-wider">SLA Crítico</span>
+<span class="material-symbols-outlined text-red-500 animate-pulse">warning</span>
+</div>
+<div class="flex items-end gap-2">
+<span class="text-2xl font-bold text-red-500">02</span>
+<span class="text-xs text-red-400 font-bold mb-1">urgente</span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Finalizados (Hoje)</span>
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+</div>
+<div class="flex items-end gap-2">
+<span class="text-2xl font-bold">18</span>
+<span class="text-xs text-green-500 font-bold mb-1">+12%</span>
+</div>
+</div>
+</div>
+<!-- Table Container -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Paciente</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Exame / Modalidade</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase text-center">Data / Hora</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Unidade</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Prioridade</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase w-48">SLA</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase text-right">Ação</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<!-- Urgent Row -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-2 rounded-full bg-red-500"></div>
+<div class="flex flex-col">
+<span class="text-sm font-bold">João Silva Pereira</span>
+<span class="text-[10px] text-slate-500 uppercase tracking-tighter">ID: 98234-1</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-medium">Raio-X Tórax (PA)</span>
+<span class="text-xs text-slate-400">Modalidade: RX</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<div class="flex flex-col">
+<span class="text-sm font-medium">10/10/2023</span>
+<span class="text-xs text-slate-400">09:00</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-slate-100 dark:bg-slate-800">Unidade Norte</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-red-600 dark:text-red-400">
+<span class="material-symbols-outlined text-lg fill-[1]">emergency_home</span>
+<span class="text-xs font-bold uppercase">Urgente</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="space-y-1.5">
+<div class="flex items-center justify-between text-[10px] font-bold">
+<span class="text-red-500 uppercase">Restam: 15min</span>
+<span class="text-slate-400">95%</span>
+</div>
+<div class="w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-red-500 rounded-full" style="width: 95%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="bg-primary text-white text-xs font-bold py-1.5 px-4 rounded-lg hover:shadow-lg transition-all active:scale-95">
+                                            LAUDAR
+                                        </button>
+</td>
+</tr>
+<!-- Medium Priority Row -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-2 rounded-full bg-amber-500"></div>
+<div class="flex flex-col">
+<span class="text-sm font-bold">Maria Oliveira Souza</span>
+<span class="text-[10px] text-slate-500 uppercase tracking-tighter">ID: 87123-A</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-medium">Ressonância Magnética Encéfalo</span>
+<span class="text-xs text-slate-400">Modalidade: RM</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<div class="flex flex-col">
+<span class="text-sm font-medium">10/10/2023</span>
+<span class="text-xs text-slate-400">09:15</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-slate-100 dark:bg-slate-800">Unidade Sul</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-amber-600 dark:text-amber-400">
+<span class="material-symbols-outlined text-lg">priority_high</span>
+<span class="text-xs font-bold uppercase">Alta</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="space-y-1.5">
+<div class="flex items-center justify-between text-[10px] font-bold">
+<span class="text-amber-500 uppercase">Restam: 4h 20min</span>
+<span class="text-slate-400">45%</span>
+</div>
+<div class="w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-amber-500 rounded-full" style="width: 45%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="bg-primary text-white text-xs font-bold py-1.5 px-4 rounded-lg hover:shadow-lg transition-all active:scale-95">
+                                            LAUDAR
+                                        </button>
+</td>
+</tr>
+<!-- Unassigned Row -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer group bg-slate-50/50 dark:bg-slate-800/20">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-2 rounded-full bg-slate-300 dark:bg-slate-600"></div>
+<div class="flex flex-col">
+<span class="text-sm font-bold">Carlos Eduardo Souza</span>
+<span class="text-[10px] text-slate-500 uppercase tracking-tighter">ID: 99111-X</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-medium">Tomografia Computadorizada Abdome</span>
+<span class="text-xs text-slate-400">Modalidade: TC</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<div class="flex flex-col">
+<span class="text-sm font-medium">10/10/2023</span>
+<span class="text-xs text-slate-400">09:30</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-slate-100 dark:bg-slate-800">Unidade Central</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-slate-400">
+<span class="material-symbols-outlined text-lg">check</span>
+<span class="text-xs font-bold uppercase">Normal</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="space-y-1.5">
+<div class="flex items-center justify-between text-[10px] font-bold">
+<span class="text-green-500 uppercase">Aguardando Início</span>
+<span class="text-slate-400">10%</span>
+</div>
+<div class="w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-green-500 rounded-full" style="width: 10%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-100 text-xs font-bold py-1.5 px-4 rounded-lg hover:bg-primary hover:text-white transition-all active:scale-95">
+                                            PEGAR
+                                        </button>
+</td>
+</tr>
+<!-- Normal Row Assigned -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-2 rounded-full bg-slate-300 dark:bg-slate-600"></div>
+<div class="flex flex-col">
+<span class="text-sm font-bold">Ana Costa Santos</span>
+<span class="text-[10px] text-slate-500 uppercase tracking-tighter">ID: 88722-B</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-medium">Ultrassom Abdominal Total</span>
+<span class="text-xs text-slate-400">Modalidade: US</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<div class="flex flex-col">
+<span class="text-sm font-medium">10/10/2023</span>
+<span class="text-xs text-slate-400">09:45</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-slate-100 dark:bg-slate-800">Unidade Norte</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1.5 text-slate-400">
+<span class="material-symbols-outlined text-lg">check</span>
+<span class="text-xs font-bold uppercase">Normal</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="space-y-1.5">
+<div class="flex items-center justify-between text-[10px] font-bold">
+<span class="text-green-500 uppercase">Restam: 22h</span>
+<span class="text-slate-400">2%</span>
+</div>
+<div class="w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-green-500 rounded-full" style="width: 2%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="bg-primary text-white text-xs font-bold py-1.5 px-4 rounded-lg hover:shadow-lg transition-all active:scale-95">
+                                            LAUDAR
+                                        </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Empty State (Hidden by default, used for logic demonstration) -->
+<div class="hidden flex flex-col items-center justify-center py-20 px-6 bg-white dark:bg-slate-900 rounded-xl border border-dashed border-slate-300 dark:border-slate-700">
+<div class="bg-slate-50 dark:bg-slate-800 size-16 rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-3xl text-slate-400">inbox</span>
+</div>
+<h3 class="text-lg font-bold">Nenhum laudo pendente no momento.</h3>
+<p class="text-slate-500 text-sm mt-1">Você está em dia com seus exames atribuídos.</p>
+</div>
+<!-- Bottom Bar / Footer Info -->
+<div class="flex items-center justify-between text-[11px] text-slate-500 font-medium px-2">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1">
+<span class="size-2 rounded-full bg-red-500"></span> Crítico
+                        </div>
+<div class="flex items-center gap-1">
+<span class="size-2 rounded-full bg-amber-500"></span> Atenção
+                        </div>
+<div class="flex items-center gap-1">
+<span class="size-2 rounded-full bg-green-500"></span> No Prazo
+                        </div>
+</div>
+<div>
+                        VERIFICAR: Atualização automática a cada 30 segundos.
+                    </div>
+</div>
+</div>
+</main>
+</div>
+<!-- Permission/Error States (Example Modals or Overlays) -->
+<!-- TODO: Implementar lógica de fallback para erro de conexão -->
+<!-- VERIFICAR: Se necessário avisar sobre exames bloqueados por outro radiologista -->
+</body></html>

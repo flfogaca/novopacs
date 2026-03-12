@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Convidar Usuário - Themis Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f66bd",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark px-6 md:px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-8 flex items-center justify-center bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined">health_and_safety</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight">Themis Health</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary py-1" href="#">Usuários</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Unidades</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Configurações</a>
+</nav>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-slate-200 dark:border-slate-700" data-alt="User profile avatar circle" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBmr5PICOvicIZRLbr3cwMYcg2hOF-z7NpYCIStoXaOGABp9GoIUvX9EBIM8iV3DKsVEQW-b_vqQOgVCRILjwoIWLzOoARFIykOOOBwCy6xFV2tlWN3RJVduWp9nVuWU9AjtrYGxPHSRQ2W3FcGbEPkQabVMnYi7oX46P1Yj_cqN2iZtvRA7lNgoy0jrvRuTFyqqDeBAYDXT81gJ-a_uv9DatGbEisgPFB6POyLMuyEPP-8b0BXGSI2Wrd9Z7uz5iqRtMNYpX8IFjo");'></div>
+</div>
+</header>
+<main class="flex flex-1 justify-center py-8">
+<div class="layout-content-container flex flex-col max-w-[960px] flex-1 px-4 md:px-10">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap items-center gap-2 mb-6">
+<a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">Plataforma</a>
+<span class="material-symbols-outlined text-slate-400 text-sm">chevron_right</span>
+<a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">Usuários</a>
+<span class="material-symbols-outlined text-slate-400 text-sm">chevron_right</span>
+<span class="text-primary text-sm font-bold">Convidar usuário</span>
+</div>
+<!-- Header Section -->
+<div class="flex flex-col gap-3 mb-8">
+<h1 class="text-slate-900 dark:text-slate-100 text-3xl font-extrabold leading-tight tracking-tight">Convidar novo usuário</h1>
+<div class="flex items-center gap-2 p-3 bg-primary/5 rounded-lg border border-primary/20">
+<span class="material-symbols-outlined text-primary text-xl">info</span>
+<p class="text-slate-700 dark:text-slate-300 text-sm font-normal">
+                                O usuário receberá um link de ativação via e-mail com validade de <strong>72 horas</strong>. O status inicial será <code>PENDING_ACTIVATION</code>.
+                            </p>
+</div>
+</div>
+<form class="space-y-8">
+<!-- Personal Information -->
+<section class="bg-white dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">person</span>
+                                Informações Pessoais
+                            </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-semibold">Nome completo*</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:ring-primary focus:border-primary text-base py-3" placeholder="Ex: Dr. João Silva" required="" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-semibold">E-mail Corporativo*</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:ring-primary focus:border-primary text-base py-3" placeholder="email@instituicao.com.br" required="" type="email"/>
+<p class="text-xs text-slate-500">O domínio deve ser compatível com as regras de SSO da organização.</p>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-semibold">Telefone</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:ring-primary focus:border-primary text-base py-3" placeholder="(00) 00000-0000" type="tel"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-semibold">Papel (Role)*</label>
+<select class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:ring-primary focus:border-primary text-base py-3">
+<option value="">Selecione um papel</option>
+<option value="ADMIN">Administrador de Unidade</option>
+<option value="RADIOLOGIST">Médico Radiologista</option>
+<option value="TECHNICIAN">Técnico de Radiologia</option>
+<option value="RECEPTIONIST">Recepcionista</option>
+</select>
+<p class="text-xs text-amber-600 font-medium">Você não pode atribuir um papel superior ao seu atual.</p>
+</div>
+</div>
+</section>
+<!-- Units Scope -->
+<section class="bg-white dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">domain</span>
+                                Escopo de Unidades
+                            </h2>
+<div class="flex flex-col gap-4">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-semibold">Selecione as Unidades de Atendimento*</label>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<label class="flex items-center gap-3 p-3 border border-slate-200 dark:border-slate-700 rounded-lg cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<input class="rounded text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
+<span class="text-sm font-medium">Unidade Central - São Paulo</span>
+</label>
+<label class="flex items-center gap-3 p-3 border border-slate-200 dark:border-slate-700 rounded-lg cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<input class="rounded text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
+<span class="text-sm font-medium">Hospital das Clínicas Norte</span>
+</label>
+<label class="flex items-center gap-3 p-3 border border-slate-200 dark:border-slate-700 rounded-lg cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<input class="rounded text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
+<span class="text-sm font-medium">Centro de Diagnóstico Campinas</span>
+</label>
+<label class="flex items-center gap-3 p-3 border border-slate-200 dark:border-slate-700 rounded-lg cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<input class="rounded text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
+<span class="text-sm font-medium">Unidade Móvel Rádio-Rio</span>
+</label>
+</div>
+</div>
+</section>
+<!-- Radiologist Specific Data -->
+<section class="bg-primary/5 p-6 rounded-xl border border-primary/20 shadow-sm">
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">clinical_notes</span>
+                                Dados do Radiologista
+                            </h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="flex flex-col gap-2">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-semibold">CRM*</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:ring-primary focus:border-primary text-base py-3" placeholder="000000-SP" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-semibold">UF CRM*</label>
+<select class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:ring-primary focus:border-primary text-base py-3">
+<option value="SP">São Paulo</option>
+<option value="RJ">Rio de Janeiro</option>
+<option value="MG">Minas Gerais</option>
+<option value="RS">Rio Grande do Sul</option>
+</select>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-semibold">Especialidade</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:ring-primary focus:border-primary text-base py-3" placeholder="Ex: Neurorradiologia" type="text"/>
+</div>
+</div>
+</section>
+<!-- Form Actions -->
+<div class="flex flex-col-reverse sm:flex-row items-center justify-end gap-4 pt-6 border-t border-slate-200 dark:border-slate-800">
+<button class="w-full sm:w-auto px-8 py-3 rounded-lg text-slate-600 dark:text-slate-300 font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" type="button">
+                                Cancelar
+                            </button>
+<button class="w-full sm:w-auto px-8 py-3 rounded-lg bg-primary text-white font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all flex items-center justify-center gap-2" type="submit">
+<span class="material-symbols-outlined text-lg">send</span>
+                                Enviar convite
+                            </button>
+</div>
+</form>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-auto py-8 px-10 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark text-center">
+<p class="text-slate-500 text-xs">Themis Health - Gestão Hospitalar e Diagnóstico © 2024</p>
+</footer>
+</div>
+</div>
+</body></html>

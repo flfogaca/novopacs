@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Themis Health - Cockpit de Laudo</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f66bd",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .editor-min-h { min-height: 400px; }
+        .viewer-bg { background-color: #000; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-hidden h-screen flex flex-col">
+<!-- Header Fixo -->
+<header class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-6 py-3 h-16 shrink-0">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-3xl">health_and_safety</span>
+<div class="flex flex-col">
+<h1 class="text-sm font-bold leading-none uppercase tracking-wider">Themis Health</h1>
+<p class="text-[10px] font-medium opacity-70">RIS / LAUDOS</p>
+</div>
+</div>
+<div class="h-8 w-px bg-slate-200 dark:border-slate-700 mx-2"></div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="text-base font-bold">JOÃO SILVA</span>
+<span class="text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded font-bold uppercase">Draft</span>
+</div>
+<p class="text-xs text-slate-500 flex gap-3">
+<span><strong>CPF:</strong> 123.456.789-00</span>
+<span><strong>Accession:</strong> RIS-9876543</span>
+<span><strong>Modalidade:</strong> RM</span>
+</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex flex-col items-end mr-4">
+<span class="text-[10px] text-slate-400 uppercase font-semibold">Autosave</span>
+<span class="text-xs text-slate-500 font-medium italic">Salvo há 5s</span>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 rounded-lg text-sm font-bold transition-colors">
+<span class="material-symbols-outlined text-sm">save</span>
+                Salvar
+            </button>
+<button class="flex items-center gap-2 px-6 py-2 bg-primary text-white hover:bg-primary/90 rounded-lg text-sm font-bold transition-colors">
+<span class="material-symbols-outlined text-sm">border_color</span>
+                Assinar
+            </button>
+<div class="h-8 w-px bg-slate-200 dark:border-slate-700 mx-1"></div>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+<button class="p-2 hover:bg-red-50 text-slate-400 hover:text-red-600 rounded-lg transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</header>
+<!-- Main Content Grid -->
+<main class="flex-1 grid grid-cols-12 overflow-hidden bg-slate-50 dark:bg-slate-950">
+<!-- Coluna 1: Contexto Clínico (25%) -->
+<aside class="col-span-3 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col overflow-hidden">
+<div class="p-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+<h3 class="text-sm font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">clinical_notes</span>
+                    Contexto Clínico
+                </h3>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-6 custom-scrollbar">
+<!-- Dados do Paciente -->
+<section>
+<label class="text-[10px] font-bold uppercase text-slate-400 tracking-widest block mb-2">Dados do Paciente</label>
+<div class="space-y-2 bg-slate-50 dark:bg-slate-800/50 p-3 rounded-lg border border-slate-100 dark:border-slate-800">
+<div class="flex justify-between text-xs">
+<span class="text-slate-500">Idade:</span>
+<span class="font-semibold">45 anos</span>
+</div>
+<div class="flex justify-between text-xs">
+<span class="text-slate-500">Sexo:</span>
+<span class="font-semibold">Masculino</span>
+</div>
+<div class="flex justify-between text-xs">
+<span class="text-slate-500">Peso:</span>
+<span class="font-semibold">82 kg</span>
+</div>
+</div>
+</section>
+<!-- Indicação Clínica -->
+<section>
+<label class="text-[10px] font-bold uppercase text-slate-400 tracking-widest block mb-2">Indicação Clínica</label>
+<p class="text-xs leading-relaxed text-slate-700 dark:text-slate-300 italic bg-blue-50/50 dark:bg-primary/5 p-3 rounded-lg border border-blue-100/50 dark:border-primary/10">
+                        "Paciente com dor lombar crônica irradiada para membro inferior esquerdo. Suspeita de hérnia discal L4-L5."
+                    </p>
+</section>
+<!-- Histórico e Laudos Anteriores -->
+<section>
+<div class="flex items-center justify-between mb-2">
+<label class="text-[10px] font-bold uppercase text-slate-400 tracking-widest">Histórico de Exames</label>
+<span class="text-[10px] bg-slate-200 dark:bg-slate-700 px-1.5 py-0.5 rounded">3 anteriores</span>
+</div>
+<div class="space-y-2">
+<div class="group flex items-center justify-between p-3 border border-slate-100 dark:border-slate-800 rounded-lg hover:border-primary/30 transition-all cursor-pointer bg-white dark:bg-slate-900">
+<div class="flex flex-col">
+<span class="text-xs font-bold">RM Coluna Lombar</span>
+<span class="text-[10px] text-slate-400">12/05/2023 • Assinado</span>
+</div>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">picture_as_pdf</span>
+</div>
+<div class="group flex items-center justify-between p-3 border border-slate-100 dark:border-slate-800 rounded-lg hover:border-primary/30 transition-all cursor-pointer bg-white dark:bg-slate-900">
+<div class="flex flex-col">
+<span class="text-xs font-bold">RX Coluna Total</span>
+<span class="text-[10px] text-slate-400">10/01/2022 • Assinado</span>
+</div>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">picture_as_pdf</span>
+</div>
+</div>
+</section>
+</div>
+</aside>
+<!-- Coluna 2: PACS Viewer (50%) -->
+<section class="col-span-6 flex flex-col viewer-bg border-r border-slate-900">
+<!-- Toolbar PACS -->
+<div class="h-10 bg-slate-900 flex items-center justify-between px-3 border-b border-white/10">
+<div class="flex items-center gap-1">
+<button class="p-1.5 text-slate-400 hover:text-white hover:bg-white/10 rounded transition-colors" title="Window Level">
+<span class="material-symbols-outlined text-xl">contrast</span>
+</button>
+<button class="p-1.5 text-slate-400 hover:text-white hover:bg-white/10 rounded transition-colors" title="Zoom">
+<span class="material-symbols-outlined text-xl">zoom_in</span>
+</button>
+<button class="p-1.5 text-slate-400 hover:text-white hover:bg-white/10 rounded transition-colors" title="Pan">
+<span class="material-symbols-outlined text-xl">pan_tool</span>
+</button>
+<div class="w-px h-6 bg-white/10 mx-1"></div>
+<button class="p-1.5 text-slate-400 hover:text-white hover:bg-white/10 rounded transition-colors" title="Medir">
+<span class="material-symbols-outlined text-xl">straighten</span>
+</button>
+<button class="p-1.5 text-slate-400 hover:text-white hover:bg-white/10 rounded transition-colors" title="Ângulo">
+<span class="material-symbols-outlined text-xl">architecture</span>
+</button>
+<div class="w-px h-6 bg-white/10 mx-1"></div>
+<button class="p-1.5 text-slate-400 hover:text-white hover:bg-white/10 rounded transition-colors" title="Cine">
+<span class="material-symbols-outlined text-xl">play_circle</span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<select class="bg-transparent text-slate-300 text-[10px] border border-white/20 rounded px-2 py-0.5 focus:ring-0">
+<option>Layout 1x1</option>
+<option selected="">Layout 2x2</option>
+<option>Layout 1x2</option>
+</select>
+</div>
+</div>
+<!-- Viewports Grid -->
+<div class="flex-1 grid grid-cols-2 grid-rows-2 gap-px bg-slate-800 p-px">
+<!-- Viewport 1 -->
+<div class="relative bg-black group overflow-hidden">
+<img class="w-full h-full object-cover opacity-80" data-alt="Medical MRI scan of a spine lumbar section monochrome" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCscEd9uwDnNhxFKOWs4p_-EwBsnVRVUfKOo8SXQOF0_K-5Yc4uncKb-p-5ScRIllGedIaa6DrgNU8IrbNp8vvK8H06aPrOhS8NYQqDxzMYc84jRNdwncDJaA9gVlpDZMIPiIr4U5u3GusZGJ2rgIUpoFmsbNVNsHhUuDuYnjPi24hwTv73UN8FXcOdKkfkeOpbKMhlS_cjqvwc6DV6frIhR3CwPBzrWWoFEKuNlnNXhGDQn__cEi1k94XhyfOfPht6mEC-P02Lf9E"/>
+<div class="absolute top-2 left-2 text-[10px] text-blue-400 font-mono pointer-events-none">
+                        W: 400 L: 40<br/>
+                        SÉRIE: 2/12<br/>
+                        FRAME: 45/90
+                    </div>
+<div class="absolute bottom-2 right-2 text-[10px] text-white/50 font-mono pointer-events-none">
+                        T2-FSE-SAG
+                    </div>
+<div class="absolute inset-0 border-2 border-primary/0 group-hover:border-primary/40 transition-all pointer-events-none"></div>
+</div>
+<!-- Viewport 2 -->
+<div class="relative bg-black group overflow-hidden">
+<img class="w-full h-full object-cover opacity-80" data-alt="Medical MRI scan of a lumbar spine axial view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgb2scUFd_9k6lzLYfJa9zelu6zfzHl2PevwN93R1M4e1b6_n5mKT5SHuJSWt3GN7HVzPeUR1NIs4EhpSaMNws4wsg2Ks6_oO7fAM2V859a4hShlNzuhyT6MAdKTFge0jxPG-6vs1v5_ND0mBnUxp6yEcQi3Lk0lRpbFhSTsWvhBIIisk0b-xxOnqI4_wYvOzEgJMfFdfb632c6XvQ0G969IO347u_wG62Bew_ucQ17p17WUun_QWO9bNbFeU69-Ib0Y5K7-aa2Tg"/>
+<div class="absolute top-2 left-2 text-[10px] text-blue-400 font-mono pointer-events-none">
+                        W: 350 L: 50<br/>
+                        SÉRIE: 5/12<br/>
+                        FRAME: 12/32
+                    </div>
+<div class="absolute bottom-2 right-2 text-[10px] text-white/50 font-mono pointer-events-none">
+                        T2-TSE-AXIAL
+                    </div>
+<div class="absolute inset-0 border-2 border-primary/0 group-hover:border-primary/40 transition-all pointer-events-none"></div>
+</div>
+<!-- Viewport 3 -->
+<div class="relative bg-black group overflow-hidden">
+<img class="w-full h-full object-cover opacity-80" data-alt="Medical MRI scan showing vertebrae detail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbc7pmGuVZrT70-I_KEtqfKUmTwWsNI29Am4U0V1vvPMdQr9QZbMrrkLqS39ZDDa0VQDgnLvWca53_UYVlWXvK3UU1liiPL05L-CPNEdz1Njx7BcFwLKbdoNGXkLAs28XBjlMpZVKdFNlM4W9YQeKTRXN2jKAK0hnSTi3h_MIbXwdmL03s5soA2yQAmZS1vChWEczRMhTfUvSBxZ-z_98i8xBgBq7PCQ3QRPykDvFE64qsiembUZQ6QOkJkPFPlCg5uUktZPwqFyU"/>
+<div class="absolute top-2 left-2 text-[10px] text-blue-400 font-mono pointer-events-none">
+                        W: 1000 L: 250<br/>
+                        SÉRIE: 1/12<br/>
+                        FRAME: 1/1
+                    </div>
+<div class="absolute bottom-2 right-2 text-[10px] text-white/50 font-mono pointer-events-none">
+                        STIR-SAG
+                    </div>
+<div class="absolute inset-0 border-2 border-primary/0 group-hover:border-primary/40 transition-all pointer-events-none"></div>
+</div>
+<!-- Viewport 4 (Selected) -->
+<div class="relative bg-black group overflow-hidden ring-2 ring-primary ring-inset z-10">
+<img class="w-full h-full object-cover" data-alt="Detailed medical scan view of bone structure" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLZg7hTEiEdA8cdLxU1DgofRaR82b3pzKGfS3hUkQFi7DtjA6xadocrpEsraxG4T_svXkQevXxLW813cx_CWtGRpis4rvahTOS3rouK81vCWKnVTt_M2O2Bhl3YEqhFHuAWQI_swbPZ_NLPTatEPeQLIpaRiGpS7o_FB-5P7RM0ja_SclKfaguhuBPtSUyyMu42rtn1ueD7ufgOgLTTSPJH1tq4Wm3OPx0QipEB6Uo3IsxxRoZE73FFZRJovRGQrlJ1iIqbIisTc0"/>
+<div class="absolute top-2 left-2 text-[10px] text-blue-400 font-mono pointer-events-none">
+                        W: 400 L: 40<br/>
+                        SÉRIE: 6/12<br/>
+                        FRAME: 18/32
+                    </div>
+<div class="absolute bottom-2 right-2 text-[10px] text-white/50 font-mono pointer-events-none">
+                        T1-SE-AXIAL
+                    </div>
+<div class="absolute inset-0 border-2 border-primary pointer-events-none"></div>
+</div>
+</div>
+<!-- Série Navigation -->
+<div class="h-20 bg-slate-900 border-t border-white/10 flex items-center gap-2 px-2 overflow-x-auto custom-scrollbar">
+<div class="flex-shrink-0 w-16 h-16 bg-slate-800 rounded border-2 border-primary relative">
+<img class="w-full h-full object-cover rounded opacity-70" data-alt="MRI thumbnail 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtvwpfaAbcgZnZ640PN8bA05lAjE3hVAvZxwRusL-nSNJJy2smC-SsAoWa_fzxw2BNyx9MRjeaixvnUwAaBcR-J-U9fxZVMDPa0qGng0lj6nIeGARA9IQvV2DilbtNTpvpvaOTF3I5U5z0nm4y0J_mnWLIbsfTg29WlEtvvsZPWyiEm7yOqYEP26g9sbbvt8j1zkZBv82L_aZIFrsDdakl-ghwuAP_M2YpzPb9Lqq4ztLV1VV-lzbbKmevWhDiiqigZHnLN9LauwA"/>
+<span class="absolute bottom-0 right-0 bg-black/60 text-[8px] px-1 text-white">S1</span>
+</div>
+<div class="flex-shrink-0 w-16 h-16 bg-slate-800 rounded border border-white/10 relative">
+<img class="w-full h-full object-cover rounded opacity-70" data-alt="MRI thumbnail 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3cmyDtDgN_FuSxBOyNgu9Id5yuqnNnbwwgJ83tgKLee-mFqbuEiIGZovCSJPancQK1pNGzO92l5TjPma78QbQ0Ir-sARvSUzuTkMHuSW6fq-ud_YwoY4H0lX992ShVusVBEc-F8qCN11YQVILZ5uV9LGTG2-s5OVXRN8w8Kji3yExyaxpuGZ-RrhK3TEZam-8a3mgn05JE7KZBDbT1NeMJ-2ShLCaGzeOiMR67FE5gBipnaP28gXTsZpYbiF6G7uoeOoC5GKCIR0"/>
+<span class="absolute bottom-0 right-0 bg-black/60 text-[8px] px-1 text-white">S2</span>
+</div>
+<div class="flex-shrink-0 w-16 h-16 bg-slate-800 rounded border border-white/10 relative">
+<img class="w-full h-full object-cover rounded opacity-70" data-alt="MRI thumbnail 3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtZpSx7Z4ro9i1CWQ5zfHTtIFDkLigSOxsXHGCKYah27JAovNLnNCRyPvPrRFxMWJRKManclS1iAsoSBJoaRgYq0BD_91OuTjkzJCgVFXTJHGSALuy6mxKef395CbKQ2tzl4qNyT7Po8VXGERwIGjQg1n44clkWxvuF6cx-f5_DShAbFNUgZX0j3gOV9x2B8LlNK5tXMr2Z4S2OlwUOFdpSruK-g3iGU-CSFu1reYhEQz__i9JLkkJoDVSGx2o_aCND5CNLDX5ytI"/>
+<span class="absolute bottom-0 right-0 bg-black/60 text-[8px] px-1 text-white">S3</span>
+</div>
+<div class="flex-shrink-0 w-16 h-16 bg-slate-800 rounded border border-white/10 relative">
+<img class="w-full h-full object-cover rounded opacity-70" data-alt="MRI thumbnail 4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFFnr1u9kQYnyJGQAl2A4hrqE7WbQ_ceblW_DlLq2O5yL39lblKtNgZR5w8q9i-Ds7CzIv5mmG0JN86m29wQ_xDHHxEa0JXHuiWT1pU8nmsdJfU77XgsHBTpH769_8ar6A4jU4TQB6MHc7Qk9jpkZbak7MAOtM4Hz_ecTfBMFvas-lLZvReonDHOCygejA3YUjztFMm_sxKYBDkwB94FQGsV28-GdhpE8MzRseEROG7vV66p82wNEuFB4C1I4h0RYxXZM1OuImHXk"/>
+<span class="absolute bottom-0 right-0 bg-black/60 text-[8px] px-1 text-white">S4</span>
+</div>
+<div class="flex-shrink-0 w-16 h-16 bg-slate-800 rounded border border-white/10 relative">
+<img class="w-full h-full object-cover rounded opacity-70" data-alt="MRI thumbnail 5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNl4NImHupH9boLi3GqKiR6kXdzIkXXh1rCb5V4eFyGZ5XHH5dAqBaPs1rhCS-Kb7JtW5UIQDTklccCydEy82gxMaVPckTgWI4wMqV3Mt6-w3utf2M_L--Xo0Q683QxNjN_UnJ6GPEIOtXjcgIqCwaab5WuNTSJ_QrqGBhpDKZuzixUifsyoSzA10pstWCSP7FkK6t7Cl9Kcdb58VyMFaoqadXGIzYCv_XF6TGwglSZ271YBSw3Q0uLj112PQLvWI2Az1vg64hbo8"/>
+<span class="absolute bottom-0 right-0 bg-black/60 text-[8px] px-1 text-white">S5</span>
+</div>
+</div>
+</section>
+<!-- Coluna 3: Editor de Laudo (25%) -->
+<aside class="col-span-3 bg-white dark:bg-slate-900 flex flex-col overflow-hidden">
+<!-- Macros & Actions -->
+<div class="p-3 border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 flex flex-col gap-2">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-2.5 top-2.5 text-slate-400 text-sm">search</span>
+<input class="w-full pl-9 pr-4 py-2 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg text-xs focus:ring-primary focus:border-primary" placeholder="Buscar macro (Ctrl+K ou '/')" type="text"/>
+</div>
+<button class="flex items-center justify-center gap-2 w-full py-2 bg-red-50 dark:bg-red-950/30 text-red-600 dark:text-red-400 text-xs font-bold border border-red-200 dark:border-red-900/50 rounded-lg hover:bg-red-100 transition-colors">
+<span class="material-symbols-outlined text-base">warning</span>
+                    ACHADO CRÍTICO
+                </button>
+</div>
+<!-- Rich Text Editor (Simulado) -->
+<div class="flex-1 overflow-y-auto p-4 custom-scrollbar">
+<div class="space-y-6">
+<!-- Técnica -->
+<section>
+<h4 class="text-[10px] font-bold text-primary uppercase tracking-widest mb-2">Técnica</h4>
+<div class="text-sm outline-none leading-relaxed text-slate-800 dark:text-slate-200 min-h-[60px] p-2 rounded hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" contenteditable="true">
+                            Ressonância magnética da coluna lombar realizada com sequências ponderadas em T1, T2 e STIR.
+                        </div>
+</section>
+<!-- Achados -->
+<section>
+<h4 class="text-[10px] font-bold text-primary uppercase tracking-widest mb-2">Achados</h4>
+<div class="text-sm outline-none leading-relaxed text-slate-800 dark:text-slate-200 min-h-[200px] p-2 rounded hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" contenteditable="true">
+<p class="mb-3">Corpos vertebrais com altura preservada e alinhamento posterior mantido.</p>
+<p class="mb-3 text-red-600 dark:text-red-400 font-medium">L4-L5: Protusão discal focal póstero-central, determinando discreta compressão da face ventral do saco dural e redução da amplitude dos forames neurais correspondentes.</p>
+<p class="mb-3">Canal vertebral com dimensões preservadas.</p>
+<p class="mb-3">Cone medular com topografia e sinal preservados.</p>
+</div>
+</section>
+<!-- Impressão -->
+<section>
+<h4 class="text-[10px] font-bold text-primary uppercase tracking-widest mb-2">Impressão</h4>
+<div class="text-sm outline-none leading-relaxed text-slate-800 dark:text-slate-200 min-h-[100px] p-2 rounded hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors font-bold" contenteditable="true">
+                            Protusão discal L4-L5 conforme descrito acima.
+                        </div>
+</section>
+</div>
+</div>
+<!-- Footer Editor -->
+<div class="p-3 border-t border-slate-100 dark:border-slate-800 text-[10px] text-slate-400 flex justify-between">
+<span>Radiologista: Dr. Carlos Eduardo (CRM 12345-SP)</span>
+<span>Caracteres: 542</span>
+</div>
+</aside>
+</main>
+<!-- Overlay de Validação (Oculto) -->
+<!-- Este elemento estaria visível caso o usuário tentasse assinar sem CRM ou permissão -->
+<div class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+<div class="bg-white dark:bg-slate-900 rounded-xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-4 text-red-600 mb-4">
+<span class="material-symbols-outlined text-4xl">error</span>
+<h3 class="text-lg font-bold">Ação bloqueada</h3>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400 mb-6">
+                O preenchimento do CRM é obrigatório para assinar o laudo. Por favor, complete seus dados cadastrais em configurações.
+            </p>
+<button class="w-full py-2.5 bg-slate-900 dark:bg-white dark:text-slate-900 text-white rounded-lg font-bold">
+                Entendido
+            </button>
+</div>
+</div>
+</body></html>

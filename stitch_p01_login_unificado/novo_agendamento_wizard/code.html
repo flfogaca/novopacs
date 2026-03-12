@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Novo Agendamento - Themis Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f66bd",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined { font-size: 24px; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col shrink-0">
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined">health_metrics</span>
+</div>
+<div>
+<h1 class="text-sm font-bold leading-none">Themis Health</h1>
+<p class="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Módulo RIS</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-sm font-medium">Agendamentos</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-sm font-medium">Pacientes</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="text-sm font-medium">Exames</span>
+</a>
+<div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Configurações</span>
+</a>
+</div>
+</nav>
+<div class="p-4 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3 p-2">
+<div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Avatar do usuário recepcionista" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvmx4mOg-mkE14hL-lJmi1Geyib0Efi1qgllXKaNB-fGDiEo8RMd4T7W9oZTuQXXuJ1Y9UUDhBRzOMLHsDZADHpRgO4EUG2hw6c7Yh3TjKc9h0IBYI_iuM-tELqrd8d-DJFAqtCU1c603DdLfPWFZFMMIvpn9MihBV4I4idQ3jXwAp84fLhfhDGAaWnyTK1FaTMhCiUVRMRH-sw4taUyzv3dhhHAgXJWsP_gCSWecdcJArlnmqwC82lFf-d_t6PK8eoJ_cnUwqq-s"/>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-xs font-semibold truncate">Mariana Silva</p>
+<p class="text-[10px] text-slate-500 uppercase">Receptionist</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto flex flex-col">
+<!-- Header & Breadcrumbs -->
+<header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-8 py-4">
+<nav class="flex text-xs font-medium text-slate-500 mb-2">
+<a class="hover:text-primary" href="#">RIS</a>
+<span class="mx-2">/</span>
+<a class="hover:text-primary" href="#">Agendamentos</a>
+<span class="mx-2">/</span>
+<span class="text-slate-900 dark:text-slate-100">Novo Agendamento</span>
+</nav>
+<div class="flex items-center justify-between">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Novo Agendamento</h2>
+<div class="flex gap-2">
+<button class="px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-lg hover:bg-slate-50">Cancelar</button>
+</div>
+</div>
+</header>
+<div class="p-8 max-w-5xl mx-auto w-full space-y-6">
+<!-- Stepper -->
+<div class="relative flex justify-between items-start w-full">
+<!-- Step 1 (Active) -->
+<div class="flex flex-col items-center flex-1 z-10">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm mb-2 ring-4 ring-primary/20">1</div>
+<span class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Paciente</span>
+</div>
+<!-- Connector -->
+<div class="absolute top-5 left-0 w-full h-[2px] bg-slate-200 dark:bg-slate-800 -z-0"></div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center flex-1 z-10">
+<div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 flex items-center justify-center font-bold text-sm mb-2">2</div>
+<span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Exame</span>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center flex-1 z-10">
+<div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 flex items-center justify-center font-bold text-sm mb-2">3</div>
+<span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Disponibilidade</span>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center flex-1 z-10">
+<div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 flex items-center justify-center font-bold text-sm mb-2">4</div>
+<span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Confirmar</span>
+</div>
+</div>
+<!-- Alert Mock: Conflict 409 (Hidden by default, shown for demonstration context) -->
+<div class="hidden flex items-center gap-3 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-700 dark:text-red-400">
+<span class="material-symbols-outlined">error</span>
+<p class="text-sm font-medium">Desculpe, este horário acabou de ser ocupado. Por favor, selecione outro.</p>
+</div>
+<!-- Step Card Content (Step 1 active) -->
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800">
+<h3 class="text-lg font-bold">Passo 1: Identificar Paciente</h3>
+<p class="text-sm text-slate-500">Busque um paciente existente na base ou inicie um novo cadastro.</p>
+</div>
+<div class="p-6 space-y-6">
+<!-- Search Bar -->
+<div class="flex gap-3">
+<div class="relative flex-1">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 material-symbols-outlined">search</span>
+<input class="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="Buscar por CPF, Nome ou Prontuário..." type="text"/>
+</div>
+<button class="px-6 py-2 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors">Buscar</button>
+<button class="px-4 py-2 flex items-center gap-2 text-primary font-semibold hover:bg-primary/5 rounded-lg border border-primary/20 transition-colors">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+                                Cadastrar novo paciente
+                            </button>
+</div>
+<!-- Results Table Mock -->
+<div class="overflow-hidden border border-slate-100 dark:border-slate-800 rounded-lg">
+<table class="w-full text-left text-sm">
+<thead class="bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-semibold">
+<tr>
+<th class="px-4 py-3">Paciente</th>
+<th class="px-4 py-3">CPF</th>
+<th class="px-4 py-3">Prontuário</th>
+<th class="px-4 py-3 text-right">Ação</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors group">
+<td class="px-4 py-4">
+<div class="font-bold">João Ricardo de Oliveira</div>
+<div class="text-[11px] text-slate-500">Nascimento: 12/05/1985 (38 anos)</div>
+</td>
+<td class="px-4 py-4 text-slate-600 dark:text-slate-400">123.456.789-00</td>
+<td class="px-4 py-4 text-slate-600 dark:text-slate-400">#98231</td>
+<td class="px-4 py-4 text-right">
+<button class="text-primary font-bold group-hover:underline">Selecionar</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors group">
+<td class="px-4 py-4">
+<div class="font-bold">Joana Dark Santos</div>
+<div class="text-[11px] text-slate-500">Nascimento: 25/11/1992 (31 anos)</div>
+</td>
+<td class="px-4 py-4 text-slate-600 dark:text-slate-400">987.654.321-11</td>
+<td class="px-4 py-4 text-slate-600 dark:text-slate-400">#77120</td>
+<td class="px-4 py-4 text-right">
+<button class="text-primary font-bold group-hover:underline">Selecionar</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Step Navigation Footer -->
+<div class="p-6 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-100 dark:border-slate-800 flex justify-end gap-3">
+<button class="px-6 py-2 text-sm font-semibold text-slate-400 bg-slate-100 dark:bg-slate-800 rounded-lg cursor-not-allowed" disabled="">Voltar</button>
+<button class="px-8 py-2 text-sm font-semibold text-white bg-primary rounded-lg hover:shadow-lg hover:shadow-primary/20 transition-all">Próximo</button>
+</div>
+</div>
+<!-- Section Preview: This content would swap when clicking "Próximo" -->
+<!-- Step 2 Example Content (Exam Selection) -->
+<div class="hidden bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden mt-8 opacity-50 grayscale">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800">
+<h3 class="text-lg font-bold">Passo 2: Selecionar Exame</h3>
+</div>
+<div class="p-6 space-y-4">
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase text-slate-500">Tipo de Exame *</label>
+<select class="w-full p-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+<option>Ressonância Magnética de Crânio</option>
+<option>Tomografia Computadorizada de Abdômen</option>
+<option>Ultrassonografia Transvaginal</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 bg-primary/5 border border-primary/20 rounded-lg flex gap-4">
+<span class="material-symbols-outlined text-primary">schedule</span>
+<div>
+<p class="text-xs font-bold text-primary uppercase">Duração Estimada</p>
+<p class="text-sm font-semibold">30 minutos</p>
+</div>
+</div>
+<div class="p-4 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800/30 rounded-lg flex gap-4">
+<span class="material-symbols-outlined text-amber-600">info</span>
+<div>
+<p class="text-xs font-bold text-amber-700 uppercase">Preparo Obrigatório</p>
+<p class="text-sm">Jejum absoluto de 8 horas. Beber 4 copos de água 1h antes.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Step 3 Example Content (Availability) -->
+<div class="hidden bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden mt-8">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800">
+<h3 class="text-lg font-bold">Passo 3: Disponibilidade</h3>
+</div>
+<div class="p-6 space-y-6">
+<div class="flex flex-wrap gap-4 items-end">
+<div class="space-y-2 flex-1 min-w-[200px]">
+<label class="text-xs font-bold uppercase text-slate-500">Unidade *</label>
+<select class="w-full p-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+<option>Unidade Central - Matriz</option>
+<option>Unidade Jardins</option>
+</select>
+</div>
+<div class="space-y-2 flex-1 min-w-[200px]">
+<label class="text-xs font-bold uppercase text-slate-500">Período *</label>
+<input class="w-full p-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800" type="date"/>
+</div>
+<button class="px-6 py-2 bg-primary text-white font-semibold rounded-lg h-[42px] hover:bg-primary/90 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">sync</span>
+                                Verificar disponibilidade
+                            </button>
+</div>
+<div class="space-y-4">
+<h4 class="text-sm font-bold text-slate-700 dark:text-slate-300">Horários disponíveis para 15 de Outubro, 2023</h4>
+<div class="space-y-6">
+<div>
+<p class="text-xs font-bold text-slate-400 uppercase mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">wb_sunny</span> Manhã
+                                    </p>
+<div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2">
+<button class="py-2 px-3 text-sm font-medium border border-slate-200 dark:border-slate-700 rounded-lg hover:border-primary hover:text-primary transition-all">08:00</button>
+<button class="py-2 px-3 text-sm font-medium border border-slate-200 dark:border-slate-700 rounded-lg hover:border-primary hover:text-primary transition-all">08:30</button>
+<button class="py-2 px-3 text-sm font-medium border border-primary bg-primary/10 text-primary rounded-lg ring-2 ring-primary/20">09:00</button>
+<button class="py-2 px-3 text-sm font-medium border border-slate-200 dark:border-slate-700 rounded-lg hover:border-primary hover:text-primary transition-all">09:30</button>
+<button class="py-2 px-3 text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-400 rounded-lg cursor-not-allowed border border-transparent">10:00</button>
+<button class="py-2 px-3 text-sm font-medium border border-slate-200 dark:border-slate-700 rounded-lg hover:border-primary hover:text-primary transition-all">10:30</button>
+</div>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-400 uppercase mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">light_mode</span> Tarde
+                                    </p>
+<div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2">
+<button class="py-2 px-3 text-sm font-medium border border-slate-200 dark:border-slate-700 rounded-lg hover:border-primary hover:text-primary transition-all">13:00</button>
+<button class="py-2 px-3 text-sm font-medium border border-slate-200 dark:border-slate-700 rounded-lg hover:border-primary hover:text-primary transition-all">13:30</button>
+<button class="py-2 px-3 text-sm font-medium border border-slate-200 dark:border-slate-700 rounded-lg hover:border-primary hover:text-primary transition-all">14:00</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Step 4 Example Content (Confirm) -->
+<div class="hidden bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden mt-8">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800">
+<h3 class="text-lg font-bold">Passo 4: Confirmar Agendamento</h3>
+</div>
+<div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Summary Column -->
+<div class="md:col-span-1 space-y-6">
+<div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-800 space-y-4">
+<h4 class="text-xs font-bold uppercase text-slate-400">Resumo do Agendamento</h4>
+<div class="space-y-3">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">person</span>
+<div>
+<p class="text-[10px] uppercase font-bold text-slate-500">Paciente</p>
+<p class="text-sm font-bold leading-tight">João Ricardo de Oliveira</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">description</span>
+<div>
+<p class="text-[10px] uppercase font-bold text-slate-500">Exame</p>
+<p class="text-sm font-bold leading-tight">Ressonância Magnética de Crânio</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">location_on</span>
+<div>
+<p class="text-[10px] uppercase font-bold text-slate-500">Unidade</p>
+<p class="text-sm font-bold leading-tight">Unidade Central - Matriz</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">event_available</span>
+<div>
+<p class="text-[10px] uppercase font-bold text-slate-500">Data e Hora</p>
+<p class="text-sm font-bold leading-tight">15 Out, 2023 - 09:00h</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Form Column -->
+<div class="md:col-span-2 space-y-6">
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="text-[11px] font-bold uppercase text-slate-500">Médico Solicitante *</label>
+<div class="relative">
+<input class="w-full p-2 pl-8 text-sm rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800" placeholder="Buscar médico..." type="text"/>
+<span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">search</span>
+</div>
+</div>
+<div class="space-y-1">
+<label class="text-[11px] font-bold uppercase text-slate-500">Prioridade *</label>
+<select class="w-full p-2 text-sm rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+<option>Eletivo</option>
+<option>Urgente</option>
+</select>
+</div>
+</div>
+<div class="space-y-1">
+<label class="text-[11px] font-bold uppercase text-slate-500">Indicação Clínica *</label>
+<textarea class="w-full p-2 text-sm rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800" placeholder="Descreva brevemente a indicação..." rows="2"></textarea>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="text-[11px] font-bold uppercase text-slate-500">Convênio</label>
+<select class="w-full p-2 text-sm rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+<option>Particular</option>
+<option>Unimed</option>
+<option>Bradesco Saúde</option>
+<option>SulAmérica</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="text-[11px] font-bold uppercase text-slate-500">Nº Guia / Autorização</label>
+<input class="w-full p-2 text-sm rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800" placeholder="000.000000" type="text"/>
+</div>
+</div>
+<div class="space-y-1">
+<label class="text-[11px] font-bold uppercase text-slate-500">Observações Internas</label>
+<textarea class="w-full p-2 text-sm rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800" placeholder="Observações para a recepção ou triagem..." rows="2"></textarea>
+</div>
+<div class="flex gap-8 pt-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Lembrete por SMS</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Enviar por E-mail</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Footer Info -->
+<footer class="mt-auto p-4 px-8 text-center text-[11px] text-slate-400 border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
+                Themis Health © 2023 - Sistema de Informação Radiológica (RIS) | Integração DMWL Ativa
+            </footer>
+</main>
+</div>
+</body></html>
